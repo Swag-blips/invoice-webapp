@@ -1,7 +1,11 @@
-import { useState } from "react";
+import Sidebar from "./components/Sidebar";
 
 function App() {
-  return <div className="bg-red-500"></div>;
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 }
 
 export default App;
