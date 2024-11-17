@@ -2,9 +2,7 @@ import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
 import avatar from "/assets/image-avatar.jpg";
 
-type Props = {};
-
-const Sidebar = (props: Props) => {
+const Sidebar = () => {
   return (
     <aside className="h-screen w-[103px] bg-[#373B53] z-50 flex flex-col justify-between  rounded-r-[20px]">
       <div className="bg-[#7C5DFA] z-50 h-[103px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
