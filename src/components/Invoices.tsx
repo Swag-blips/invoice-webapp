@@ -19,7 +19,7 @@ const Invoices = () => {
           className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-8 h-[72px]"
         >
           <div className="flex items-center gap-10">
-            <p className="text-[#0C0E16] font-bold tracking-[-0.25px]">
+            <p className="text-[#0C0E16] text-[15px] font-bold tracking-[-0.25px]">
               <span className="text-[#7E88C3]">#</span>
               {data.id}
             </p>
