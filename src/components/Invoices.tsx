@@ -12,11 +12,11 @@ const Invoices = () => {
   }, [data]);
 
   return (
-    <>
+    <div className="mt-16 flex items-center gap-4 flex-col ">
       {invoiceData?.map((data) => (
         <div
           key={data.id}
-          className="bg-white cursor-pointer shadow-sm rounded-[8px] flex items-center justify-between w-full mt-16 px-8 h-[72px]"
+          className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-8 h-[72px]"
         >
           <div className="flex items-center gap-10">
             <p className="text-[#0C0E16] font-bold tracking-[-0.25px]">
@@ -47,7 +47,7 @@ const Invoices = () => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
