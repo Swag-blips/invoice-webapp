@@ -69,7 +69,7 @@ const Invoices = () => {
                       : data.status === "pending"
                       ? "text-[#FF8F00]"
                       : "text-[#373B53]"
-                  } font-bold  opacity-100`}
+                  } font-bold opacity-100`}
                 >
                   {data.status}
                 </p>
