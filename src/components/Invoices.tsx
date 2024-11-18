@@ -17,33 +17,39 @@ const Invoices = () => {
   // const pending = invoiceData?.status === "pending";
 
   return (
-    <div className="mt-16 flex items-center gap-4 flex-col ">
+    <div className="lg:mt-16 mt-8 flex items-center gap-4 flex-col ">
       {invoiceData?.map((data) => (
         <Link
           to={`/receipt/${data.id}`}
           key={data.id}
-          className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-8 h-[72px]"
+          className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
         >
-          <div className="flex items-center gap-10">
-            <p className="text-[#0C0E16] text-[15px] font-bold tracking-[-0.25px]">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10">
+            <p className="text-[#0C0E16] text-[15px]   font-bold tracking-[-0.25px]">
               <span className="text-[#7E88C3]">#</span>
               {data.id}
             </p>
 
-            <p className="text-[#7E88C3] tracking-[0.1px] text-[13px]">
+            <p className="text-[#7E88C3] md:mt-0 mt-6  tracking-[0.1px] text-[13px]">
               <span className="text-[#888EB0]">Due </span>
               {formatDate(data.paymentDue)}
             </p>
-            <p className="text-[#858BB2] tracking-[0.1px] text-[13px]">
+            <p className="text-[#858BB2] hidden lg:inline-flex tracking-[0.1px] text-[13px]">
               {data.clientName}
+            </p>
+            <p className="text-[15px] lg:hidden font-bold text-[#0C0E16] leading-[24px]">
+              £ {data.total}
             </p>
           </div>
 
-          <div className="flex items-center gap-10 justify-center">
-            <p className="tetx-[15px] font-bold text-[#0C0E16] leading-[24px]">
+          <div className="flex items-center flex-col md:flex-row md:gap-10 gap-6 md:justify-center">
+            <p className="text-[15px]  hidden lg:inline-flex font-bold text-[#0C0E16] leading-[24px]">
               £ {data.total}
             </p>
-            <div className="flex items-center gap-5">
+            <p className="text-[#858BB2] lg:hidden racking-[0.1px] text-[13px]">
+              {data.clientName}
+            </p>
+            <div className="flex md:items-center gap-5">
               <div
                 className={`flex items-center justify-center gap-2 w-[104px] rounded-[6px] ${
                   data.status === "paid"
@@ -74,7 +80,11 @@ const Invoices = () => {
                   {data.status}
                 </p>
               </div>
-              <img src={arrowRight} alt="arrow-right" />
+              <img
+                src={arrowRight}
+                className="hidden lg:inline-flex "
+                alt="arrow-right"
+              />
             </div>
           </div>
         </Link>
