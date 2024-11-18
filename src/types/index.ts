@@ -1,4 +1,4 @@
-export interface Invoices {
+export interface InvoicesType {
   id: string;
   createdAt: string;
   paymentDue: string;
@@ -9,7 +9,7 @@ export interface Invoices {
   status: string;
   senderAddress: SenderAddress;
   clientAddress: ClientAddress;
-  items: Items;
+  items: Items[];
   total: number;
 }
 
@@ -27,11 +27,9 @@ interface ClientAddress {
   country: string;
 }
 
-type Items = [
-  {
-    name: "string";
-    quantity: number;
-    price: number;
-    total: number;
-  }
-];
+interface Items {
+  name: string;
+  quantity: number;
+  price: number;
+  total: number;
+}
