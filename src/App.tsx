@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
 import Home from "./pages/home/Home";
+import Receipt from "./pages/receipt/Receipt";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,6 +14,7 @@ function App() {
         },
         {
           path: "/receipt/:id",
+          element: <Receipt />,
         },
       ],
     },
