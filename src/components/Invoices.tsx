@@ -12,6 +12,10 @@ const Invoices = () => {
     setInvoiceData(data);
   }, [data]);
 
+  // const paid = invoiceData?.status === "paid";
+  // const draft = invoiceData?.status === "draft";
+  // const pending = invoiceData?.status === "pending";
+
   return (
     <div className="mt-16 flex items-center gap-4 flex-col ">
       {invoiceData?.map((data) => (
@@ -40,9 +44,35 @@ const Invoices = () => {
               £ {data.total}
             </p>
             <div className="flex items-center gap-5">
-              <div className="flex items-center justify-center gap-2 w-[104px] rounded-[6px] bg-[#33D69F] bg-opacity-[5.71%] h-10">
-                <div className="w-2 h-2 bg-[#33D69F] rounded-full" />
-                <p className="text-[#33D69F] opacity-100">Paid</p>
+              <div
+                className={`flex items-center justify-center gap-2 w-[104px] rounded-[6px] ${
+                  data.status === "paid"
+                    ? "bg-[#33D69F]"
+                    : data.status === "pending"
+                    ? "bg-[#FF8F00]"
+                    : "bg-[#373B53]"
+                }  bg-opacity-[5.71%] h-10`}
+              >
+                <div
+                  className={`w-2 h-2 ${
+                    data.status === "paid"
+                      ? "bg-[#33D69F]"
+                      : data.status === "pending"
+                      ? "bg-[#FF8F00]"
+                      : "bg-[#373B53]"
+                  } rounded-full opacity-100 `}
+                />
+                <p
+                  className={`bg-opacity-[5.71%] ${
+                    data.status === "paid"
+                      ? "text-[#33D69F]"
+                      : data.status === "pending"
+                      ? "text-[#FF8F00]"
+                      : "text-[#373B53]"
+                  } font-bold  opacity-100`}
+                >
+                  {data.status}
+                </p>
               </div>
               <img src={arrowRight} alt="arrow-right" />
             </div>

@@ -21,7 +21,7 @@ const ItemDetails = ({ items, total }: Props) => {
               </p>
             ))}
           </div>
-          <div className="flex gap-[40px] lg:gap-[65px]">
+          <div className="flex justify-between">
             <div className=" flex flex-col items-center gap-8">
               <h1 className="text-[16px] text-[#7E88C3] font-medium tracking=[-0.1px] text-left">
                 Qty
