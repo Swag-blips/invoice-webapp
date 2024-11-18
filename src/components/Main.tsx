@@ -5,7 +5,7 @@ import plus from "/assets/icon-plus.svg";
 export default function Main() {
   return (
     <div className="flex items-center  justify-center">
-      <div className="flex md:w-[600px] flex-col lg:w-[730px]">
+      <div className="flex md:w-[640px] flex-col lg:w-[730px]">
         <div className="w-auto flex items-center justify-between">
           <div className="flex flex-col ">
             <h2 className="font-bold text-[36px] text-[#0C0E16] tracking-[-1.13px] text-left">

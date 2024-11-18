@@ -1,15 +1,23 @@
-import Main from "./components/Main";
-import Sidebar from "./components/Sidebar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import RootLayout from "./layout/RootLayout";
+import Home from "./pages/home/Home";
 
 function App() {
-  return (
-    <div className="flex w-full  ">
-      <Sidebar />
-      <main className="flex justify-center items-start mt-[78px] w-full">
-        <Main />
-      </main>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      element: <RootLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/receipt/:id",
+        },
+      ],
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
