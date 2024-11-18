@@ -2,6 +2,7 @@ import arrowRight from "/assets/icon-arrow-right.svg";
 import data from "../../data.json";
 import { InvoicesType } from "../types";
 import { useEffect, useState } from "react";
+import formatDate from "../utils/formatDate";
 
 const Invoices = () => {
   const [invoiceData, setInvoiceData] = useState<InvoicesType[] | null>(null);
@@ -13,7 +14,10 @@ const Invoices = () => {
   return (
     <>
       {invoiceData?.map((data) => (
-        <div className="bg-white cursor-pointer shadow-sm rounded-[8px] flex items-center justify-between w-full mt-16 px-8 h-[72px]">
+        <div
+          key={data.id}
+          className="bg-white cursor-pointer shadow-sm rounded-[8px] flex items-center justify-between w-full mt-16 px-8 h-[72px]"
+        >
           <div className="flex items-center gap-10">
             <p className="text-[#0C0E16] font-bold tracking-[-0.25px]">
               <span className="text-[#7E88C3]">#</span>
@@ -21,7 +25,8 @@ const Invoices = () => {
             </p>
 
             <p className="text-[#7E88C3] tracking-[0.1px] text-[13px]">
-              <span className="text-[#888EB0]">Due </span> 19 Aug 2021
+              <span className="text-[#888EB0]">Due </span>
+              {formatDate(data.paymentDue)}
             </p>
             <p className="text-[#858BB2] tracking-[0.1px] text-[13px]">
               {data.clientName}
