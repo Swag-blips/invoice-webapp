@@ -27,7 +27,7 @@ interface ClientAddress {
   country: string;
 }
 
-interface Items {
+export interface Items {
   name: string;
   quantity: number;
   price: number;

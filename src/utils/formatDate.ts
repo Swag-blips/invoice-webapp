@@ -30,7 +30,6 @@ const formatDate = (date: string) => {
       value = ` ${day} ${months[month]} ${year} `;
     }
   });
-  console.log(value);
 
   return value;
 };
