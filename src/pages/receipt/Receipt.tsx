@@ -3,7 +3,7 @@ import data from "../../../data.json";
 import ItemDetails from "../../components/ItemDetails";
 import { useEffect, useState } from "react";
 import { InvoicesType } from "../../types";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 
 const Receipt = () => {
@@ -24,10 +24,10 @@ const Receipt = () => {
 
   return (
     <div className="flex md:w-[640px] flex-col lg:w-[730px]">
-      <div className="flex gap-6 items-center ">
+      <Link to={"/"} className="flex gap-6 items-center ">
         <img src={arrowLeft} alt="arrow-left" className=" object-contain" />
         <p className="text-[#0C0E16] tracking-[-0.25px] font-bold">Go back</p>
-      </div>
+      </Link>
 
       <div className="w-auto rounded-lg mt-8 justify-between flex items-center bg-white px-8 shadow-sm h-[88px]">
         <div className="flex items-center gap-5">

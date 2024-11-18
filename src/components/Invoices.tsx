@@ -3,6 +3,7 @@ import data from "../../data.json";
 import { InvoicesType } from "../types";
 import { useEffect, useState } from "react";
 import formatDate from "../utils/formatDate";
+import { Link } from "react-router-dom";
 
 const Invoices = () => {
   const [invoiceData, setInvoiceData] = useState<InvoicesType[] | null>(null);
@@ -14,7 +15,8 @@ const Invoices = () => {
   return (
     <div className="mt-16 flex items-center gap-4 flex-col ">
       {invoiceData?.map((data) => (
-        <div
+        <Link
+          to={`/receipt/${data.id}`}
           key={data.id}
           className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-8 h-[72px]"
         >
@@ -38,14 +40,14 @@ const Invoices = () => {
               £ {data.total}
             </p>
             <div className="flex items-center gap-5">
-              <div className="flex items-center justify-center gap-2 w-[104px] bg-[#33D69F] bg-opacity-[5.71%] h-10">
+              <div className="flex items-center justify-center gap-2 w-[104px] rounded-[6px] bg-[#33D69F] bg-opacity-[5.71%] h-10">
                 <div className="w-2 h-2 bg-[#33D69F] rounded-full" />
                 <p className="text-[#33D69F] opacity-100">Paid</p>
               </div>
               <img src={arrowRight} alt="arrow-right" />
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
