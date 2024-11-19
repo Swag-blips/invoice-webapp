@@ -10,19 +10,24 @@ const ItemDetails = ({ items, total }: Props) => {
       <div className="w-full rounded-r-[8px] rounded-l-[8px] mt-12 p-8 bg-[#F9FAFE]">
         <div className="grid grid-cols-2">
           <div className=" flex flex-col gap-8">
-            <p className="text-[#7E88C3]">Item Name</p>
+            <p className="text-[#7E88C3] hidden md:block">Item Name</p>
 
             {items?.map((item) => (
-              <p
-                key={item.name}
-                className="text-[#0C0E16] font-bold text-[15px]"
-              >
-                {item.name}
-              </p>
+              <div className="flex flex-col gap-2">
+                <p
+                  key={item.name}
+                  className="text-[#0C0E16] font-bold text-[15px]"
+                >
+                  {item.name}
+                </p>
+                <p className="font-bold md:hidden text-[#7E88C3] text-[15px]">
+                  {item.quantity} x £ {item.price}
+                </p>
+              </div>
             ))}
           </div>
-          <div className="flex justify-between">
-            <div className=" flex flex-col items-center gap-8">
+          <div className="flex md:justify-between justify-end">
+            <div className=" hidden md:flex flex-col items-center gap-8">
               <h1 className="text-[16px] text-[#7E88C3] font-medium tracking=[-0.1px] text-left">
                 Qty
               </h1>
@@ -50,7 +55,7 @@ const ItemDetails = ({ items, total }: Props) => {
                 </p>
               ))}
             </div>
-            <div className=" flex flex-col items-center gap-8">
+            <div className=" hidden md:flex flex-col items-center gap-8">
               <h1 className="text-[16px] text-[#7E88C3] font-medium tracking=[-0.1px] text-right">
                 Total
               </h1>
