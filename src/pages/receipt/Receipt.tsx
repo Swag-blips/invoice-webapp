@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
 import StatusButton from "../../components/StatusButton";
 import ReceiptDetails from "../../components/ReceiptDetails";
+import SubmitComponent from "../../components/SubmitComponent";
 
 const Receipt = () => {
   const [invoice, setInvoice] = useState<InvoicesType>();
@@ -53,10 +54,11 @@ const Receipt = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 md:p-12 mt-6">
+        <div className="bg-white shadow-md  rounded-lg p-6 md:p-12 mt-6">
           <ReceiptDetails invoice={invoice} />
           <ItemDetails items={invoice?.items} total={invoice?.total} />
         </div>
+        <SubmitComponent />
       </div>
     </main>
   );
