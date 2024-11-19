@@ -14,7 +14,8 @@ export default {
         tight: "-0.25px",
       },
       fontSize: {
-        base: "13px",
+        sm: "13px",
+        base: "15px",
       },
     },
   },

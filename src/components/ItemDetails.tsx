@@ -13,14 +13,11 @@ const ItemDetails = ({ items, total }: Props) => {
             <p className="text-primary-text hidden md:block">Item Name</p>
 
             {items?.map((item) => (
-              <div className="flex flex-col gap-2">
-                <p
-                  key={item.name}
-                  className="text-[#0C0E16] font-bold text-[15px]"
-                >
+              <div key={item.name} className="flex flex-col gap-2">
+                <p className="text-[#0C0E16] font-bold text-base">
                   {item.name}
                 </p>
-                <p className="font-bold md:hidden text-primary-text text-[15px]">
+                <p className="font-bold md:hidden text-primary-text text-base">
                   {item.quantity} x £ {item.price}
                 </p>
               </div>
@@ -35,7 +32,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold text-[15px] text-primary-text tracking-tight text-left"
+                  className="font-bold text-base text-primary-text tracking-tight text-left"
                 >
                   {item.quantity}
                 </p>
@@ -49,7 +46,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold  text-[15px] text-primary-text tracking-tight text-right"
+                  className="font-bold  text-base text-primary-text tracking-tight text-right"
                 >
                   £ {item.price}
                 </p>
@@ -63,7 +60,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold text-[15px] text-[#0C0E16] tracking-tight text-right"
+                  className="font-bold text-base text-[#0C0E16] tracking-tight text-right"
                 >
                   {item.total}
                 </p>
@@ -74,7 +71,7 @@ const ItemDetails = ({ items, total }: Props) => {
       </div>
       <div className="bg-draft-status flex items-center justify-between w-full p-8 rounded-br-[8px] rounded-bl-[8px]">
         <p className="text-white hidden md:inline">Amount Due</p>
-        <p className="text-white md:hidden">Grand total</p>
+        <p className="text-white text-sm md:hidden">Grand total</p>
         <p className="text-white font-bold text-2xl tracking-[-0.5px] text-right">
           £ {total}
         </p>
