@@ -1,5 +1,4 @@
 import { Items } from "../types/index";
-import SubmitComponent from "./SubmitComponent";
 type Props = {
   items?: Items[];
   total?: number;
@@ -11,7 +10,7 @@ const ItemDetails = ({ items, total }: Props) => {
       <div className="w-full rounded-r-[8px] rounded-l-[8px] mt-12 p-8 bg-[#F9FAFE]">
         <div className="md:grid md:grid-cols-2 flex items-center justify-between">
           <div className=" flex flex-col gap-6 md:gap-8">
-            <p className="text-[#7E88C3] hidden md:block">Item Name</p>
+            <p className="text-primary-text hidden md:block">Item Name</p>
 
             {items?.map((item) => (
               <div className="flex flex-col gap-2">
@@ -21,7 +20,7 @@ const ItemDetails = ({ items, total }: Props) => {
                 >
                   {item.name}
                 </p>
-                <p className="font-bold md:hidden text-[#7E88C3] text-[15px]">
+                <p className="font-bold md:hidden text-primary-text text-[15px]">
                   {item.quantity} x £ {item.price}
                 </p>
               </div>
@@ -29,35 +28,35 @@ const ItemDetails = ({ items, total }: Props) => {
           </div>
           <div className="flex md:justify-between justify-end">
             <div className=" hidden md:flex flex-col items-center gap-8">
-              <h1 className="text-[16px] text-[#7E88C3] font-medium tracking=[-0.1px] text-left">
+              <h1 className="text-[16px] text-primary-text font-medium tracking=[-0.1px] text-left">
                 Qty
               </h1>
 
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold text-[15px] text-[#7E88C3] tracking-[-0.25px] text-left"
+                  className="font-bold text-[15px] text-primary-text tracking-[-0.25px] text-left"
                 >
                   {item.quantity}
                 </p>
               ))}
             </div>
             <div className=" flex flex-col items-center justify-center gap-6 md:gap-8">
-              <h1 className="text-[16px] hidden md:inline text-[#7E88C3] font-medium tracking=[-0.1px] text-left">
+              <h1 className="text-[16px] hidden md:inline text-primary-text font-medium tracking=[-0.1px] text-left">
                 Price
               </h1>
 
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold  text-[15px] text-[#7E88C3] tracking-[-0.25px] text-right"
+                  className="font-bold  text-[15px] text-primary-text tracking-[-0.25px] text-right"
                 >
                   £ {item.price}
                 </p>
               ))}
             </div>
             <div className=" hidden md:flex flex-col items-center gap-8">
-              <h1 className="text-[16px] text-[#7E88C3] font-medium tracking=[-0.1px] text-right">
+              <h1 className="text-[16px] text-primary-text font-medium tracking=[-0.1px] text-right">
                 Total
               </h1>
 

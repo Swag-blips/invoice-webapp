@@ -36,7 +36,7 @@ const Receipt = () => {
 
         <div className="w-auto rounded-lg mt-8 justify-between flex items-center bg-white px-8 shadow-sm h-[88px]">
           <div className="flex w-full md:w-auto justify-between items-center gap-5">
-            <p className="font-medium text-[13px] leading-[0.1px] text-[#858BB2]">
+            <p className="font-medium text-[13px] leading-[0.1px] text-secondary-text">
               Status
             </p>
             <StatusButton invoice={invoice} />
