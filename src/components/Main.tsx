@@ -12,19 +12,19 @@ export default function Main() {
               <h2 className="font-bold text-[24px] tracking-[-0.75px] lg:text-[36px] text-[#0C0E16] lg:tracking-[-1.13px] text-left">
                 Invoices
               </h2>
-              <p className="text-[13px] hidden lg:inline-flex text-left tracking-[-0.1px] text-[#888EB0]">
+              <p className="text-base hidden lg:inline-flex text-left tracking-[-0.1px] text-[#888EB0]">
                 There are 7 total invoices
               </p>
-              <p className="lg:hidden  text-left tracking-[-0.1px] text-[13px]  text-[#888EB0] ">
+              <p className="lg:hidden  text-left tracking-[-0.1px] text-base  text-[#888EB0] ">
                 7 Invoices
               </p>
             </div>
             <div className="flex items-center gap-4 lg:gap-10">
               <div className="flex items-center cursor-pointer gap-[14px]">
-                <p className="text-[15px] text-left hidden lg:inline-flex font-bold leading-[15px] tracking-[-0.25px] text-[#0C0E16] ">
+                <p className="text-[15px] text-left hidden lg:inline-flex font-bold leading-[15px] tracking-tight text-[#0C0E16] ">
                   Filter by status
                 </p>
-                <p className="lg:hidden text-[15px] text-left font-bold leading-[15px] tracking-[-0.25px] text-[#0C0E16]">
+                <p className="lg:hidden text-[15px] text-left font-bold leading-[15px] tracking-tight text-[#0C0E16]">
                   Filter
                 </p>
                 <img src={arrowDown} alt="arrow-down icon" />

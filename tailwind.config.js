@@ -10,6 +10,12 @@ export default {
         "pending-status": "#FF8F00",
         "draft-status": "#373B53",
       },
+      letterSpacing: {
+        tight: "-0.25px",
+      },
+      fontSize: {
+        base: "13px",
+      },
     },
   },
   plugins: [],

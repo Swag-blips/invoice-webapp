@@ -25,16 +25,16 @@ const Invoices = () => {
           className="bg-white cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
         >
           <div className="flex text flex-col lg:flex-row lg:items-center lg:gap-10">
-            <p className="text-[#0C0E16] text-[15px]   font-bold tracking-[-0.25px]">
+            <p className="text-[#0C0E16] text-[15px]   font-bold tracking-tight">
               <span className="text-primary-text">#</span>
               {data.id}
             </p>
 
-            <p className="text-primary-text md:mt-0 mt-6  tracking-[0.1px] text-[13px]">
+            <p className="text-primary-text md:mt-0 mt-6  tracking-[0.1px] text-base">
               <span className="text-[#888EB0]">Due </span>
               {formatDate(data.paymentDue)}
             </p>
-            <p className="text-secondary-text hidden lg:inline-flex tracking-[0.1px] text-[13px]">
+            <p className="text-secondary-text hidden lg:inline-flex tracking-[0.1px] text-base">
               {data.clientName}
             </p>
             <p className="text-[15px] lg:hidden font-bold text-[#0C0E16] leading-[24px]">
@@ -46,7 +46,7 @@ const Invoices = () => {
             <p className="text-[15px]  hidden lg:inline-flex font-bold text-[#0C0E16] leading-[24px]">
               £ {data.total}
             </p>
-            <p className="text-secondary-text lg:hidden racking-[0.1px] text-[13px]">
+            <p className="text-secondary-text lg:hidden racking-[0.1px] text-base">
               {data.clientName}
             </p>
             <div className="flex md:items-center gap-5">

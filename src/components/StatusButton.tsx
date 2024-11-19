@@ -30,7 +30,7 @@ const StatusButton = ({ invoice }: Props) => {
             : invoice?.status === "pending"
             ? "text-pending-status"
             : "text-draft-status"
-        } font-bold tracking-[-0.25px] opacity-100`}
+        } font-bold tracking-tight opacity-100`}
       >
         {invoice?.status}
       </p>

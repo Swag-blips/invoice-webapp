@@ -35,7 +35,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold text-[15px] text-primary-text tracking-[-0.25px] text-left"
+                  className="font-bold text-[15px] text-primary-text tracking-tight text-left"
                 >
                   {item.quantity}
                 </p>
@@ -49,7 +49,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold  text-[15px] text-primary-text tracking-[-0.25px] text-right"
+                  className="font-bold  text-[15px] text-primary-text tracking-tight text-right"
                 >
                   £ {item.price}
                 </p>
@@ -63,7 +63,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold text-[15px] text-[#0C0E16] tracking-[-0.25px] text-right"
+                  className="font-bold text-[15px] text-[#0C0E16] tracking-tight text-right"
                 >
                   {item.total}
                 </p>
