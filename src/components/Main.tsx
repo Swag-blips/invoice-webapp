@@ -5,9 +5,9 @@ import plus from "/assets/icon-plus.svg";
 export default function Main() {
   return (
     <main className="flex  lg:items-start mt-8 lg:mt-[78px] w-full">
-      <div className="flex items-center w-full  md:w-[640px] lg:w-[730px] mx-6 md:mx-0 justify-center">
+      <div className="flex items-center w-full  lg:w-[730px] mx-6 md:mx-8 lg:mx-0 justify-center">
         <div className="flex flex-col w-full ">
-          <div className="  flex items-center justify-between w-[inherit]">
+          <div className=" flex items-center justify-between w-[inherit]">
             <div className="flex flex-col ">
               <h2 className="font-bold text-[24px] tracking-[-0.75px] lg:text-[36px] text-[#0C0E16] lg:tracking-[-1.13px] text-left">
                 Invoices
