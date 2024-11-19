@@ -1,8 +1,12 @@
 import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
 import avatar from "/assets/image-avatar.jpg";
+import { useTheme } from "../context/ThemeProvider";
 
 const Sidebar = () => {
+  const { theme, handleThemeSwitch } = useTheme();
+
+
   return (
     <aside className="h-screen w-[103px] bg-draft-status  z-50 hidden lg:flex lg:fixed flex-col justify-between  rounded-r-[20px]">
       <div className="bg-[#7C5DFA] z-50 h-[103px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
@@ -13,7 +17,7 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col gap-6 items-center justify-end mb-[24px] ">
-        <img src={moon} alt="moon-image" />
+        <img onClick={handleThemeSwitch} src={moon} alt="moon-image" />
         <hr className="border-t-2 w-full border-[#494E6E]" />
         <img src={avatar} alt="avatar" className="h-10 w-10 rounded-full" />
       </div>

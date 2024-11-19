@@ -1,14 +1,22 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type Provider = {
   children: React.ReactNode;
 };
 
-type ThemeContext = {
+interface ThemeContextType {
   theme: string;
   handleThemeSwitch: () => void;
+}
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("an error occured");
+  }
+  return context;
 };
-const ThemeContext = createContext<ThemeContext | null>(null);
 
 const ThemeProvider = ({ children }: Provider) => {
   const [theme, setTheme] = useState<string>(() => {
@@ -31,10 +39,11 @@ const ThemeProvider = ({ children }: Provider) => {
 
   useEffect(() => {
     window.localStorage.setItem("theme", JSON.stringify(theme));
+
   }, [theme]);
 
   const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "light");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -44,5 +53,4 @@ const ThemeProvider = ({ children }: Provider) => {
   );
 };
 
-
-export default ThemeProvider
+export default ThemeProvider;
