@@ -6,6 +6,9 @@ export default {
       colors: {
         "primary-text": "#7E88C3",
         "secondary-text": "#858BB2",
+        "paid-status": "#33D69F",
+        "pending-status": "#FF8F00",
+        "draft-status": "#373B53",
       },
     },
   },

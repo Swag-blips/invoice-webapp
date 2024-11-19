@@ -8,28 +8,28 @@ const StatusButton = ({ invoice }: Props) => {
     <div
       className={`flex items-center justify-center gap-2 w-[104px]  ${
         invoice?.status === "paid"
-          ? "bg-[#33D69F]"
+          ? "bg-paid-status"
           : invoice?.status === "pending"
-          ? "bg-[#FF8F00]"
-          : "bg-[#373B53]"
+          ? "bg-pending-status"
+          : "bg-draft-status"
       } rounded-md bg-opacity-[5.71%] h-10`}
     >
       <div
         className={`w-2 h-2  ${
           invoice?.status === "paid"
-            ? "bg-[#33D69F]"
+            ? "bg-paid-status"
             : invoice?.status === "pending"
-            ? "bg-[#FF8F00]"
-            : "bg-[#373B53]"
+            ? "bg-pending-status"
+            : "bg-draft-status"
         } rounded-full`}
       />
       <p
         className={` ${
           invoice?.status === "paid"
-            ? "text-[#33D69F]"
+            ? "text-paid-status"
             : invoice?.status === "pending"
-            ? "text-[#FF8F00]"
-            : "text-[#373B53]"
+            ? "text-pending-status"
+            : "text-draft-status"
         } font-bold tracking-[-0.25px] opacity-100`}
       >
         {invoice?.status}

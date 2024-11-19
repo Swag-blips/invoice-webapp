@@ -72,7 +72,7 @@ const ItemDetails = ({ items, total }: Props) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#373B53] flex items-center justify-between w-full p-8 rounded-br-[8px] rounded-bl-[8px]">
+      <div className="bg-draft-status flex items-center justify-between w-full p-8 rounded-br-[8px] rounded-bl-[8px]">
         <p className="text-white hidden md:inline">Amount Due</p>
         <p className="text-white md:hidden">Grand total</p>
         <p className="text-white font-bold text-2xl tracking-[-0.5px] text-right">

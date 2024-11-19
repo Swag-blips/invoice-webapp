@@ -4,7 +4,7 @@ import avatar from "/assets/image-avatar.jpg";
 
 const Sidebar = () => {
   return (
-    <aside className="h-screen w-[103px] bg-[#373B53]  z-50 hidden lg:flex lg:fixed flex-col justify-between  rounded-r-[20px]">
+    <aside className="h-screen w-[103px] bg-draft-status  z-50 hidden lg:flex lg:fixed flex-col justify-between  rounded-r-[20px]">
       <div className="bg-[#7C5DFA] z-50 h-[103px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
         <figure className=" flex z-50 items-center justify-center ">
           <img src={logo} alt="logo" />

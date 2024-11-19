@@ -53,28 +53,28 @@ const Invoices = () => {
               <div
                 className={`flex items-center justify-center gap-2 w-[104px] rounded-[6px] ${
                   data.status === "paid"
-                    ? "bg-[#33D69F]"
+                    ? "bg-paid-status"
                     : data.status === "pending"
-                    ? "bg-[#FF8F00]"
-                    : "bg-[#373B53]"
+                    ? "bg-pending-status"
+                    : "bg-draft-status"
                 }  bg-opacity-[5.71%] h-10`}
               >
                 <div
                   className={`w-2 h-2 ${
                     data.status === "paid"
-                      ? "bg-[#33D69F]"
+                      ? "bg-paid-status"
                       : data.status === "pending"
-                      ? "bg-[#FF8F00]"
-                      : "bg-[#373B53]"
+                      ? "bg-pending-status"
+                      : "bg-draft-status"
                   } rounded-full opacity-100 `}
                 />
                 <p
                   className={`bg-opacity-[5.71%] ${
                     data.status === "paid"
-                      ? "text-[#33D69F]"
+                      ? "text-paid-status"
                       : data.status === "pending"
-                      ? "text-[#FF8F00]"
-                      : "text-[#373B53]"
+                      ? "text-pending-status"
+                      : "text-draft-status"
                   } font-bold opacity-100`}
                 >
                   {data.status}
