@@ -7,7 +7,7 @@ const RootLayout = () => {
     <div className="flex flex-col lg:flex-row lg:items-start w-full  ">
       <Sidebar />
       <Navbar />
-      <div className="lg:flex justify-center w-full">
+      <div className="lg:flex lg:justify-center w-full">
         <Outlet />
       </div>
     </div>

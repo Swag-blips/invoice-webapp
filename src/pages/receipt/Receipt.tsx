@@ -4,7 +4,6 @@ import ItemDetails from "../../components/ItemDetails";
 import { useEffect, useState } from "react";
 import { InvoicesType } from "../../types";
 import { Link, useParams } from "react-router-dom";
-import formatDate from "../../utils/formatDate";
 import StatusButton from "../../components/StatusButton";
 import ReceiptDetails from "../../components/ReceiptDetails";
 import SubmitComponent from "../../components/SubmitComponent";
