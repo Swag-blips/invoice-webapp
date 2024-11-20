@@ -1,7 +1,7 @@
 const SubmitComponent = () => {
   return (
-    <div className="flex md:hidden bg-white px-6 ml-[-24px]  justify-center h-[90px] mt-14 items-center gap-2">
-      <button className="h-12 px-6 rounded-[24px] bg-[#F9FAFE] font-bold tracking-tight text-[#7E88C3]">
+    <div className="flex md:hidden dark:bg-[#1E2139] bg-white px-6 ml-[-24px]  justify-center h-[90px] mt-14 items-center gap-2">
+      <button className="h-12 px-6 rounded-[24px] dark:text-[#DFE3FA] dark:bg-[#252945] bg-[#F9FAFE] font-bold tracking-tight text-[#7E88C3]">
         Edit
       </button>
       <button className="h-12 px-6 rounded-[24px]  font-bold tracking-tight  bg-[#EC5757] text-white">

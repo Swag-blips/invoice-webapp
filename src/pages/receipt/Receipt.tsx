@@ -31,18 +31,20 @@ const Receipt = () => {
       <div className="flex w-full mx-6  md:w-[640px] flex-col lg:w-[730px]">
         <Link to={"/"} className="flex gap-6 items-center ">
           <img src={arrowLeft} alt="arrow-left" className=" object-contain" />
-          <p className="text-[#737990] tracking-tight font-bold">Go back</p>
+          <p className="text-[#737990] dark:text-white tracking-tight font-bold">
+            Go back
+          </p>
         </Link>
 
-        <div className="w-auto rounded-lg mt-8 justify-between flex items-center bg-white px-8 shadow-sm h-[88px]">
+        <div className="w-auto rounded-lg mt-8 justify-between flex items-center dark:bg-[#1E2139] bg-white px-8 shadow-sm h-[88px]">
           <div className="flex w-full md:w-auto justify-between items-center gap-5">
-            <p className="font-medium text-sm leading-[0.1px] text-secondary-text">
+            <p className="font-medium text-sm leading-[0.1px] dark:text-[#DFE3FA] text-secondary-text">
               Status
             </p>
             <StatusButton invoice={invoice} />
           </div>
           <div className="md:flex hidden items-center gap-2">
-            <button className="h-12 px-6 rounded-[24px] bg-[#F9FAFE] font-bold tracking-tight text-[#7E88C3]">
+            <button className="h-12 px-6 rounded-[24px] dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
               Edit
             </button>
             <button className="h-12 px-6 rounded-[24px]  font-bold tracking-tight  bg-[#EC5757] text-white">
@@ -54,7 +56,7 @@ const Receipt = () => {
           </div>
         </div>
 
-        <div className="bg-white shadow-md  rounded-lg p-6 md:p-12 mt-6">
+        <div className="bg-white dark:bg-[#1E2139] shadow-md  rounded-lg p-6 md:p-12 mt-6">
           <ReceiptDetails invoice={invoice} />
           <ItemDetails items={invoice?.items} total={invoice?.total} />
         </div>

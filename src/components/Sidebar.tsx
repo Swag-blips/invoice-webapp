@@ -4,7 +4,7 @@ import avatar from "/assets/image-avatar.jpg";
 import { useTheme } from "../context/ThemeProvider";
 
 const Sidebar = () => {
-  const { theme, handleThemeSwitch } = useTheme();
+  const { handleThemeSwitch } = useTheme();
 
 
   return (

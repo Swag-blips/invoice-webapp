@@ -9,22 +9,22 @@ export default function Main() {
         <div className="flex flex-col w-full ">
           <div className=" flex items-center justify-between w-[inherit]">
             <div className="flex flex-col ">
-              <h2 className="font-bold text-[24px] tracking-[-0.75px] lg:text-[36px] text-[#0C0E16] lg:tracking-[-1.13px] text-left">
+              <h2 className="font-bold text-[24px] dark:text-white tracking-[-0.75px] lg:text-[36px] text-[#0C0E16] lg:tracking-[-1.13px] text-left">
                 Invoices
               </h2>
               <p className="text-sm hidden lg:inline-flex text-left tracking-[-0.1px] text-[#888EB0]">
                 There are 7 total invoices
               </p>
-              <p className="lg:hidden  text-left tracking-[-0.1px] text-sm  text-[#888EB0] ">
+              <p className="lg:hidden  text-left tracking-[-0.1px] text-sm dark:text-[#DFE3FA] text-[#888EB0] ">
                 7 Invoices
               </p>
             </div>
             <div className="flex items-center gap-4 lg:gap-10">
               <div className="flex items-center cursor-pointer gap-[14px]">
-                <p className="text-base text-left hidden lg:inline-flex font-bold leading-[15px] tracking-tight text-[#0C0E16] ">
+                <p className="text-base text-left dark:text-white hidden lg:inline-flex font-bold leading-[15px] tracking-tight text-[#0C0E16] ">
                   Filter by status
                 </p>
-                <p className="lg:hidden text-base text-left font-bold leading-[15px] tracking-tight text-[#0C0E16]">
+                <p className="lg:hidden text-base dark:text-white  text-left font-bold leading-[15px] tracking-tight text-[#0C0E16]">
                   Filter
                 </p>
                 <img src={arrowDown} alt="arrow-down icon" />
