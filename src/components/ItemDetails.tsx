@@ -17,7 +17,7 @@ const ItemDetails = ({ items, total }: Props) => {
                 <p className="text-[#0C0E16] font-bold text-base">
                   {item.name}
                 </p>
-                <p className="font-bold md:hidden text-primary-text text-base">
+                <p className="font-bold md:hidden text-primary-text text-base">         
                   {item.quantity} x £ {item.price}
                 </p>
               </div>

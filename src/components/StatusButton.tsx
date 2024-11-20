@@ -13,8 +13,8 @@ const StatusButton = ({ invoice }: Props) => {
           ? "bg-pending-status"
           : "bg-draft-status"
       } rounded-md bg-opacity-[5.71%] h-10`}
-    >
-      <div
+    >             
+      <div   
         className={`w-2 h-2  ${
           invoice?.status === "paid"
             ? "bg-paid-status"
