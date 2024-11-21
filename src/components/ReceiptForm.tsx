@@ -1,8 +1,8 @@
 const ReceiptForm = () => {
   return (
-    <div className="w-[719px] hidden no-scrollbar lg:flex z-10 absolute  overflow-y-auto bg-white h-screen ">
+    <div className="w-[719px] dark:bg-[#141625] hidden no-scrollbar lg:flex z-10 absolute  overflow-y-auto bg-white h-screen ">
       <div className="ml-[159px] mt-[59px]">
-        <h1 className="font-bold text-[24px] text-[#0C0E16] tracking-[-0.5px]">
+        <h1 className="font-bold dark:text-white text-[24px] text-[#0C0E16] tracking-[-0.5px]">
           New invoice
         </h1>
 
@@ -181,11 +181,11 @@ const ReceiptForm = () => {
                 </div>
               </div>
 
-              <button className="w-full rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]">
+              <button className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]">
                 + Add new item
               </button>
             </div>
-            <div className="flex items-center  mt-12 justify-between">
+            <div className="flex mb-8 items-center  mt-12 justify-between">
               <button className="bg-[#F9FAFE] text-[#7E88C3] font-bold w-[96px] rounded-3xl h-12">
                 Discard
               </button>

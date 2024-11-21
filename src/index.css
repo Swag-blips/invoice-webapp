@@ -16,13 +16,18 @@ body {
 .dark body {
   background: #141625;
 }
-
+.dark .label-text {
+  @apply text-[#DFE3FA];
+}
 .label-text {
   @apply text-[13px] text-[#7E88C3] font-medium tracking-[-0.1px];
 }
 
 .receipt-input-style {
   @apply w-full outline-none border-[#DFE3FA] border h-12 rounded-[4px];
+}
+.dark .receipt-input-style {
+  @apply bg-[#1E2139] border-[#252945];
 }
 
 /* add the code bellow */
