@@ -1,4 +1,4 @@
-import { Items } from "../types/index";
+import { Items } from "../../types/index";
 type Props = {
   items?: Items[];
   total?: number;

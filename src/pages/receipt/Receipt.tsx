@@ -1,12 +1,12 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import data from "../../../data.json";
-import ItemDetails from "../../components/ItemDetails";
+import ItemDetails from "../../components/receipt/ItemDetails";
 import { useEffect, useState } from "react";
 import { InvoicesType } from "../../types";
 import { Link, useParams } from "react-router-dom";
-import StatusButton from "../../components/StatusButton";
-import ReceiptDetails from "../../components/ReceiptDetails";
-import SubmitComponent from "../../components/SubmitComponent";
+import StatusButton from "../../components/receipt/StatusButton";
+import ReceiptDetails from "../../components/receipt/ReceiptDetails";
+import SubmitComponent from "../../components/receipt/SubmitComponent";
 
 const Receipt = () => {
   const [invoice, setInvoice] = useState<InvoicesType>();

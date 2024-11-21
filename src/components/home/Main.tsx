@@ -3,7 +3,7 @@ import Invoices from "./Invoices";
 import arrowDown from "/assets/icon-arrow-down.svg";
 import plus from "/assets/icon-plus.svg";
 import FilterInvoice from "./FilterInvoice";
-import useReceiptStore from "../store/receiptStore";
+import useReceiptStore from "../../store/receiptStore";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);

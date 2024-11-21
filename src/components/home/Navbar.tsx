@@ -1,7 +1,7 @@
 import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
 import avatar from "/assets/image-avatar.jpg";
-import { useTheme } from "../context/ThemeProvider";
+import { useTheme } from "../../context/ThemeProvider";
 import sun from "/assets/icon-sun.svg";
 
 const Navbar = () => {

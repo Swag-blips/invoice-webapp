@@ -2,8 +2,8 @@ import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
 import avatar from "/assets/image-avatar.jpg";
 import sun from "/assets/icon-sun.svg";
-import { useTheme } from "../context/ThemeProvider";
-import useReceiptStore from "../store/receiptStore";
+import { useTheme } from "../../context/ThemeProvider";
+import useReceiptStore from "../../store/receiptStore";
 
 const Sidebar = () => {
   const { theme, handleThemeSwitch } = useTheme();

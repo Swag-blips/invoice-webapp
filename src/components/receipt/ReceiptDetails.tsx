@@ -1,5 +1,5 @@
-import { InvoicesType } from "../types";
-import formatDate from "../utils/formatDate";
+import { InvoicesType } from "../../types";
+import formatDate from "../../utils/formatDate";
 
 type Props = {
   invoice?: InvoicesType;

@@ -1,4 +1,4 @@
-import { InvoicesType } from "../types";
+import { InvoicesType } from "../../types";
 
 type Props = {
   invoice?: InvoicesType;

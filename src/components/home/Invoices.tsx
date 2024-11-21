@@ -1,8 +1,8 @@
 import arrowRight from "/assets/icon-arrow-right.svg";
-import data from "../../data.json";
-import { InvoicesType } from "../types";
+import data from "../../../data.json";
+import { InvoicesType } from "../../types";
 import { useEffect, useState } from "react";
-import formatDate from "../utils/formatDate";
+import formatDate from "../../utils/formatDate";
 import { Link } from "react-router-dom";
 import Empty from "./Empty";
 
