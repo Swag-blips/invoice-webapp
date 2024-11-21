@@ -1,8 +1,13 @@
+import { useState } from "react";
 import Invoices from "./Invoices";
 import arrowDown from "/assets/icon-arrow-down.svg";
 import plus from "/assets/icon-plus.svg";
+import FilterInvoice from "./FilterInvoice";
 
 export default function Main() {
+  const [openFilter, setOpenFilter] = useState(false);
+
+  console.log(openFilter);
   return (
     <main className="flex  lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex items-center w-full  lg:w-[730px] mx-6 md:mx-8 lg:mx-0 justify-center">
@@ -19,8 +24,11 @@ export default function Main() {
                 7 Invoices
               </p>
             </div>
-            <div className="flex items-center gap-4 lg:gap-10">
-              <div className="flex items-center cursor-pointer gap-[14px]">
+            <div className="flex  relative  items-center gap-4 lg:gap-10">
+              <div
+                onClick={() => setOpenFilter((prevFilter) => !prevFilter)}
+                className="flex items-center cursor-pointer gap-[14px]"
+              >
                 <p className="text-base text-left dark:text-white hidden lg:inline-flex font-bold leading-[15px] tracking-tight text-[#0C0E16] ">
                   Filter by status
                 </p>
@@ -29,8 +37,9 @@ export default function Main() {
                 </p>
                 <img src={arrowDown} alt="arrow-down icon" />
               </div>
+              {openFilter && <FilterInvoice />}
 
-              <button className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-[24px] bg-[#7C5DFA] font-bold">
+              <button className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-[24px] hover:bg-[#9277FF] bg-[#7C5DFA] font-bold">
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>
