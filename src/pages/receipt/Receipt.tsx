@@ -43,13 +43,13 @@ const Receipt = () => {
             <StatusButton invoice={invoice} />
           </div>
           <div className="md:flex hidden items-center gap-2">
-            <button className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-[24px] dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
+            <button className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-3xl dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
               Edit
             </button>
-            <button className="h-12 px-6 rounded-[24px] hover:bg-[#FF9797]  font-bold tracking-tight  bg-[#EC5757] text-white">
+            <button className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-[#EC5757] text-white">
               Delete
             </button>
-            <button className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-[24px] font-bold tracking-tight  text-white ">
+            <button className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-3xl font-bold tracking-tight  text-white ">
               Mark as paid
             </button>
           </div>

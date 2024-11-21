@@ -8,7 +8,7 @@ import useReceiptStore from "../store/receiptStore";
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
 
-  const { isOpen, setIsOpen } = useReceiptStore();
+  const { setIsOpen } = useReceiptStore();
 
   return (
     <main className="flex  lg:items-start mt-8 lg:mt-[78px] w-full">
@@ -43,14 +43,14 @@ export default function Main() {
 
               <button
                 onClick={setIsOpen}
-                className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-[24px] hover:bg-[#9277FF] bg-[#7C5DFA] font-bold"
+                className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-3xl hover:bg-[#9277FF] bg-[#7C5DFA] font-bold"
               >
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>
                 <p className="mt-[14px]"> New invoice</p>
               </button>
-              <button className="w-auto px-[15px] lg:hidden text-white flex gap-4  pl-2 h-12 rounded-[24px] bg-[#7C5DFA] font-bold">
+              <button className="w-auto px-[15px] lg:hidden text-white flex gap-4  pl-2 h-12 rounded-3xl bg-[#7C5DFA] font-bold">
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>

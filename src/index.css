@@ -16,3 +16,24 @@ body {
 .dark body {
   background: #141625;
 }
+
+.label-text {
+  @apply text-[13px] text-[#7E88C3] font-medium tracking-[-0.1px];
+}
+
+.receipt-input-style {
+  @apply w-full outline-none border-[#DFE3FA] border h-12 rounded-[4px];
+}
+
+/* add the code bellow */
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}

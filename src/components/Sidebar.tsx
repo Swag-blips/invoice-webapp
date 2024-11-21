@@ -3,12 +3,18 @@ import moon from "/assets/icon-moon.svg";
 import avatar from "/assets/image-avatar.jpg";
 import sun from "/assets/icon-sun.svg";
 import { useTheme } from "../context/ThemeProvider";
+import useReceiptStore from "../store/receiptStore";
 
 const Sidebar = () => {
   const { theme, handleThemeSwitch } = useTheme();
+  const { isOpen } = useReceiptStore();
 
   return (
-    <aside className="h-screen w-[103px] bg-draft-status  z-50 hidden lg:flex lg:fixed flex-col justify-between  rounded-r-[20px]">
+    <aside
+      className={`h-screen w-[103px] bg-draft-status  z-50 hidden lg:flex  ${
+        !isOpen && "lg:fixed"
+      } flex-col justify-between  rounded-r-[20px]`}
+    >
       <div className="bg-[#7C5DFA] z-50 h-[103px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
         <figure className=" flex z-50 items-center justify-center ">
           <img src={logo} alt="logo" />
