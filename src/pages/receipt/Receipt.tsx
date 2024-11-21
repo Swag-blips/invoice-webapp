@@ -35,7 +35,7 @@ const Receipt = () => {
           </p>
         </Link>
 
-        <div className="w-auto rounded-lg mt-8 justify-between flex items-center dark:bg-[#1E2139] bg-white px-8 shadow-sm h-[88px]">
+        <div className="w-auto rounded-lg mt-8 justify-between flex items-center dark:bg-[#1E2139] dark:shadow-none bg-white px-8 shadow-md h-[88px]">
           <div className="flex w-full md:w-auto justify-between items-center gap-5">
             <p className="font-medium text-sm leading-[0.1px] dark:text-[#DFE3FA] text-secondary-text">
               Status
@@ -43,7 +43,7 @@ const Receipt = () => {
             <StatusButton invoice={invoice} />
           </div>
           <div className="md:flex hidden items-center gap-2">
-            <button className="h-12 px-6 hover:bg-[#DFE3FA] rounded-[24px] dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
+            <button className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-[24px] dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
               Edit
             </button>
             <button className="h-12 px-6 rounded-[24px] hover:bg-[#FF9797]  font-bold tracking-tight  bg-[#EC5757] text-white">
@@ -55,7 +55,7 @@ const Receipt = () => {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-[#1E2139] shadow-md  rounded-lg p-6 md:p-12 mt-6">
+        <div className="bg-white dark:bg-[#1E2139]  rounded-lg p-6 md:p-12 mt-6">
           <ReceiptDetails invoice={invoice} />
           <ItemDetails items={invoice?.items} total={invoice?.total} />
         </div>

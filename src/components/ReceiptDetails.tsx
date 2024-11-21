@@ -54,7 +54,7 @@ const ReceiptDetails = ({ invoice }: Props) => {
             <p className="text-primary-text tracking-[-0.1px] text-sm font-medium">
               Sent to
             </p>
-            <p className="font-bold dark:text-white  text-[#0C0E16] text-[15px] tracking-tight">
+            <p className="font-bold  dark:text-white text-[#0C0E16] text-[15px] tracking-tight">
               {invoice?.clientEmail}
             </p>
           </div>

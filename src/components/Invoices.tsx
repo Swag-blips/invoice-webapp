@@ -24,7 +24,7 @@ const Invoices = () => {
           <Link
             to={`/receipt/${data.id}`}
             key={data.id}
-            className="bg-white dark:bg-[#1E2139] cursor-pointer shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
+            className="bg-white dark:bg-[#1E2139] cursor-pointer dark:shadow-none shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
           >
             <div className="flex text flex-col md:flex-row md:items-center md:gap-10">
               <p className="text-[#0C0E16] dark:text-white text-base   font-bold tracking-tight">
