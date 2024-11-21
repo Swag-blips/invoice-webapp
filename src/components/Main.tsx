@@ -3,11 +3,13 @@ import Invoices from "./Invoices";
 import arrowDown from "/assets/icon-arrow-down.svg";
 import plus from "/assets/icon-plus.svg";
 import FilterInvoice from "./FilterInvoice";
+import useReceiptStore from "../store/receiptStore";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
 
-  console.log(openFilter);
+  const { isOpen, setIsOpen } = useReceiptStore();
+
   return (
     <main className="flex  lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex items-center w-full  lg:w-[730px] mx-6 md:mx-8 lg:mx-0 justify-center">
@@ -39,7 +41,10 @@ export default function Main() {
               </div>
               {openFilter && <FilterInvoice />}
 
-              <button className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-[24px] hover:bg-[#9277FF] bg-[#7C5DFA] font-bold">
+              <button
+                onClick={setIsOpen}
+                className="w-[150px] text-white hidden lg:flex gap-4  pl-2 h-12 rounded-[24px] hover:bg-[#9277FF] bg-[#7C5DFA] font-bold"
+              >
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>
