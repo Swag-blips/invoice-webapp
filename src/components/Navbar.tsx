@@ -16,9 +16,9 @@ const Navbar = () => {
       </div>
       <div className="flex gap-6 items-center justify-center mr-6  ">
         {theme === "light" ? (
-          <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
-        ) : (
           <img onClick={handleThemeSwitch} src={moon} alt="moon-image" />
+        ) : (
+          <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
         )}
         <div className=" border  h-[72px] border-[#494E6E]" />
         <img src={avatar} alt="avatar" className="h-10 w-10 rounded-full" />

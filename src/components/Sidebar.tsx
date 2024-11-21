@@ -18,9 +18,9 @@ const Sidebar = () => {
 
       <div className="flex flex-col gap-6 items-center justify-end mb-[24px] ">
         {theme === "light" ? (
-          <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
-        ) : (
           <img onClick={handleThemeSwitch} src={moon} alt="moon-image" />
+        ) : (
+          <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
         )}
         <hr className="border-t-2 w-full border-[#494E6E]" />
         <img src={avatar} alt="avatar" className="h-10 w-10 rounded-full" />
