@@ -7,7 +7,7 @@ import sun from "/assets/icon-sun.svg";
 const Navbar = () => {
   const { theme, handleThemeSwitch } = useTheme();
   return (
-    <div className="lg:hidden w-full sticky flex items-center justify-between h-[72px] bg-draft-status">
+    <div className="lg:hidden w-full z-50 sticky top-0 flex items-center justify-between h-[72px] bg-draft-status">
       <div className="bg-[#7C5DFA] w-[72px] z-50 h-[72px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
         <figure className=" flex z-50 items-center justify-center ">
           <img src={logo} alt="logo" />

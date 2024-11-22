@@ -2,8 +2,8 @@ import ReceiptButtons from "./home/ReceiptButtons";
 
 const ReceiptForm = () => {
   return (
-    <div className="w-[719px] dark:bg-[#141625] hidden no-scrollbar lg:flex z-10 absolute  overflow-y-auto bg-white h-screen ">
-      <div className="ml-[159px] mt-[59px]">
+    <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
+      <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
         <h1 className="font-bold dark:text-white text-[24px] text-[#0C0E16] tracking-[-0.5px]">
           New invoice
         </h1>

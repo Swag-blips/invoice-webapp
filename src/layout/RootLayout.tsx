@@ -14,7 +14,11 @@ const RootLayout = () => {
       {isOpen && <ReceiptForm />}
       <Navbar />
 
-      <div className="lg:flex relative lg:justify-center w-full">
+      <div
+        className={`lg:flex ${
+          isOpen ? "overflow-y-hidden" : ""
+        }  lg:justify-center w-full`}
+      >
         <Outlet />
         {isOpen && <Overlay />}
       </div>
