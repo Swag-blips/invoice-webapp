@@ -24,7 +24,7 @@ body {
 }
 
 .receipt-input-style {
-  @apply w-full outline-none border-[#DFE3FA] border h-12 rounded-[4px];
+  @apply w-full outline-none border-[#DFE3FA] border h-12 rounded-[4px] focus:border-[#9277FF];
 }
 .dark .receipt-input-style {
   @apply bg-[#1E2139] border-[#252945];

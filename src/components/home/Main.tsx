@@ -5,13 +5,14 @@ import plus from "/assets/icon-plus.svg";
 import FilterInvoice from "./FilterInvoice";
 import useReceiptStore from "../../store/receiptStore";
 
+
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
 
   const { setIsOpen } = useReceiptStore();
 
   return (
-    <main className="flex  lg:items-start mt-8 lg:mt-[78px] w-full">
+    <main className="flex relative  lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex items-center w-full  lg:w-[730px] mx-6 md:mx-8 lg:mx-0 justify-center">
         <div className="flex flex-col w-full ">
           <div className=" flex items-center justify-between w-[inherit]">

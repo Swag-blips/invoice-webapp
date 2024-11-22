@@ -3,6 +3,7 @@ import Sidebar from "../components/home/Sidebar";
 import Navbar from "../components/home/Navbar";
 import useReceiptStore from "../store/receiptStore";
 import ReceiptForm from "../components/ReceiptForm";
+import Overlay from "../components/receipt/Overlay";
 
 const RootLayout = () => {
   const { isOpen } = useReceiptStore();
@@ -12,8 +13,10 @@ const RootLayout = () => {
       <Sidebar />
       {isOpen && <ReceiptForm />}
       <Navbar />
-      <div className="lg:flex lg:justify-center w-full">
+
+      <div className="lg:flex relative lg:justify-center w-full">
         <Outlet />
+        {isOpen && <Overlay />}
       </div>
     </div>
   );
