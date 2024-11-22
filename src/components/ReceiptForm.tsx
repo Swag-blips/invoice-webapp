@@ -10,7 +10,7 @@ const ReceiptForm = () => {
 
         <form className="mt-[46px] w-[504px] text-left">
           <div className="flex flex-col  gap-6">
-            <h2 className="text-[15px] font-bold text-[#7C5DFA]">Bill From</h2>
+            <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>
             <div className="flex flex-col gap-2">
               <label htmlFor="streetAddress" className="label-text">
                 Street Address
@@ -60,7 +60,7 @@ const ReceiptForm = () => {
             </div>
           </div>
           <div className="flex flex-col mt-12 gap-6">
-            <h2 className="text-[15px] font-bold text-[#7C5DFA]">Bill To</h2>
+            <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
             <div className="flex flex-col gap-2">
               <label className="label-text" htmlFor="clientName">
                 Client's name

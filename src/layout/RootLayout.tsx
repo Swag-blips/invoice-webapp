@@ -7,7 +7,7 @@ import Overlay from "../components/receipt/Overlay";
 
 const RootLayout = () => {
   const { isOpen } = useReceiptStore();
-
+  console.log(window.innerWidth);
   return (
     <div className="flex flex-col lg:flex-row lg:items-start w-full  ">
       <Sidebar />
