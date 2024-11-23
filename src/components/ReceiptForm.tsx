@@ -163,7 +163,7 @@ const ReceiptForm = () => {
                 <div onClick={toggle} className="relative">
                   <input
                     type="text"
-                    className="receipt-input-style  text-neutral font-bold pl-2"
+                    className="receipt-input-style dark:text-white  text-neutral font-bold pl-2"
                     value={selectedOption || "Net 30 Days"}
                     name="paymentTerms"
                     id="paymentTerms"
@@ -175,19 +175,19 @@ const ReceiptForm = () => {
                     className="absolute right-4 translate-y-[-1.5rem]"
                   />
                   {isOpen && (
-                    <div className="w-[240px] bg-white rounded-lg absolute top-16 drop-shadow-[0_10px_20px_rgba(72,84,159,0.25)] ">
+                    <div className="w-[240px] bg-white dark:bg-[#252945] rounded-lg absolute top-16  dark:drop-shadow-none drop-shadow-[0_10px_20px_rgba(72,84,159,0.25)] ">
                       <ul className="">
                         {options.map((option) => (
                           <>
                             <li
                               key={option}
                               onClick={handleSelectedOption(option)}
-                              className="text-neutral mt-4 font-bold tracking-[0.25px] mb-4 ml-6 hover:text-[#7C5DFA] text-base"
+                              className="text-neutral mt-4 font-bold tracking-[0.25px] dark:text-white mb-4 ml-6 hover:text-[#7C5DFA] text-base"
                             >
                               {option}
                             </li>
                             <div
-                              className={`h-[1px] last:hidden w-full bg-[#DFE3FA]`}
+                              className={`h-[1px] last:hidden dark:bg-[#1E2139] w-full bg-[#DFE3FA]`}
                             />
                           </>
                         ))}
