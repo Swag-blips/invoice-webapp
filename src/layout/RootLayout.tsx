@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/home/Sidebar";
 import Navbar from "../components/home/Navbar";
 import useReceiptStore from "../store/receiptStore";
-import ReceiptForm from "../components/ReceiptForm";
+import ReceiptForm from "../components/common/ReceiptForm";
 import Overlay from "../components/receipt/Overlay";
 
 const RootLayout = () => {

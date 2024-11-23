@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
-import ReceiptButtons from "../../components/home/ReceiptButtons";
+import ReceiptButtons from "../../components/common/ReceiptButtons";
 
 const CreateReceipt = () => {
   return (

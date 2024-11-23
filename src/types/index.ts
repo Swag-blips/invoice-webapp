@@ -33,3 +33,11 @@ export interface Items {
   price: number;
   total: number;
 }
+
+export interface InputFields {
+  [key: string]: {};
+  itemName: string;
+  qty: number;
+  price: number;
+  total: number;
+}
