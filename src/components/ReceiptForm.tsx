@@ -53,6 +53,11 @@ const ReceiptForm = () => {
     setInputFields([...inputFields, newField]);
   };
 
+  const removeFields = (index: number) => {
+    setInputFields((prevInput) =>
+      prevInput.filter((curr, indx) => indx !== index)
+    );
+  };
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
@@ -314,7 +319,12 @@ const ReceiptForm = () => {
                         />
                       </div>
 
-                      <img src={deleteIcon} alt="garbage-image" />
+                      <img
+                        className="mt-4"
+                        src={deleteIcon}
+                        alt="garbage-image"
+                        onClick={() => removeFields(index)}
+                      />
                     </div>
                   </>
                 ))}
