@@ -1,8 +1,18 @@
-import React from "react";
+type Props = {
+  handleFormInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
+};
 
-type Props = {};
-
-const BillFrom = (props: Props) => {
+const BillFrom = ({
+  handleFormInputChange,
+  senderCity,
+  senderCountry,
+  senderPostCode,
+  senderStreetAddress,
+}: Props) => {
   return (
     <div className="flex flex-col  gap-6">
       <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>

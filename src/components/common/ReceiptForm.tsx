@@ -10,8 +10,17 @@ import { InputFields } from "../../types";
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
-    
-  })
+    senderStreetAddress: "",
+    senderCity: "",
+    senderPostCode: "",
+    senderCountry: "",
+    clientName: "",
+    clientStreetAddress: "",
+    clientCity: "",
+    clientPostCode: "",
+    clientCountry: "",
+    projectDescription: "",
+  });
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [inputFields, setInputFields] = useState<InputFields[]>([
@@ -56,6 +65,11 @@ const ReceiptForm = () => {
       prevInput.filter((_, indx) => indx !== index)
     );
   };
+
+  const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
@@ -63,10 +77,22 @@ const ReceiptForm = () => {
           New invoice
         </h1>
         <form className="mt-[46px] dark:text-white w-[504px] text-left">
-          <BillFrom />
+          <BillFrom
+            handleFormInputChange={handleFormInputChange}
+            senderStreetAddress={form.senderStreetAddress}
+            senderCity={form.senderCity}
+            senderPostCode={form.senderPostCode}
+            senderCountry={form.senderCountry}
+          />
           <div className="flex flex-col mt-12 gap-6">
             <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
-            <BillTo />
+            <BillTo
+              handleFormInputChange={handleFormInputChange}
+              clientStreetAddress={form.clientStreetAddress}
+              clientCity={form.clientCity}
+              clientPostCode={form.clientPostCode}
+              clientCountry={form.clientCountry}
+            />
             <InvoiceDate
               handleSelectedOption={handleSelectedOption}
               selectedOption={selectedOption}
@@ -76,7 +102,10 @@ const ReceiptForm = () => {
               isOpen={isOpen}
               setIsOpen={setIsOpen}
             />
-            <ProjectDescription />
+            <ProjectDescription
+              handleFormInputChange={handleFormInputChange}
+              projectDescription={form.projectDescription}
+            />
             <div>
               <h2 className="text-[#777F98] font-bold text-[18px]">
                 Item List

@@ -1,6 +1,11 @@
-
-
-const ProjectDescription = () => {
+type Props = {
+  handleFormInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  projectDescription: string;
+};
+const ProjectDescription = ({
+  handleFormInputChange,
+  projectDescription,
+}: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="projectDescription" className="label-text">
