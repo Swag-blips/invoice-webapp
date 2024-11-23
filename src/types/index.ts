@@ -41,3 +41,18 @@ export interface InputFields {
   price: number;
   total: number;
 }
+
+export interface BillFromErrors {
+  
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
+  clientName: string;
+  clientEmail: 
+  clientStreetAddress: string;
+  clientCity: string;
+  clientPostCode: string;
+  clientCountry: string;
+  projectDescription: string;
+}

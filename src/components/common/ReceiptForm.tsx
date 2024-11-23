@@ -5,7 +5,8 @@ import BillTo from "./BillTo";
 import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
-import { InputFields } from "../../types";
+import { BillFromErrors, InputFields } from "../../types";
+import validate from "../../utils/validateInput";
 
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +16,7 @@ const ReceiptForm = () => {
     senderPostCode: "",
     senderCountry: "",
     clientName: "",
+    clientEmail: "",
     clientStreetAddress: "",
     clientCity: "",
     clientPostCode: "",
@@ -22,6 +24,7 @@ const ReceiptForm = () => {
     projectDescription: "",
   });
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [errors, setErrors] = useState<BillFromErrors | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [inputFields, setInputFields] = useState<InputFields[]>([
     {
@@ -70,6 +73,34 @@ const ReceiptForm = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (
+      validate(
+        form.senderStreetAddress,
+        form.senderCity,
+        form.senderPostCode,
+        form.senderCountry,
+        form.clientName,
+        form.clientEmail,
+        form.clientStreetAddress,
+        form.clientCity,
+        form.clientPostCode,
+        form.clientCountry,
+        form.projectDescription,
+        setErrors
+      )
+    ) {
+      console.log("Valid");
+      console.log(errors);
+    } else {
+      console.log(errors);
+      console.log("Not valid!");
+    }
+  };
+  console.log(form);
+
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
@@ -78,20 +109,14 @@ const ReceiptForm = () => {
         </h1>
         <form className="mt-[46px] dark:text-white w-[504px] text-left">
           <BillFrom
+            errors={errors}
             handleFormInputChange={handleFormInputChange}
-            senderStreetAddress={form.senderStreetAddress}
-            senderCity={form.senderCity}
-            senderPostCode={form.senderPostCode}
-            senderCountry={form.senderCountry}
           />
           <div className="flex flex-col mt-12 gap-6">
             <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
             <BillTo
+              errors={errors}
               handleFormInputChange={handleFormInputChange}
-              clientStreetAddress={form.clientStreetAddress}
-              clientCity={form.clientCity}
-              clientPostCode={form.clientPostCode}
-              clientCountry={form.clientCountry}
             />
             <InvoiceDate
               handleSelectedOption={handleSelectedOption}
@@ -102,10 +127,7 @@ const ReceiptForm = () => {
               isOpen={isOpen}
               setIsOpen={setIsOpen}
             />
-            <ProjectDescription
-              handleFormInputChange={handleFormInputChange}
-              projectDescription={form.projectDescription}
-            />
+            <ProjectDescription handleFormInputChange={handleFormInputChange} />
             <div>
               <h2 className="text-[#777F98] font-bold text-[18px]">
                 Item List
@@ -122,7 +144,7 @@ const ReceiptForm = () => {
                 + Add new item
               </button>
             </div>
-            <ReceiptButtons />
+            <ReceiptButtons handleSubmit={handleSubmit} />
           </div>
         </form>
       </div>

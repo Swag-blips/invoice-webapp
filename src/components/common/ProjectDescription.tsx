@@ -1,11 +1,7 @@
 type Props = {
   handleFormInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  projectDescription: string;
 };
-const ProjectDescription = ({
-  handleFormInputChange,
-  projectDescription,
-}: Props) => {
+const ProjectDescription = ({ handleFormInputChange }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="projectDescription" className="label-text">
@@ -16,6 +12,7 @@ const ProjectDescription = ({
         name="projectDescription"
         id="projectDescription"
         className="receipt-input-style"
+        onChange={handleFormInputChange}
       />
     </div>
   );

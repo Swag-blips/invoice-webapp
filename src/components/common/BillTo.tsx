@@ -1,87 +1,155 @@
 import React from "react";
+import { BillFromErrors } from "../../types";
 
 type Props = {
   handleFormInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  clientStreetAddress: string;
-  clientCity: string;
-  clientPostCode: string;
-  clientCountry: string;
+  errors: BillFromErrors | null;
 };
 
-const BillTo = ({
-  handleFormInputChange,
-  clientStreetAddress,
-  clientCity,
-  clientCountry,
-  clientPostCode,
-}: Props) => {
+const BillTo = ({ errors, handleFormInputChange }: Props) => {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <label className="label-text" htmlFor="clientName">
-          Client's name
-        </label>
+        <div className="flex items-center justify-between">
+          <label
+            className={`label-text ${
+              errors?.clientName ? "error-label-text" : "label-text"
+            }`}
+            htmlFor="clientName"
+          >
+            Client's name
+          </label>
+          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+            {errors?.clientName && errors.clientName}
+          </p>
+        </div>
         <input
           type="text"
           name="clientName"
           id="clientName"
-          className="receipt-input-style"
+          className={` ${
+            errors?.clientName
+              ? "error-receipt-input-style"
+              : "receipt-input-style"
+          }`}
+          onChange={handleFormInputChange}
         />
       </div>
       <div>
-        <label className="label-text" htmlFor="clientEmail">
-          Client's email
-        </label>
+        <div className="flex items-center justify-between">
+          <label
+            className={` ${
+              errors?.clientEmail ? "error-label-text" : "label-text"
+            }`}
+            htmlFor="clientEmail"
+          >
+            Client's email
+          </label>
+          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+            {errors?.clientEmail && errors.clientEmail}
+          </p>
+        </div>
         <input
           type="text"
           name="clientEmail"
           id="clientEmail"
-          className="receipt-input-style"
+          className={` ${
+            errors?.clientEmail
+              ? "error-receipt-input-style"
+              : "receipt-input-style"
+          }`}
+          onChange={handleFormInputChange}
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="clientStreetAddress" className="label-text">
-          Street Address
-        </label>
+        <div className="flex items-center justify-between">
+          <label
+            htmlFor="clientStreetAddress"
+            className={` ${
+              errors?.clientStreetAddress ? "error-label-text" : "label-text"
+            }`}
+          >
+            Street Address
+          </label>
+          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+            {errors?.clientStreetAddress && errors.clientStreetAddress}
+          </p>
+        </div>
         <input
           type="text"
           name="clientStreetAddress"
           id="clientStreetAddress"
-          className="receipt-input-style"
+          className={` ${
+            errors?.clientStreetAddress
+              ? "error-receipt-input-style"
+              : "receipt-input-style"
+          }`}
+          onChange={handleFormInputChange}
         />
       </div>
       <div className="flex items-center gap-6 w-full ">
         <div className="flex flex-col w-[152px] gap-2">
-          <label htmlFor="clientCity" className="label-text">
+          <label
+            htmlFor="clientCity"
+            className={` ${
+              errors?.clientCity ? "error-label-text" : "label-text"
+            }`}
+          >
             City
           </label>
+
           <input
             type="text"
             name="clientCity"
             id="clientCity"
-            className="receipt-input-style"
+            className={` ${
+              errors?.clientCity
+                ? "error-receipt-input-style"
+                : "receipt-input-style"
+            }`}
+            onChange={handleFormInputChange}
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="clientPostCode" className="label-text">
+          <label
+            htmlFor="clientPostCode"
+            className={` ${
+              errors?.clientPostCode ? "error-label-text" : "label-text"
+            }`}
+          >
             Post code
           </label>
           <input
             type="text"
             name="clientPostCode"
             id="clientPostCode"
-            className="receipt-input-style"
+            className={` ${
+              errors?.clientPostCode
+                ? "error-receipt-input-style"
+                : "receipt-input-style"
+            }`}
+            onChange={handleFormInputChange}
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="clientCountry" className="label-text">
+          <label
+            htmlFor="clientCountry"
+            className={` ${
+              errors?.clientCountry ? "error-label-text" : "label-text"
+            }`}
+          >
             Country
           </label>
           <input
             type="text"
-            className="receipt-input-style"
+            className={` ${
+              errors?.clientCountry
+                ? "error-receipt-input-style"
+                : "receipt-input-style"
+            }`}
             name="clientCountry"
             id="clientCountry"
+            onChange={handleFormInputChange}
           />
         </div>
       </div>
