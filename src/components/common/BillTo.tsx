@@ -12,7 +12,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <label
-            className={`label-text ${
+            className={` ${
               errors?.clientName ? "error-label-text" : "label-text"
             }`}
             htmlFor="clientName"

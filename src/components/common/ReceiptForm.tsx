@@ -29,9 +29,9 @@ const ReceiptForm = () => {
   const [inputFields, setInputFields] = useState<InputFields[]>([
     {
       itemName: "",
-      qty: 0,
-      price: 0,
-      total: 0,
+      qty: null,
+      price: null,
+      total: null,
     },
   ]);
 
@@ -51,14 +51,16 @@ const ReceiptForm = () => {
   ) => {
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
+    if (data[index][event.target.name]) {
+      data[index].total = (data[index].qty || 0) * (data[index].price || 0);
+    }
 
-    data[index].total = data[index].qty * data[index].price;
     setInputFields(data);
   };
 
   const addFields = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let newField = { itemName: "", qty: 0, price: 0, total: 0 };
+    let newField = { itemName: "", qty: null, price: null, total: null };
     setInputFields([...inputFields, newField]);
   };
 
@@ -127,7 +129,10 @@ const ReceiptForm = () => {
               isOpen={isOpen}
               setIsOpen={setIsOpen}
             />
-            <ProjectDescription handleFormInputChange={handleFormInputChange} />
+            <ProjectDescription
+              errors={errors}
+              handleFormInputChange={handleFormInputChange}
+            />
             <div>
               <h2 className="text-[#777F98] font-bold text-[18px]">
                 Item List

@@ -35,21 +35,21 @@ export interface Items {
 }
 
 export interface InputFields {
-  [key: string]: {};
+  [key: string]: string | number | null;
+
   itemName: string;
-  qty: number;
-  price: number;
-  total: number;
+  qty: number | null;
+  price: number | null;
+  total: number | null;
 }
 
 export interface BillFromErrors {
-  
   senderStreetAddress: string;
   senderCity: string;
   senderPostCode: string;
   senderCountry: string;
   clientName: string;
-  clientEmail: 
+  clientEmail: string;
   clientStreetAddress: string;
   clientCity: string;
   clientPostCode: string;
