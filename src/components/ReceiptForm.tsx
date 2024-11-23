@@ -1,11 +1,16 @@
 import { useState } from "react";
 import ReceiptButtons from "./home/ReceiptButtons";
 import chevronDown from "/assets/icon-arrow-down.svg";
+import { options } from "../utils/options";
+import iconCalendar from "/assets/icon-calendar.svg";
+import DatePicker from "react-datepicker";
 
-const options = ["Net 1 Day", "Net 7 days", "Net 14 Days", "Net 30 days"];
+import "react-datepicker/dist/react-datepicker.css";
+
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -22,7 +27,7 @@ const ReceiptForm = () => {
           New invoice
         </h1>
 
-        <form className="mt-[46px] w-[504px] text-left">
+        <form className="mt-[46px] dark:text-white w-[504px] text-left">
           <div className="flex flex-col  gap-6">
             <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>
             <div className="flex flex-col gap-2">
@@ -56,7 +61,7 @@ const ReceiptForm = () => {
                 <input
                   type="text"
                   name="postCode"
-                  id="postCode0"
+                  id="postCode"
                   className="receipt-input-style"
                 />
               </div>
@@ -149,12 +154,18 @@ const ReceiptForm = () => {
                 <label htmlFor="invoiceDate" className="label-text">
                   Invoice Date
                 </label>
-                <input
-                  type="text"
-                  className="receipt-input-style"
-                  name="invoiceDate"
-                  id="invoiceDate"
-                />
+                <div className="relative">
+                  <DatePicker
+                    selected={startDate}
+                    className="receipt-input-style pl-6 font-bold "
+                    onChange={(date) => setStartDate(date)}
+                  />
+                  <img
+                    src={iconCalendar}
+                    alt="calendar"
+                    className="absolute right-14 translate-y-[-2rem]"
+                  />
+                </div>
               </div>
               <div className="flex  w-[240px] flex-col gap-2">
                 <label htmlFor="paymentTerms" className="label-text">
