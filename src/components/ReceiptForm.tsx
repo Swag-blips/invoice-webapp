@@ -1,10 +1,24 @@
+import { useState } from "react";
 import ReceiptButtons from "./home/ReceiptButtons";
+import chevronDown from "/assets/icon-arrow-down.svg";
 
+const options = ["Net 1 Day", "Net 7 days", "Net 14 Days", "Net 30 days"];
 const ReceiptForm = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  const handleSelectedOption = (value: string) => () => {
+    setSelectedOption(value);
+    setIsOpen(false);
+    console.log(selectedOption);
+  };
+
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
-        <h1 className="font-bold dark:text-white text-[24px] text-[#0C0E16] tracking-[-0.5px]">
+        <h1 className="font-bold dark:text-white text-[24px] text-neutral tracking-[-0.5px]">
           New invoice
         </h1>
 
@@ -113,7 +127,7 @@ const ReceiptForm = () => {
                 <input
                   type="text"
                   name="postCode"
-                  id="postCode0"
+                  id="postCode"
                   className="receipt-input-style"
                 />
               </div>
@@ -146,12 +160,41 @@ const ReceiptForm = () => {
                 <label htmlFor="paymentTerms" className="label-text">
                   Payment Terms
                 </label>
-                <input
-                  type="text"
-                  className="receipt-input-style"
-                  name="paymentTerms"
-                  id="paymentTerms"
-                />
+                <div onClick={toggle} className="relative">
+                  <input
+                    type="text"
+                    className="receipt-input-style  text-neutral font-bold pl-2"
+                    value={selectedOption || "Net 30 Days"}
+                    name="paymentTerms"
+                    id="paymentTerms"
+                    readOnly
+                  />
+                  <img
+                    src={chevronDown}
+                    alt="chevron-down"
+                    className="absolute right-4 translate-y-[-1.5rem]"
+                  />
+                  {isOpen && (
+                    <div className="w-[240px] bg-white rounded-lg absolute top-16 drop-shadow-[0_10px_20px_rgba(72,84,159,0.25)] ">
+                      <ul className="">
+                        {options.map((option) => (
+                          <>
+                            <li
+                              key={option}
+                              onClick={handleSelectedOption(option)}
+                              className="text-neutral mt-4 font-bold tracking-[0.25px] mb-4 ml-6 hover:text-[#7C5DFA] text-base"
+                            >
+                              {option}
+                            </li>
+                            <div
+                              className={`h-[1px] last:hidden w-full bg-[#DFE3FA]`}
+                            />
+                          </>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-2">

@@ -27,7 +27,7 @@ const Invoices = () => {
             className="bg-white dark:bg-[#1E2139] cursor-pointer dark:shadow-none shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
           >
             <div className="flex text flex-col md:flex-row md:items-center md:gap-10">
-              <p className="text-[#0C0E16] dark:text-white text-base   font-bold tracking-tight">
+              <p className="text-neutral dark:text-white text-base   font-bold tracking-tight">
                 <span className="text-primary-text">#</span>
                 {data.id}
               </p>
@@ -39,13 +39,13 @@ const Invoices = () => {
               <p className="text-secondary-text dark:text-[#DFE3FA] hidden lg:inline-flex tracking-[0.1px] text-sm">
                 {data.clientName}
               </p>
-              <p className="text-base lg:hidden dark:text-white font-bold text-[#0C0E16] leading-[24px]">
+              <p className="text-base lg:hidden dark:text-white font-bold text-neutral leading-[24px]">
                 £ {data.total}
               </p>
             </div>
 
             <div className="flex items-center flex-col md:flex-row md:gap-10 gap-6 md:justify-center">
-              <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-[#0C0E16] leading-[24px]">
+              <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-neutral leading-[24px]">
                 £ {data.total}
               </p>
               <p className="text-secondary-text dark:text-white lg:hidden racking-[0.1px] text-sm">

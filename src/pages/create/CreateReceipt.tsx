@@ -12,12 +12,12 @@ const CreateReceipt = () => {
           <img src={arrowLeft} alt="arrow-left" className="object-contain" />
           <Link
             to={"/"}
-            className="text-[#0C0E16] dark:text-white text-base font-bold"
+            className="text-neutral dark:text-white text-base font-bold"
           >
             Go back
           </Link>
         </div>
-        <h2 className="text-[#0C0E16] dark:text-white mt-8 font-bold text-2xl">
+        <h2 className="text-neutral dark:text-white mt-8 font-bold text-2xl">
           New Invoice
         </h2>
 

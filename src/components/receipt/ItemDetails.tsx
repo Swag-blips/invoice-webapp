@@ -16,7 +16,7 @@ const ItemDetails = ({ items, total }: Props) => {
 
             {items?.map((item) => (
               <div key={item.name} className="flex flex-col gap-2">
-                <p className="text-[#0C0E16] dark:text-white font-bold text-base">
+                <p className="text-neutral dark:text-white font-bold text-base">
                   {item.name}
                 </p>
                 <p className="font-bold dark:text-[#888EB0] md:hidden text-primary-text text-base">
@@ -62,7 +62,7 @@ const ItemDetails = ({ items, total }: Props) => {
               {items?.map((item) => (
                 <p
                   key={item.name}
-                  className="font-bold dark:text-white text-base text-[#0C0E16] tracking-tight text-right"
+                  className="font-bold dark:text-white text-base text-neutral tracking-tight text-right"
                 >
                   {item.total}
                 </p>
