@@ -4,20 +4,53 @@ import chevronDown from "/assets/icon-arrow-down.svg";
 import { options } from "../utils/options";
 import iconCalendar from "/assets/icon-calendar.svg";
 import DatePicker from "react-datepicker";
+import deleteIcon from "/assets/icon-delete.svg";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+interface InputFields {
+  [key: string]: {};
+  itemName: string;
+  qty: number;
+  price: number;
+  total: number;
+}
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [inputFields, setInputFields] = useState<InputFields[]>([
+    {
+      itemName: "",
+      qty: 0,
+      price: 0,
+      total: 0,
+    },
+  ]);
 
+  // type FormType = { [name: ]: string };
   const toggle = () => setIsOpen(!isOpen);
 
   const handleSelectedOption = (value: string) => () => {
     setSelectedOption(value);
     setIsOpen(false);
-    console.log(selectedOption);
+  };
+
+  const handleFormChange = (
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    let data = [...inputFields];
+    data[index][event.target.name] = event.target.value;
+
+    data[index].total = data[index].qty * data[index].price;
+    setInputFields(data);
+  };
+
+  const addFields = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    let newField = { itemName: "", qty: 0, price: 0, total: 0 };
+    setInputFields([...inputFields, newField]);
   };
 
   return (
@@ -225,19 +258,72 @@ const ReceiptForm = () => {
                 Item List
               </h2>
 
-              <div className="grid  mt-[13px] grid-cols-2">
-                <div>
-                  <h3 className="label-text">Item Name</h3>
-                </div>
+              <div className="grid gap-4  mt-[13px] grid-cols-2">
+                {inputFields.map((input, index) => (
+                  <>
+                    <div key={index}>
+                      <label htmlFor="itemName" className="label-text">
+                        Item Name
+                      </label>
+                      <input
+                        className="receipt-input-style"
+                        name="itemName"
+                        id="itemName"
+                        value={input.itemName}
+                        onChange={(event) => handleFormChange(index, event)}
+                      />
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div>
+                        <label htmlFor="qty" className="label-text">
+                          Qty
+                        </label>
+                        <input
+                          name="qty"
+                          id="qty"
+                          className="  outline-none text-base font-bold pl-2 border-[#DFE3FA] border h-12 rounded-[4px] focus:border-[#9277FF] w-[46px]"
+                          value={input.qty}
+                          onChange={(event) => handleFormChange(index, event)}
+                        />
+                      </div>
 
-                <div className="flex items-center gap-6">
-                  <h3 className="label-text">Qty</h3>
-                  <h3 className="label-text">Price</h3>
-                  <h3 className="label-text">Total</h3>
-                </div>
+                      <div>
+                        <label htmlFor="price" className="label-text">
+                          Price
+                        </label>
+                        <input
+                          name="price"
+                          id="price"
+                          className="receipt-input-style"
+                          value={input.price}
+                          onChange={(event) => handleFormChange(index, event)}
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="total" className="label-text">
+                          Total
+                        </label>
+                        <input
+                          name="total"
+                          id="total"
+                          className="font-bold text-[#888EB0] w-full outline-none h-12 "
+                          value={input.total}
+                          onChange={(event) => handleFormChange(index, event)}
+                          readOnly
+                        />
+                      </div>
+
+                      <img src={deleteIcon} alt="garbage-image" />
+                    </div>
+                  </>
+                ))}
               </div>
 
-              <button className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]">
+              <button
+                onClick={addFields}
+                className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]"
+              >
                 + Add new item
               </button>
             </div>
