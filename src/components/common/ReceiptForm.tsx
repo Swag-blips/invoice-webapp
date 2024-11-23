@@ -9,6 +9,9 @@ import { InputFields } from "../../types";
 
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({
+    
+  })
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [inputFields, setInputFields] = useState<InputFields[]>([

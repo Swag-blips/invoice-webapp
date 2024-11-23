@@ -28,48 +28,48 @@ const BillTo = (props: Props) => {
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="streetAddress" className="label-text">
+        <label htmlFor="clientStreetAddress" className="label-text">
           Street Address
         </label>
         <input
           type="text"
-          name="streetAddress"
-          id="streetAddress"
+          name="clientStreetAddress"
+          id="clientStreetAddress"
           className="receipt-input-style"
         />
       </div>
       <div className="flex items-center gap-6 w-full ">
         <div className="flex flex-col w-[152px] gap-2">
-          <label htmlFor="city" className="label-text">
+          <label htmlFor="clientCity" className="label-text">
             City
           </label>
           <input
             type="text"
-            name="city"
-            id="city"
+            name="clientCity"
+            id="clientCity"
             className="receipt-input-style"
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="postCode" className="label-text">
+          <label htmlFor="clientPostCode" className="label-text">
             Post code
           </label>
           <input
             type="text"
-            name="postCode"
-            id="postCode"
+            name="clientPostCode"
+            id="clientPostCode"
             className="receipt-input-style"
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="country" className="label-text">
+          <label htmlFor="clientCountry" className="label-text">
             Country
           </label>
           <input
             type="text"
             className="receipt-input-style"
-            name="country"
-            id="country"
+            name="clientCountry"
+            id="clientCountry"
           />
         </div>
       </div>

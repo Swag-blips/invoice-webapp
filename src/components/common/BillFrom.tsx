@@ -7,49 +7,49 @@ const BillFrom = (props: Props) => {
     <div className="flex flex-col  gap-6">
       <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>
       <div className="flex flex-col gap-2">
-        <label htmlFor="streetAddress" className="label-text">
+        <label htmlFor="senderStreetAddress" className="label-text">
           Street Address
         </label>
         <input
           type="text"
-          name="streetAddress"
-          id="streetAddress"
+          name="senderStreetAddress"
+          id="senderStreetAddress"
           className="receipt-input-style"
         />
       </div>
 
       <div className="flex items-center gap-6 w-full ">
         <div className="flex flex-col w-[152px] gap-2">
-          <label htmlFor="city" className="label-text">
+          <label htmlFor="senderCity" className="label-text">
             City
           </label>
           <input
             type="text"
-            name="city"
-            id="city"
+            name="senderCity"
+            id="senderCity"
             className="receipt-input-style"
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="postCode" className="label-text">
+          <label htmlFor="senderPostCode" className="label-text">
             Post code
           </label>
           <input
             type="text"
-            name="postCode"
-            id="postCode"
+            name="senderPostCode"
+            id="senderPostCode"
             className="receipt-input-style"
           />
         </div>
         <div className="flex  w-[152px] flex-col gap-2">
-          <label htmlFor="country" className="label-text">
+          <label htmlFor="senderCountry" className="label-text">
             Country
           </label>
           <input
             type="text"
             className="receipt-input-style"
-            name="country"
-            id="country"
+            name="senderCountry"
+            id="senderCountry"
           />
         </div>
       </div>
