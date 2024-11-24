@@ -6,7 +6,6 @@ type Props = {
 };
 
 const BillFrom = ({ errors, handleFormInputChange }: Props) => {
-  console.log(errors?.senderStreetAddress);
   return (
     <div className="flex flex-col  gap-6">
       <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>

@@ -5,7 +5,7 @@ import BillTo from "./BillTo";
 import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
-import { BillFromErrors, InputFields } from "../../types";
+import { BillFromErrors, ItemFields } from "../../types";
 import validate from "../../utils/validateInput";
 
 const ReceiptForm = () => {
@@ -26,7 +26,7 @@ const ReceiptForm = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [errors, setErrors] = useState<BillFromErrors | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [inputFields, setInputFields] = useState<InputFields[]>([
+  const [itemFields, setItemFields] = useState<ItemFields[]>([
     {
       itemName: "",
       qty: null,
@@ -34,6 +34,8 @@ const ReceiptForm = () => {
       total: null,
     },
   ]);
+  const [isSubmitted, setIsubmitted] = useState(false);
+  const [itemFieldsError, setItemFieldsError] = useState([{}]);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -49,26 +51,25 @@ const ReceiptForm = () => {
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    let data = [...inputFields];
+    let data = [...itemFields];
     data[index][event.target.name] = event.target.value;
     if (data[index][event.target.name]) {
       data[index].total = (data[index].qty || 0) * (data[index].price || 0);
     }
 
-    setInputFields(data);
+    setItemFields(data);
   };
 
   const addFields = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let newField = { itemName: "", qty: null, price: null, total: null };
-    setInputFields([...inputFields, newField]);
+    setIsubmitted(false);
+    setItemFields([...itemFields, newField]);
   };
 
   const removeFields = (index: number) => {
     if (index === 0) return;
-    setInputFields((prevInput) =>
-      prevInput.filter((_, indx) => indx !== index)
-    );
+    setItemFields((prevInput) => prevInput.filter((_, indx) => indx !== index));
   };
 
   const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,8 +77,44 @@ const ReceiptForm = () => {
     setForm({ ...form, [name]: value });
   };
 
+  const validateItemFields = () => {
+    let itemFieldsError = [...itemFields];
+
+    let valid = true;
+
+    for (let i = 0; i < itemFieldsError.length; i++) {
+      if (itemFieldsError[i].itemName === "") {
+        itemFields[i].itemNameCheck = "itemName is required";
+        valid = false;
+      } else {
+        itemFieldsError[i].itemNameCheck = "";
+        valid = true;
+      }
+      if (!itemFieldsError[i].price) {
+        itemFields[i].itemPriceCheck = "invalid price";
+        valid = false;
+      } else {
+        itemFieldsError[i].itemPriceCheck = "";
+        valid = true;
+      }
+      if (!itemFieldsError[i].qty) {
+        itemFields[i].itemQtyCheck = "invalid price";
+        valid = false;
+      } else {
+        itemFieldsError[i].itemQtyCheck = "";
+        valid = true;
+      }
+    }
+
+    setItemFieldsError(itemFieldsError);
+    console.log(itemFieldsError);
+    return valid;
+  };
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    validateItemFields();
+    setIsubmitted(true);
     if (
       validate(
         form.senderStreetAddress,
@@ -95,13 +132,10 @@ const ReceiptForm = () => {
       )
     ) {
       console.log("Valid");
-      console.log(errors);
     } else {
-      console.log(errors);
       console.log("Not valid!");
     }
   };
-  console.log(form);
 
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
@@ -138,7 +172,9 @@ const ReceiptForm = () => {
                 Item List
               </h2>
               <ItemList
-                inputFields={inputFields}
+                itemFields={itemFields}
+                isSubmitted={isSubmitted}
+                itemFieldsError={itemFieldsError}
                 handleFormChange={handleFormChange}
                 removeFields={removeFields}
               />

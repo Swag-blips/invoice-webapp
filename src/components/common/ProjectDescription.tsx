@@ -5,7 +5,6 @@ type Props = {
   errors: BillFromErrors | null;
 };
 const ProjectDescription = ({ errors, handleFormInputChange }: Props) => {
-  console.log(errors?.projectDescription);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">

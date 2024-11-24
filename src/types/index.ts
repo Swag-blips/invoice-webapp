@@ -34,7 +34,7 @@ export interface Items {
   total: number;
 }
 
-export interface InputFields {
+export interface ItemFields {
   [key: string]: string | number | null;
 
   itemName: string;

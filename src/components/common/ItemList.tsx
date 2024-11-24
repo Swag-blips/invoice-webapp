@@ -1,8 +1,10 @@
 import deleteIcon from "/assets/icon-delete.svg";
-import { InputFields } from "../../types";
+import { ItemFields } from "../../types";
 
 type Props = {
-  inputFields: InputFields[];
+  itemFields: ItemFields[];
+  itemFieldsError: any;
+  isSubmitted: boolean;
   handleFormChange: (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -10,17 +12,30 @@ type Props = {
   removeFields: (index: number) => void;
 };
 
-const ItemList = ({ inputFields, removeFields, handleFormChange }: Props) => {
+const ItemList = ({
+  itemFields,
+  isSubmitted,
+  itemFieldsError,
+  removeFields,
+  handleFormChange,
+}: Props) => {
   return (
     <div className="grid gap-4  mt-[13px] grid-cols-2">
-      {inputFields.map((input, index) => (
+      {itemFields.map((input, index) => (
         <>
           <div key={index}>
             <label htmlFor="itemName" className="label-text">
               Item Name
             </label>
             <input
-              className="receipt-input-style"
+              className={`
+                ${
+                  itemFieldsError[index]?.itemNameCheck
+                    ? "error-receipt-input-style"
+                    : "  receipt-input-style"
+                }
+              `}
+              type="text"
               name="itemName"
               id="itemName"
               value={input.itemName}
@@ -35,8 +50,15 @@ const ItemList = ({ inputFields, removeFields, handleFormChange }: Props) => {
               <input
                 name="qty"
                 id="qty"
-                className="  outline-none text-base font-bold pl-2 dark:bg-[#1E2139] dark:border-[#252945] border-[#DFE3FA] border h-12 rounded-[4px] focus:border-[#9277FF] w-[46px]"
-                value={input.qty}
+                type="number"
+                className={` 
+                  ${
+                    itemFieldsError[index]?.itemQtyCheck
+                      ? "error-qty-input-style"
+                      : "qty-input-style"
+                  }
+                  `}
+                value={input.qty!}
                 onChange={(event) => handleFormChange(index, event)}
               />
             </div>
@@ -48,8 +70,15 @@ const ItemList = ({ inputFields, removeFields, handleFormChange }: Props) => {
               <input
                 name="price"
                 id="price"
-                className="receipt-input-style"
-                value={input.price}
+                type="number"
+                className={` 
+                  ${
+                    itemFieldsError[index]?.itemPriceCheck
+                      ? "error-receipt-input-style"
+                      : "receipt-input-style"
+                  }
+                  `}
+                value={input.price!}
                 onChange={(event) => handleFormChange(index, event)}
               />
             </div>
@@ -62,7 +91,7 @@ const ItemList = ({ inputFields, removeFields, handleFormChange }: Props) => {
                 name="total"
                 id="total"
                 className="font-bold text-[#888EB0 ] bg-transparent w-full outline-none h-12 "
-                value={input.total}
+                value={input.total!}
                 onChange={(event) => handleFormChange(index, event)}
                 readOnly
               />
