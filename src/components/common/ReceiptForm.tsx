@@ -142,7 +142,7 @@ const ReceiptForm = () => {
               <ItemList
                 itemFields={itemFields}
                 isSubmitted={isSubmitted}
-                itemFieldsError={itemFieldsError}
+                itemFieldsError={itemFieldsError || {}}
                 handleFormChange={handleFormChange}
                 removeFields={removeFields}
               />

@@ -1,5 +1,5 @@
 import deleteIcon from "/assets/icon-delete.svg";
-import { ItemFields, ItemFieldsError } from "../../types";
+import { ItemFields } from "../../types";
 
 type Props = {
   itemFields: ItemFields[];
