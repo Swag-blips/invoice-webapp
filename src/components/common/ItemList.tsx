@@ -1,5 +1,5 @@
 import deleteIcon from "/assets/icon-delete.svg";
-import { ItemFields } from "../../types";
+import { ItemFields, ItemFieldsError } from "../../types";
 
 type Props = {
   itemFields: ItemFields[];
@@ -14,7 +14,7 @@ type Props = {
 
 const ItemList = ({
   itemFields,
-  isSubmitted,
+
   itemFieldsError,
   removeFields,
   handleFormChange,

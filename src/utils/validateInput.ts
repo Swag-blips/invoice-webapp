@@ -1,4 +1,4 @@
-import { BillFromErrors } from "../types";
+import { BillFromErrors, ItemFields, ItemFieldsError } from "../types";
 
 export const validate = (
   senderStreetAddress: string,
@@ -84,3 +84,40 @@ export const validate = (
 };
 
 export default validate;
+
+export const validateItemFields = (
+  itemFields: ItemFields[],
+  setItemFieldsError: (itemfieldsError: ItemFieldsError[]) => void
+) => {
+  let itemFieldsError = [...itemFields] as ItemFieldsError[];
+
+  let valid = true;
+
+  for (let i = 0; i < itemFieldsError.length; i++) {
+    if (itemFieldsError[i].itemName === "") {
+      itemFields[i].itemNameCheck = "itemName is required";
+      valid = false;
+    } else {
+      itemFieldsError[i].itemNameCheck = "";
+      valid = true;
+    }
+    if (!itemFieldsError[i].price) {
+      itemFields[i].itemPriceCheck = "invalid price";
+      valid = false;
+    } else {
+      itemFieldsError[i].itemPriceCheck = "";
+      valid = true;
+    }
+    if (!itemFieldsError[i].qty) {
+      itemFields[i].itemQtyCheck = "invalid price";
+      valid = false;
+    } else {
+      itemFieldsError[i].itemQtyCheck = "";
+      valid = true;
+    }
+  }
+
+  setItemFieldsError(itemFieldsError);
+  console.log(itemFieldsError);
+  return valid;
+};

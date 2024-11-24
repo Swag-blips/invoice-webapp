@@ -33,6 +33,10 @@ body {
 .error-receipt-input-style {
   @apply w-full outline-none text-base font-bold pl-5 border-[#EC5757] border h-12 rounded-[4px] focus:border-[#9277FF];
 }
+
+.dark .error-receipt-input-style {
+  @apply bg-[#1E2139];
+}
 .error-label-text {
   @apply text-[13px] text-[#EC5757] font-medium tracking-[-0.1px];
 }
@@ -42,6 +46,10 @@ body {
 
 .error-qty-input-style {
   @apply outline-none text-base font-bold pl-2 dark:bg-[#1E2139] dark:border-[#252945] border-[#EC5757] border h-12 rounded-[4px] focus:border-[#9277FF] w-[46px];
+}
+
+.dark .error-qty-input-style {
+  @apply border-[#EC5757];
 }
 /* add the code bellow */
 @layer utilities {

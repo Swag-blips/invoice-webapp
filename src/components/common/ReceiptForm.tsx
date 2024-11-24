@@ -6,7 +6,7 @@ import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
 import { BillFromErrors, ItemFields } from "../../types";
-import validate from "../../utils/validateInput";
+import validate, { validateItemFields } from "../../utils/validateInput";
 
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,9 @@ const ReceiptForm = () => {
     clientCountry: "",
     projectDescription: "",
   });
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(
+    "Net 30 Days"
+  );
   const [errors, setErrors] = useState<BillFromErrors | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [itemFields, setItemFields] = useState<ItemFields[]>([
@@ -77,43 +79,9 @@ const ReceiptForm = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const validateItemFields = () => {
-    let itemFieldsError = [...itemFields];
-
-    let valid = true;
-
-    for (let i = 0; i < itemFieldsError.length; i++) {
-      if (itemFieldsError[i].itemName === "") {
-        itemFields[i].itemNameCheck = "itemName is required";
-        valid = false;
-      } else {
-        itemFieldsError[i].itemNameCheck = "";
-        valid = true;
-      }
-      if (!itemFieldsError[i].price) {
-        itemFields[i].itemPriceCheck = "invalid price";
-        valid = false;
-      } else {
-        itemFieldsError[i].itemPriceCheck = "";
-        valid = true;
-      }
-      if (!itemFieldsError[i].qty) {
-        itemFields[i].itemQtyCheck = "invalid price";
-        valid = false;
-      } else {
-        itemFieldsError[i].itemQtyCheck = "";
-        valid = true;
-      }
-    }
-
-    setItemFieldsError(itemFieldsError);
-    console.log(itemFieldsError);
-    return valid;
-  };
-
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    validateItemFields();
+    validateItemFields(itemFields, setItemFieldsError);
     setIsubmitted(true);
     if (
       validate(

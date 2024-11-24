@@ -43,6 +43,12 @@ export interface ItemFields {
   total: number | null;
 }
 
+export interface ItemFieldsError extends ItemFields {
+  itemNameCheck: string;
+  itemPriceCheck: string;
+  itemQtyCheck: string;
+}
+
 export interface BillFromErrors {
   senderStreetAddress: string;
   senderCity: string;
