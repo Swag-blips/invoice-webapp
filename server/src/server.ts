@@ -1,7 +1,15 @@
 import express from "express";
+import dotenv from "dotenv";
+import connectMongodb from "./db/connectMongo";
+import userRoutes from "./routes/user.route";
 
+dotenv.config();
 const app = express();
+app.use(express.json());
 
-app.listen(3000, () => {
-  console.log(`server listening on port 3000`);
+app.use("/api/users", userRoutes);
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`server listening on port ${port}`);
+  connectMongodb();
 });

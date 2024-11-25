@@ -31,7 +31,7 @@ const ReceiptDetails = ({ invoice }: Props) => {
           <p>{invoice?.senderAddress.country}</p>
         </div>
       </div>
-      <div className="flex mt-7 md:mt-0 items-start gap-16 md:gap-[117px]">
+      <div className="flex mt-7 md:mt-5 items-start gap-16 md:gap-[117px]">
         <div className="flex flex-col justify-center gap-8">
           <div className=" flex flex-col gap-2">
             <p className="text-primary-text dark:text-[#DFE3FA] text-sm font-medium">
