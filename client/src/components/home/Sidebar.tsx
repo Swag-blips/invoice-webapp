@@ -1,9 +1,10 @@
 import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
-import avatar from "/assets/image-avatar.jpg";
+
 import sun from "/assets/icon-sun.svg";
 import { useTheme } from "../../context/ThemeProvider";
 import useReceiptStore from "../../store/receiptStore";
+import { UserButton } from "@clerk/clerk-react";
 
 const Sidebar = () => {
   const { theme, handleThemeSwitch } = useTheme();
@@ -29,7 +30,7 @@ const Sidebar = () => {
           <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
         )}
         <hr className="border-t-2 w-full border-[#494E6E]" />
-        <img src={avatar} alt="avatar" className="h-10 w-10 rounded-full" />
+        <UserButton />
       </div>
     </aside>
   );

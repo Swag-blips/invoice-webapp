@@ -9,7 +9,6 @@ const SignIn = () => {
 
   const redirect_url = import.meta.env.VITE_REDIRECT_URL;
 
-  console.log(true || false);
   useEffect(() => {
     console.log(userId);
     if (isLoaded && userId) {
