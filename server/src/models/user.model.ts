@@ -1,10 +1,5 @@
-import mongoose, { Document } from "mongoose";
-
-interface User extends Document {
-  clerkId: string;
-  email: string;
-  receipts: Array<any>;
-}
+import mongoose from "mongoose";
+import { User } from "../types/types";
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
