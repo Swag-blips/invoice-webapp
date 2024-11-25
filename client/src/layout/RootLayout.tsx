@@ -14,7 +14,6 @@ const RootLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(userId);
     if (isLoaded && !userId) {
       navigate("/sign-in");
     }
