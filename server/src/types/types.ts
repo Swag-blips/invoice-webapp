@@ -1,6 +1,7 @@
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 
 export interface Invoice extends Document {
+  invoiceId: string;
   senderStreetAddress: string;
   senderCity: string;
   senderPostCode: string;
@@ -26,5 +27,5 @@ interface Items {
 export interface User extends Document {
   clerkId: string;
   email: string;
-  receipts: Array<Invoice>;
+  invoices: Array<mongoose.Types.ObjectId>;
 }

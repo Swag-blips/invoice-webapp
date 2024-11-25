@@ -1,6 +1,6 @@
 import { array, date, object, string } from "yup";
 
-let restaurantSchema = object({
+let invoiceSchema = object({
   invoiceId: string().required("InvoiceId is required").length(6),
   senderStreetAddress: string().required("sender street address is required"),
   senderCity: string().required("sender city is required"),
@@ -15,7 +15,9 @@ let restaurantSchema = object({
   clientPostCode: string().required("client post code is required"),
   clientCountry: string().required("client country is required"),
   projectDescription: string().required("Project description"),
-  startDate: date().required("invoice date is required"),
+  startDate: string().required("invoice date is required"),
   selectedOption: string().required("invoice option is required"),
-  itemList: array().required("item lists are required"),
+  itemList: array().required("items are required"),
 });
+
+export default invoiceSchema;

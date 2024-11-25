@@ -19,7 +19,7 @@ app.use(
 );
 
 app.use("/api/users", userRoutes);
-app.use("/api/receipt", receiptRoutes);
+app.use("/api/invoices", receiptRoutes);
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`server listening on port ${port}`);
