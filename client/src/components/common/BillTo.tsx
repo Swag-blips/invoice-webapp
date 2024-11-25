@@ -50,7 +50,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           </p>
         </div>
         <input
-          type="text"
+          type="email"
           name="clientEmail"
           id="clientEmail"
           className={` ${

@@ -119,5 +119,19 @@ export const validateItemFields = (
 
   setItemFieldsError(itemFieldsError);
   console.log(itemFieldsError);
+  console.log(`item fields valid ? ${valid}`);
   return valid;
+};
+
+export const validateDateAndOption = (
+  startDate: Date | null,
+  option: string | null
+) => {
+  let isValid = true;
+
+  if (!startDate || !option) {
+    isValid = false;
+  }
+
+  return isValid;
 };

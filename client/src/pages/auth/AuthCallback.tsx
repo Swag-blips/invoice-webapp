@@ -23,10 +23,9 @@ const AuthCallback = () => {
         }),
       });
 
-      const data = await response.json();
+      await response.json();
       syncAttempted.current = true;
       navigate("/");
-      console.log(data);
     } catch (error: any) {
       console.error(error.message);
     }

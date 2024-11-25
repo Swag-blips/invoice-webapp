@@ -6,7 +6,10 @@ import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
 import { BillFromErrors, ItemFields } from "../../types";
-import validate, { validateItemFields } from "../../utils/validateInput";
+import validate, {
+  validateDateAndOption,
+  validateItemFields,
+} from "../../utils/validateInput";
 
 const ReceiptForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +84,6 @@ const ReceiptForm = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    validateItemFields(itemFields, setItemFieldsError);
     setIsubmitted(true);
     if (
       validate(
@@ -97,7 +99,9 @@ const ReceiptForm = () => {
         form.clientCountry,
         form.projectDescription,
         setErrors
-      )
+      ) &&
+      validateItemFields(itemFields, setItemFieldsError) &&
+      validateDateAndOption(startDate, selectedOption)
     ) {
       console.log("Valid");
     } else {

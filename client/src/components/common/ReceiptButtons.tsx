@@ -13,6 +13,7 @@ const ReceiptButtons = ({ handleSubmit }: Props) => {
           Save as Draft
         </button>
         <button
+          type="submit"
           onClick={handleSubmit}
           className="bg-[#7C5DFA] h-12 px-6 rounded-3xl text-white font-bold"
         >
