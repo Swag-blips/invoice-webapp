@@ -1,7 +1,7 @@
 import { AnyObjectSchema, ValidationError } from "yup";
 import { Request, Response, NextFunction } from "express";
 
-const validateInvoice =
+const validateInvoice = 
   (schema: AnyObjectSchema) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {

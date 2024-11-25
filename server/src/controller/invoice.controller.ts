@@ -43,7 +43,7 @@ export const createInvoice = async (req: Request, res: Response) => {
       clientStreetAddress,
       clientCity,
       clientPostCode,
-      clientCountry,
+      clientCountry,  
       projectDescription,
       startDate,
       selectedOption,
