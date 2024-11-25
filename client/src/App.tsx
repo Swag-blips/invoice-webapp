@@ -32,8 +32,16 @@ function App() {
       element: <SignIn />,
     },
     {
+      path: "/auth-callback",
+      element: <AuthCallback />,
+    },
+    {
       path: "/sign-in/sso-callback",
-      element: <AuthenticateWithRedirectCallback />,
+      element: (
+        <AuthenticateWithRedirectCallback
+          signUpForceRedirectUrl={"/auth-callback"}
+        />
+      ),
     },
   ]);
   return <RouterProvider router={router} />;

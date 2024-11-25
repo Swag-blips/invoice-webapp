@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { Receipt } from "../types/types";
+import { Invoice } from "../types/types";
 
-const receiptSchema = new mongoose.Schema({
+const invoiceSchema = new mongoose.Schema({
   senderStreetAddress: { type: String, required: true },
   senderCity: { type: String, required: true },
   senderPostCode: { type: String, required: true },
@@ -24,6 +24,6 @@ const receiptSchema = new mongoose.Schema({
   ],
 });
 
-const Receipt = mongoose.model<Receipt>("Receipt", receiptSchema);
+const Invoice = mongoose.model<Invoice>("Receipt", invoiceSchema);
 
-export default Receipt;
+export default Invoice;

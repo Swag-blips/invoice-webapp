@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-export interface Receipt extends Document {
+export interface Invoice extends Document {
   senderStreetAddress: string;
   senderCity: string;
   senderPostCode: string;
@@ -26,5 +26,5 @@ interface Items {
 export interface User extends Document {
   clerkId: string;
   email: string;
-  receipts: Array<any>;
+  receipts: Array<Invoice>;
 }
