@@ -11,11 +11,13 @@ export const validate = (
   clientCity: string,
   clientPostCode: string,
   clientCountry: string,
+
   projectDescription: string,
   setErrors: (err: FormErrors) => void
 ) => {
   let errMessage = "cant be empty";
   let isValid = true;
+
   const newErrors = {
     senderStreetAddress: "",
     senderCity: "",
@@ -89,10 +91,11 @@ export const validateItemFields = (
   itemFields: ItemFields[],
   setItemFieldsError: (itemfieldsError: ItemFieldsError[]) => void
 ) => {
-  let itemFieldsError = [...itemFields] as ItemFieldsError[];
+  let itemFieldsError = itemFields.map((item) => ({
+    ...item,
+  })) as ItemFieldsError[];
 
   let valid = true;
-  console.log(itemFieldsError);
 
   for (let i = 0; i < itemFieldsError.length; i++) {
     if (itemFieldsError[i].itemName === "") {
@@ -117,7 +120,7 @@ export const validateItemFields = (
       valid = true;
     }
   }
-  console.log(itemFieldsError);
+
   setItemFieldsError(itemFieldsError);
 
   return valid;
@@ -170,5 +173,6 @@ export const handleValidator = (
   if (!validateDateAndOption(startDate, option)) {
     isValid = false;
   }
+
   return isValid;
 };

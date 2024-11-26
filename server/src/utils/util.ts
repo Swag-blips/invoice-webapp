@@ -27,4 +27,13 @@ let letters = [
   "Z",
 ];
 
-const generatorFunction = () => {};
+const generateInvoiceId = () => {
+  let firstLetter = letters[Math.floor(Math.random() * letters.length)];
+  let secondLetter = letters[Math.floor(Math.random() * letters.length)];
+
+  let numbers = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1;
+
+  return `${firstLetter}${secondLetter}${numbers}`;
+};
+
+export default generateInvoiceId;

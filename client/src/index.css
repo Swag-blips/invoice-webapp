@@ -31,7 +31,7 @@ body {
 }
 
 .error-receipt-input-style {
-  @apply w-full outline-none text-base font-bold pl-5 border-[#EC5757] border h-12 rounded-[4px] focus:border-[#9277FF];
+  @apply w-full outline-none text-base font-bold pl-2 border-[#EC5757] border h-12 rounded-[4px] focus:border-[#9277FF];
 }
 
 .dark .error-receipt-input-style {

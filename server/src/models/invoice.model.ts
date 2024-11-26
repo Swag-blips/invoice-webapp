@@ -16,7 +16,7 @@ const invoiceSchema = new mongoose.Schema({
   projectDescription: { type: String, required: true },
   startDate: { type: Date, required: true },
   selectedOption: { type: String, required: true },
-  itemList: [
+  itemFields: [
     {
       itemName: { type: String, required: true },
       qty: { type: Number, required: true },

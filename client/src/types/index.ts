@@ -35,7 +35,7 @@ export interface Items {
 }
 
 export interface ItemFields {
-  [key: string]: string | number | null;
+  [key: string | number]: string | number | null;
 
   itemName: string;
   qty: number | null;
