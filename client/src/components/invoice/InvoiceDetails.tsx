@@ -5,7 +5,7 @@ type Props = {
   invoice?: InvoicesType;
 };
 
-const ReceiptDetails = ({ invoice }: Props) => {
+const InvoiceDetails = ({ invoice }: Props) => {
   return (
     <>
       <div className="flex items-start justify-between">
@@ -88,4 +88,4 @@ const ReceiptDetails = ({ invoice }: Props) => {
   );
 };
 
-export default ReceiptDetails;
+export default InvoiceDetails;

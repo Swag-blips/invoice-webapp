@@ -1,14 +1,14 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import data from "../../../data.json";
-import ItemDetails from "../../components/receipt/ItemDetails";
+import ItemDetails from "../../components/invoice/ItemDetails";
 import { useEffect, useState } from "react";
 import { InvoicesType } from "../../types";
 import { Link, useParams } from "react-router-dom";
-import StatusButton from "../../components/receipt/StatusButton";
-import ReceiptDetails from "../../components/receipt/ReceiptDetails";
-import SubmitComponent from "../../components/receipt/SubmitComponent";
+import StatusButton from "../../components/invoice/StatusButton";
+import SubmitComponent from "../../components/invoice/SubmitComponent";
+import InvoiceDetails from "../../components/invoice/InvoiceDetails";
 
-const Receipt = () => {
+const Invoice = () => {
   const [invoice, setInvoice] = useState<InvoicesType>();
 
   const { id } = useParams();
@@ -56,7 +56,7 @@ const Receipt = () => {
         </div>
 
         <div className="bg-white dark:bg-[#1E2139]  rounded-lg p-6 md:p-12 mt-6">
-          <ReceiptDetails invoice={invoice} />
+          <InvoiceDetails invoice={invoice} />
           <ItemDetails items={invoice?.items} total={invoice?.total} />
         </div>
         <SubmitComponent />
@@ -65,4 +65,4 @@ const Receipt = () => {
   );
 };
 
-export default Receipt;
+export default Invoice;

@@ -22,7 +22,7 @@ const Invoices = () => {
       {invoiceData?.length ? (
         invoiceData?.map((data) => (
           <Link
-            to={`/receipt/${data.id}`}
+            to={`/invoice/${data.id}`}
             key={data.id}
             className="bg-white dark:bg-[#1E2139] cursor-pointer dark:shadow-none shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
           >

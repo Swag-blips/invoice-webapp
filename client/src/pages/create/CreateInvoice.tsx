@@ -3,7 +3,7 @@ import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ReceiptButtons from "../../components/common/ReceiptButtons";
 
-const CreateReceipt = () => {
+const CreateInvoice = () => {
   return (
     <>
       <Navbar />
@@ -243,4 +243,4 @@ const CreateReceipt = () => {
   );
 };
 
-export default CreateReceipt;
+export default CreateInvoice;

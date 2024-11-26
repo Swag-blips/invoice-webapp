@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
 import Home from "./pages/home/Home";
-import Receipt from "./pages/receipt/Receipt";
-import CreateReceipt from "./pages/create/CreateReceipt";
 import SignIn from "./pages/auth/SignIn";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import AuthCallback from "./pages/auth/AuthCallback";
+import Invoice from "./pages/invoice/Invoice";
+import CreateInvoice from "./pages/create/CreateInvoice";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,15 +17,15 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/receipt/:id",
-          element: <Receipt />,
+          path: "/invoice/:id",
+          element: <Invoice />,
         },
       ],
     },
 
     {
-      path: "/create-receipt",
-      element: <CreateReceipt />,
+      path: "/create-invoice",
+      element: <CreateInvoice />,
     },
     {
       path: "/sign-in",

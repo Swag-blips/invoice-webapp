@@ -10,8 +10,9 @@ import validate, {
   validateDateAndOption,
   validateItemFields,
 } from "../../utils/validateInput";
+import { useMutation } from "@tanstack/react-query";
 
-const ReceiptForm = () => {
+const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     senderStreetAddress: "",
@@ -42,6 +43,8 @@ const ReceiptForm = () => {
   const [isSubmitted, setIsubmitted] = useState(false);
   const [itemFieldsError, setItemFieldsError] = useState([{}]);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const toggle = () => {
     setIsOpen(!isOpen);
     return;
@@ -51,6 +54,14 @@ const ReceiptForm = () => {
     setIsOpen(false);
     return;
   };
+
+  const { mutate: createInvoice } = useMutation({
+    mutationFn: async () => {
+      const res = await fetch(`${API_URL}/api/invoices`, {
+        method: "POST",
+      });
+    },
+  });
 
   const handleFormChange = (
     index: number,
@@ -165,4 +176,4 @@ const ReceiptForm = () => {
   );
 };
 
-export default ReceiptForm;
+export default InvoiceForm;
