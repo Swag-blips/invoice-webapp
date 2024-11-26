@@ -49,7 +49,21 @@ export interface ItemFieldsError extends ItemFields {
   itemQtyCheck: string;
 }
 
-export interface BillFromErrors {
+export interface FormErrors {
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
+  clientName: string;
+  clientEmail: string;
+  clientStreetAddress: string;
+  clientCity: string;
+  clientPostCode: string;
+  clientCountry: string;
+  projectDescription: string;
+}
+
+export interface FormType {
   senderStreetAddress: string;
   senderCity: string;
   senderPostCode: string;

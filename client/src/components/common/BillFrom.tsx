@@ -1,8 +1,8 @@
-import { BillFromErrors } from "../../types";
+import { FormErrors } from "../../types";
 
 type Props = {
   handleFormInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  errors: BillFromErrors | null;
+  errors: FormErrors | null;
 };
 
 const BillFrom = ({ errors, handleFormInputChange }: Props) => {

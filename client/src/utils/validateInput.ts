@@ -1,4 +1,4 @@
-import { BillFromErrors, ItemFields, ItemFieldsError } from "../types";
+import { FormErrors, FormType, ItemFields, ItemFieldsError } from "../types";
 
 export const validate = (
   senderStreetAddress: string,
@@ -12,7 +12,7 @@ export const validate = (
   clientPostCode: string,
   clientCountry: string,
   projectDescription: string,
-  setErrors: (err: BillFromErrors) => void
+  setErrors: (err: FormErrors) => void
 ) => {
   let errMessage = "cant be empty";
   let isValid = true;
@@ -92,34 +92,34 @@ export const validateItemFields = (
   let itemFieldsError = [...itemFields] as ItemFieldsError[];
 
   let valid = true;
+  console.log(itemFieldsError);
 
   for (let i = 0; i < itemFieldsError.length; i++) {
     if (itemFieldsError[i].itemName === "") {
-      itemFields[i].itemNameCheck = "itemName is required";
+      itemFieldsError[i].itemNameCheck = "itemName is required";
       valid = false;
     } else {
       itemFieldsError[i].itemNameCheck = "";
       valid = true;
     }
     if (!itemFieldsError[i].price) {
-      itemFields[i].itemPriceCheck = "invalid price";
+      itemFieldsError[i].itemPriceCheck = "invalid price";
       valid = false;
     } else {
       itemFieldsError[i].itemPriceCheck = "";
       valid = true;
     }
     if (!itemFieldsError[i].qty) {
-      itemFields[i].itemQtyCheck = "invalid price";
+      itemFieldsError[i].itemQtyCheck = "invalid price";
       valid = false;
     } else {
       itemFieldsError[i].itemQtyCheck = "";
       valid = true;
     }
   }
-
-  setItemFieldsError(itemFieldsError);
   console.log(itemFieldsError);
-  console.log(`item fields valid ? ${valid}`);
+  setItemFieldsError(itemFieldsError);
+
   return valid;
 };
 
@@ -133,5 +133,42 @@ export const validateDateAndOption = (
     isValid = false;
   }
 
+  return isValid;
+};
+
+export const handleValidator = (
+  itemFields: ItemFields[],
+  setItemFieldsError: (itemfieldsError: ItemFieldsError[]) => void,
+  form: FormType,
+  setErrors: (err: FormErrors) => void,
+  startDate: Date | null,
+  option: string | null
+) => {
+  let isValid = true;
+
+  if (!validateItemFields(itemFields, setItemFieldsError)) {
+    isValid = false;
+  }
+  if (
+    !validate(
+      form.senderStreetAddress,
+      form.senderCity,
+      form.senderPostCode,
+      form.senderCountry,
+      form.clientName,
+      form.clientEmail,
+      form.clientStreetAddress,
+      form.clientCity,
+      form.clientPostCode,
+      form.clientCountry,
+      form.projectDescription,
+      setErrors
+    )
+  ) {
+    isValid = false;
+  }
+  if (!validateDateAndOption(startDate, option)) {
+    isValid = false;
+  }
   return isValid;
 };

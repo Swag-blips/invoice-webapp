@@ -5,16 +5,15 @@ import BillTo from "./BillTo";
 import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
-import { BillFromErrors, ItemFields } from "../../types";
-import validate, {
-  validateDateAndOption,
-  validateItemFields,
-} from "../../utils/validateInput";
+import { FormErrors, FormType, ItemFields } from "../../types";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useAuth } from "@clerk/clerk-react";
+import { handleValidator } from "../../utils/validateInput";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormType>({
     senderStreetAddress: "",
     senderCity: "",
     senderPostCode: "",
@@ -30,7 +29,7 @@ const InvoiceForm = () => {
   const [selectedOption, setSelectedOption] = useState<string | null>(
     "Net 30 Days"
   );
-  const [errors, setErrors] = useState<BillFromErrors | null>(null);
+  const [errors, setErrors] = useState<FormErrors | null>(null);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [itemFields, setItemFields] = useState<ItemFields[]>([
     {
@@ -44,7 +43,7 @@ const InvoiceForm = () => {
   const [itemFieldsError, setItemFieldsError] = useState([{}]);
 
   const API_URL = import.meta.env.VITE_API_URL;
-
+  const { userId } = useAuth();
   const toggle = () => {
     setIsOpen(!isOpen);
     return;
@@ -57,9 +56,36 @@ const InvoiceForm = () => {
 
   const { mutate: createInvoice } = useMutation({
     mutationFn: async () => {
-      const res = await fetch(`${API_URL}/api/invoices`, {
-        method: "POST",
-      });
+      try {
+        const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            ...form,
+            selectedOption,
+            startDate,
+            itemFields,
+          }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Something went wrong");
+        }
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    onSuccess: () => {
+      toast.success("Invoice created successfully");
+    },
+    onError: (error) => {
+      toast.error(error?.message);
     },
   });
 
@@ -95,29 +121,19 @@ const InvoiceForm = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setIsubmitted(true);
     if (
-      validate(
-        form.senderStreetAddress,
-        form.senderCity,
-        form.senderPostCode,
-        form.senderCountry,
-        form.clientName,
-        form.clientEmail,
-        form.clientStreetAddress,
-        form.clientCity,
-        form.clientPostCode,
-        form.clientCountry,
-        form.projectDescription,
-        setErrors
-      ) &&
-      validateItemFields(itemFields, setItemFieldsError) &&
-      validateDateAndOption(startDate, selectedOption)
+      handleValidator(
+        itemFields,
+        setItemFieldsError,
+        form,
+        setErrors,
+        startDate,
+        selectedOption
+      )
     ) {
-      console.log("Valid");
-    } else {
-      console.log("Not valid!");
+      createInvoice();
     }
+    return;
   };
 
   return (

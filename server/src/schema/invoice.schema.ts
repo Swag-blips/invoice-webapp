@@ -1,7 +1,6 @@
 import { array, date, object, string } from "yup";
 
 let invoiceSchema = object({
-  invoiceId: string().required("InvoiceId is required").length(6),
   senderStreetAddress: string().required("sender street address is required"),
   senderCity: string().required("sender city is required"),
   senderPostCode: string().required("sender post code is required"),
@@ -17,7 +16,7 @@ let invoiceSchema = object({
   projectDescription: string().required("Project description"),
   startDate: string().required("invoice date is required"),
   selectedOption: string().required("invoice option is required"),
-  itemList: array().required("items are required"),
+  itemFields: array().required("items are required"),
 });
 
 export default invoiceSchema;
