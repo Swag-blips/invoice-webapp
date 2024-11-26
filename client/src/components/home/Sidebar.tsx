@@ -3,12 +3,10 @@ import moon from "/assets/icon-moon.svg";
 
 import sun from "/assets/icon-sun.svg";
 import { useTheme } from "../../context/ThemeProvider";
-import useReceiptStore from "../../store/receiptStore";
 import { UserButton } from "@clerk/clerk-react";
 
 const Sidebar = () => {
   const { theme, handleThemeSwitch } = useTheme();
-  const { isOpen } = useReceiptStore();
 
   return (
     <aside

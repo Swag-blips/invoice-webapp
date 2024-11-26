@@ -1,8 +1,8 @@
 import logo from "/assets/logo.svg";
 import moon from "/assets/icon-moon.svg";
-import avatar from "/assets/image-avatar.jpg";
 import { useTheme } from "../../context/ThemeProvider";
 import sun from "/assets/icon-sun.svg";
+import { UserButton } from "@clerk/clerk-react";
 
 const Navbar = () => {
   const { theme, handleThemeSwitch } = useTheme();
@@ -21,7 +21,7 @@ const Navbar = () => {
           <img onClick={handleThemeSwitch} src={sun} alt="sun-image" />
         )}
         <div className=" border  h-[72px] border-[#494E6E]" />
-        <img src={avatar} alt="avatar" className="h-10 w-10 rounded-full" />
+        <UserButton />
       </div>
     </div>
   );

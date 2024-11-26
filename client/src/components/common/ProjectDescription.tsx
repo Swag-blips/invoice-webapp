@@ -26,8 +26,8 @@ const ProjectDescription = ({ errors, handleFormInputChange }: Props) => {
         id="projectDescription"
         className={` ${
           errors?.projectDescription
-            ? "error-receipt-input-style"
-            : "receipt-input-style"
+            ? "error-invoice-input-style"
+            : "invoice-input-style"
         }`}
         onChange={handleFormInputChange}
       />

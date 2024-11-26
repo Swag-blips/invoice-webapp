@@ -32,7 +32,7 @@ const CreateInvoice = () => {
               type="text"
               name="streetAddress"
               id="streetAddress"
-              className="receipt-input-style"
+              className="invoice-input-style"
             />
           </div>
           <div className="flex mt-6 items-center gap-6 w-full ">
@@ -44,7 +44,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="city"
                 id="city"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
             <div className="flex w-full  flex-col gap-2">
@@ -55,7 +55,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="postCode"
                 id="postCode0"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
           </div>
@@ -65,7 +65,7 @@ const CreateInvoice = () => {
             </label>
             <input
               type="text"
-              className="receipt-input-style"
+              className="invoice-input-style"
               name="country"
               id="country"
             />
@@ -80,7 +80,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="clientName"
                 id="clientName"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
             <div>
@@ -91,7 +91,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="clientEmail"
                 id="clientEmail"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -102,7 +102,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="streetAddress"
                 id="streetAddress"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
           </div>
@@ -115,7 +115,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="city"
                 id="city"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
             <div className="flex  w-full flex-col gap-2">
@@ -126,7 +126,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="postCode"
                 id="postCode"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ const CreateInvoice = () => {
             </label>
             <input
               type="text"
-              className="receipt-input-style"
+              className="invoice-input-style"
               name="country"
               id="country"
             />
@@ -148,7 +148,7 @@ const CreateInvoice = () => {
               </label>
               <input
                 type="text"
-                className="receipt-input-style"
+                className="invoice-input-style"
                 name="invoiceDate"
                 id="invoiceDate"
               />
@@ -159,7 +159,7 @@ const CreateInvoice = () => {
               </label>
               <input
                 type="text"
-                className="receipt-input-style"
+                className="invoice-input-style"
                 name="paymentTerms"
                 id="paymentTerms"
               />
@@ -173,7 +173,7 @@ const CreateInvoice = () => {
                 type="text"
                 name="projectDescription"
                 id="projectDescription"
-                className="receipt-input-style"
+                className="invoice-input-style"
               />
             </div>
           </div>
@@ -190,7 +190,7 @@ const CreateInvoice = () => {
                   <input
                     id="itemName"
                     name="itemName"
-                    className="receipt-input-style"
+                    className="invoice-input-style"
                   />
                 </div>
 
@@ -203,7 +203,7 @@ const CreateInvoice = () => {
                     <input
                       id="Qty"
                       name="Qty"
-                      className="receipt-input-style"
+                      className="invoice-input-style"
                     />
                   </div>
                   <div className="flex flex-col">
@@ -214,7 +214,7 @@ const CreateInvoice = () => {
                     <input
                       id="Price"
                       name="Price"
-                      className="receipt-input-style"
+                      className="invoice-input-style"
                     />
                   </div>
                   <div className="flex flex-col">

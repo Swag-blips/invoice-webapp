@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { Invoice } from "../types/types";
 
 const invoiceSchema = new mongoose.Schema({
+  userId: { type: String, required: true },
   invoiceId: { type: String, required: true },
   senderStreetAddress: { type: String, required: true },
   senderCity: { type: String, required: true },

@@ -1,6 +1,7 @@
 import mongoose, { Document } from "mongoose";
 
 export interface Invoice extends Document {
+  userId: string;
   invoiceId: string;
   senderStreetAddress: string;
   senderCity: string;

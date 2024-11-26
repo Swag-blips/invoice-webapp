@@ -65,25 +65,28 @@ const InvoiceForm = () => {
           credentials: "include",
           body: JSON.stringify({
             ...form,
+
             selectedOption,
             startDate,
             itemFields,
           }),
         });
+
         const data = await res.json();
 
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
         }
         return data;
-      } catch (error) {
-        console.error(error);
+      } catch (error: any) {
+        throw new Error(error);
       }
     },
 
     onSuccess: () => {
       toast.success("Invoice created successfully");
     },
+
     onError: (error) => {
       toast.error(error?.message);
     },

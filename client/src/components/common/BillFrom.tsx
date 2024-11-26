@@ -29,8 +29,8 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
           id="senderStreetAddress"
           className={` ${
             errors?.senderStreetAddress
-              ? "error-receipt-input-style"
-              : "receipt-input-style"
+              ? "error-invoice-input-style"
+              : "invoice-input-style"
           }`}
           onChange={handleFormInputChange}
         />
@@ -52,8 +52,8 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
             id="senderCity"
             className={` ${
               errors?.senderCity
-                ? "error-receipt-input-style"
-                : "receipt-input-style"
+                ? "error-invoice-input-style"
+                : "invoice-input-style"
             }`}
             onChange={handleFormInputChange}
           />
@@ -73,8 +73,8 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
             id="senderPostCode"
             className={` ${
               errors?.senderPostCode
-                ? "error-receipt-input-style"
-                : "receipt-input-style"
+                ? "error-invoice-input-style"
+                : "invoice-input-style"
             }`}
             onChange={handleFormInputChange}
           />
@@ -92,8 +92,8 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
             type="text"
             className={`${
               errors?.senderCountry
-                ? "error-receipt-input-style "
-                : "receipt-input-style "
+                ? "error-invoice-input-style "
+                : "invoice-input-style "
             }`}
             name="senderCountry"
             id="senderCountry"

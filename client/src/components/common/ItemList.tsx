@@ -31,8 +31,8 @@ const ItemList = ({
               className={`
                 ${
                   itemFieldsError[index]?.itemNameCheck
-                    ? "error-receipt-input-style"
-                    : "  receipt-input-style"
+                    ? "error-invoice-input-style"
+                    : "  invoice-input-style"
                 }
               `}
               type="text"
@@ -74,8 +74,8 @@ const ItemList = ({
                 className={` 
                   ${
                     itemFieldsError[index]?.itemPriceCheck
-                      ? "error-receipt-input-style"
-                      : "receipt-input-style"
+                      ? "error-invoice-input-style"
+                      : "invoice-input-style"
                   }
                   `}
                 value={input.price!}

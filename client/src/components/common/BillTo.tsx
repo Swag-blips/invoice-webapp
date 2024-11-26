@@ -29,8 +29,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           id="clientName"
           className={` ${
             errors?.clientName
-              ? "error-receipt-input-style"
-              : "receipt-input-style"
+              ? "error-invoice-input-style"
+              : "invoice-input-style"
           }`}
           onChange={handleFormInputChange}
         />
@@ -55,8 +55,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           id="clientEmail"
           className={` ${
             errors?.clientEmail
-              ? "error-receipt-input-style"
-              : "receipt-input-style"
+              ? "error-invoice-input-style"
+              : "invoice-input-style"
           }`}
           onChange={handleFormInputChange}
         />
@@ -81,8 +81,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           id="clientStreetAddress"
           className={` ${
             errors?.clientStreetAddress
-              ? "error-receipt-input-style"
-              : "receipt-input-style"
+              ? "error-invoice-input-style"
+              : "invoice-input-style"
           }`}
           onChange={handleFormInputChange}
         />
@@ -104,8 +104,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
             id="clientCity"
             className={` ${
               errors?.clientCity
-                ? "error-receipt-input-style"
-                : "receipt-input-style"
+                ? "error-invoice-input-style"
+                : "invoice-input-style"
             }`}
             onChange={handleFormInputChange}
           />
@@ -125,8 +125,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
             id="clientPostCode"
             className={` ${
               errors?.clientPostCode
-                ? "error-receipt-input-style"
-                : "receipt-input-style"
+                ? "error-invoice-input-style"
+                : "invoice-input-style"
             }`}
             onChange={handleFormInputChange}
           />
@@ -144,8 +144,8 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
             type="text"
             className={` ${
               errors?.clientCountry
-                ? "error-receipt-input-style"
-                : "receipt-input-style"
+                ? "error-invoice-input-style"
+                : "invoice-input-style"
             }`}
             name="clientCountry"
             id="clientCountry"

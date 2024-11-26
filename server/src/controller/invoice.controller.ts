@@ -3,6 +3,7 @@ import User from "../models/user.model";
 import Invoice from "../models/invoice.model";
 import mongoose from "mongoose";
 import generateInvoiceId from "../utils/util";
+import { error } from "console";
 
 export const createInvoice = async (req: Request, res: Response) => {
   const {
@@ -32,6 +33,7 @@ export const createInvoice = async (req: Request, res: Response) => {
       return;
     }
     const invoice = new Invoice({
+      userId,
       invoiceId: generateInvoiceId(),
       senderStreetAddress,
       senderCity,
@@ -54,6 +56,16 @@ export const createInvoice = async (req: Request, res: Response) => {
     return;
   } catch (error) {
     console.log(`error at create invoice controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+export const getInvoices = async (req: Request, res: Response) => {
+  let userId = req.params.id;
+
+  try {
+  } catch (error) {
+    console.log(`error at get invoices controller ${error}`);
     res.status(500).json({ message: "Internal server Error" });
   }
 };

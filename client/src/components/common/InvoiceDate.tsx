@@ -30,13 +30,13 @@ const InvoiceDate = ({
         <div className="relative">
           <DatePicker
             selected={startDate}
-            className="receipt-input-style pl-6 font-bold "
+            className="date-input-style font-bold "
             onChange={(date) => setStartDate(date)}
           />
           <img
             src={iconCalendar}
             alt="calendar"
-            className="absolute right-14 translate-y-[-2rem]"
+            className="absolute right-16  translate-y-[-2rem]"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ const InvoiceDate = ({
         <div onClick={toggle} className="relative">
           <input
             type="text"
-            className="receipt-input-style dark:text-white  text-neutral font-bold pl-2"
+            className="invoice-input-style dark:text-white  text-neutral font-bold "
             value={selectedOption || "Net 30 Days"}
             name="paymentTerms"
             id="paymentTerms"
