@@ -58,7 +58,7 @@ const InvoiceForm = () => {
   };
 
   const queryClient = useQueryClient();
-  const { mutate: createInvoice } = useMutation({
+  const { mutate: createInvoice, isPending } = useMutation({
     mutationFn: async () => {
       try {
         const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
@@ -203,7 +203,7 @@ const InvoiceForm = () => {
                 </p>
               </>
             )}
-            <ReceiptButtons handleSubmit={handleSubmit} />
+            <ReceiptButtons isPending={isPending} handleSubmit={handleSubmit} />
           </div>
         </form>
       </div>

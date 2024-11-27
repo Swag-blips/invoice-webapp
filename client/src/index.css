@@ -71,3 +71,18 @@ body {
     scrollbar-width: none; /* Firefox */
   }
 }
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border-left-color: #fff;
+  animation: spin 1s ease infinite;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
