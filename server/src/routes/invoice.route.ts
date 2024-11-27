@@ -1,5 +1,5 @@
 import express from "express";
-import { createInvoice } from "../controller/invoice.controller";
+import { createInvoice, getInvoices } from "../controller/invoice.controller";
 import validateInvoice from "../middleware/validateInvoice";
 import invoiceSchema from "../schema/invoice.schema";
 import { requireAuth } from "@clerk/express";
@@ -12,5 +12,7 @@ router.post(
   validateInvoice(invoiceSchema),
   createInvoice
 );
+router.get("/:id", getInvoices);
 
 export default router;
+    

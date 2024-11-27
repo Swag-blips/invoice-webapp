@@ -3,7 +3,6 @@ import User from "../models/user.model";
 import Invoice from "../models/invoice.model";
 import mongoose from "mongoose";
 import generateInvoiceId from "../utils/util";
-import { error } from "console";
 
 export const createInvoice = async (req: Request, res: Response) => {
   const {
@@ -64,6 +63,17 @@ export const getInvoices = async (req: Request, res: Response) => {
   let userId = req.params.id;
 
   try {
+    const invoices = await Invoice.find({
+      userId: userId,
+    });
+
+    if (!invoices.length) {
+      res.status(404).json({ error: "invoices not found" });
+      return;
+    }
+
+    res.status(200).json(invoices);
+    return;
   } catch (error) {
     console.log(`error at get invoices controller ${error}`);
     res.status(500).json({ message: "Internal server Error" });

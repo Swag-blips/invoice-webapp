@@ -22,8 +22,14 @@ const invoiceSchema = new mongoose.Schema({
       itemName: { type: String, required: true },
       qty: { type: Number, required: true },
       price: { type: Number, required: true },
+      total: { type: Number, required: true },
     },
   ],
+  status: {
+    type: String,
+    enum: ["pending", "paid", "draft"],
+    default: "pending",
+  },
 });
 
 const Invoice = mongoose.model<Invoice>("Invoice", invoiceSchema);
