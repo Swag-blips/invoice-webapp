@@ -61,3 +61,17 @@ export interface FormType {
   clientCountry: string;
   projectDescription: string;
 }
+
+export const DEFAULT_STATE = {
+  senderStreetAddress: "",
+  senderCity: "",
+  senderPostCode: "",
+  senderCountry: "",
+  clientName: "",
+  clientEmail: "",
+  clientStreetAddress: "",
+  clientCity: "",
+  clientPostCode: "",
+  clientCountry: "",
+  projectDescription: "",
+};

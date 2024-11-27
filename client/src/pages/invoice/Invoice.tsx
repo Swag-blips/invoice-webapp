@@ -9,11 +9,13 @@ import InvoiceDetails from "../../components/invoice/InvoiceDetails";
 import { useQuery } from "@tanstack/react-query";
 
 import Loading from "../../helpers/Loading";
+import useReceiptStore from "../../store/receiptStore";
 
 const Invoice = () => {
   const { id } = useParams();
   const API_URL = import.meta.env.VITE_API_URL;
 
+  const { setIsOpen } = useReceiptStore();
   const {
     data: invoice,
     refetch,
@@ -27,7 +29,7 @@ const Invoice = () => {
         credentials: "include",
       });
 
-      const data = await res.json();
+      const data = await res.json() as InvoicesType;
 
       return data;
     },
@@ -57,7 +59,10 @@ const Invoice = () => {
             <StatusButton invoice={invoice} />
           </div>
           <div className="md:flex hidden items-center gap-2">
-            <button className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-3xl dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
+            <button
+              onClick={setIsOpen}
+              className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-3xl dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]"
+            >
               Edit
             </button>
             <button className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-error text-white">

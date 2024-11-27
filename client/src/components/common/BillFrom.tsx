@@ -1,11 +1,12 @@
-import { FormErrors } from "../../types";
+import { FormErrors, FormType } from "../../types";
 
 type Props = {
+  form: FormType;
   handleFormInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   errors: FormErrors | null;
 };
 
-const BillFrom = ({ errors, handleFormInputChange }: Props) => {
+const BillFrom = ({ form, errors, handleFormInputChange }: Props) => {
   return (
     <div className="flex flex-col  gap-6">
       <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>
@@ -27,6 +28,7 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
           type="text"
           name="senderStreetAddress"
           id="senderStreetAddress"
+          value={form.senderStreetAddress}
           className={` ${
             errors?.senderStreetAddress
               ? "error-invoice-input-style"
