@@ -111,7 +111,8 @@ const ItemList = ({
             </div>
 
             <img
-              className="mt-4 hover:text-error"
+              id="delete"
+              className="mt-4 hover:text-error cursor-pointer"
               src={deleteIcon}
               alt="garbage-image"
               onClick={() => removeFields(index)}

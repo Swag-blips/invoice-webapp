@@ -20,8 +20,8 @@ const invoiceSchema = new mongoose.Schema({
   itemFields: [
     {
       itemName: { type: String, required: true },
-      qty: { type: Number, required: true },
-      price: { type: Number, required: true },
+      qty: { type: Number, min: 1, required: true },
+      price: { type: Number, min: 1, required: true },
       total: { type: Number, required: true },
     },
   ],

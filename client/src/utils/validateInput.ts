@@ -103,26 +103,25 @@ export const validateItemFields = (
       valid = false;
     } else {
       itemFieldsError[i].itemNameCheck = "";
-      valid = true;
     }
     if (!itemFieldsError[i].price) {
+      console.log(itemFieldsError[i].price);
       itemFieldsError[i].itemPriceCheck = "invalid price";
       valid = false;
     } else {
       itemFieldsError[i].itemPriceCheck = "";
-      valid = true;
     }
     if (!itemFieldsError[i].qty) {
-      itemFieldsError[i].itemQtyCheck = "invalid price";
+      itemFieldsError[i].itemQtyCheck = "invalid qty";
       valid = false;
     } else {
-      itemFieldsError[i].itemQtyCheck = "";
-      valid = true;
+      itemFieldsError[i].itemQtyCheck = "";  
     }
   }
+  console.log(itemFieldsError);
 
   setItemFieldsError(itemFieldsError);
-
+  console.log(valid);
   return valid;
 };
 

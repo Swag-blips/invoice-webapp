@@ -10,6 +10,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 import { handleValidator } from "../../utils/validateInput";
+import useReceiptStore from "../../store/receiptStore";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +35,9 @@ const InvoiceForm = () => {
   const [itemFields, setItemFields] = useState<ItemFields[]>([
     {
       itemName: "",
-      qty: null,
-      price: null,
-      total: null,
+      qty: 0,
+      price: 0,
+      total: 0,
     },
   ]);
   const [isSubmitted, setIsubmitted] = useState(false);
@@ -44,6 +45,8 @@ const InvoiceForm = () => {
 
   const API_URL = import.meta.env.VITE_API_URL;
   const { userId } = useAuth();
+
+  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
   const toggle = () => {
     setIsOpen(!isOpen);
     return;
@@ -66,7 +69,6 @@ const InvoiceForm = () => {
           credentials: "include",
           body: JSON.stringify({
             ...form,
-
             selectedOption,
             startDate,
             itemFields,
@@ -86,6 +88,7 @@ const InvoiceForm = () => {
 
     onSuccess: () => {
       toast.success("Invoice created successfully");
+      setInvoiceFormOpen();
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
 
@@ -126,6 +129,7 @@ const InvoiceForm = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(`when not validated ${errors}`);
     if (
       handleValidator(
         itemFields,
@@ -136,13 +140,15 @@ const InvoiceForm = () => {
         selectedOption
       )
     ) {
+      console.log(itemFields);
+      console.log(`when validated ${errors}`);
       createInvoice();
     }
     return;
   };
 
   return (
-    <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 absolute  overflow-y-scroll bg-white h-screen">
+    <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 fixed overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
         <h1 className="font-bold dark:text-white text-[24px] text-neutral tracking-[-0.5px]">
           New invoice
