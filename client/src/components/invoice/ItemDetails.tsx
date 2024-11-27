@@ -27,7 +27,7 @@ const ItemDetails = ({ items }: Props) => {
           </div>
           <div className="flex md:justify-between justify-end">
             <div className=" hidden md:flex flex-col items-center gap-8">
-              <h1 className="text-[16px] dark:text-[#DFE3FA]  text-primary-text font-medium tracking=[-0.1px] text-left">
+              <h1 className="text-[16px] dark:text-[#DFE3FA]  text-primary-text font-medium tracking-[-0.1px] text-left">
                 Qty
               </h1>
 
@@ -36,7 +36,7 @@ const ItemDetails = ({ items }: Props) => {
                   key={item.itemName}
                   className="font-bold text-base dark:text-[#DFE3FA] text-primary-text tracking-tight text-left"
                 >
-                  {item.qty}
+                  {item.qty}.00
                 </p>
               ))}
             </div>
@@ -46,12 +46,15 @@ const ItemDetails = ({ items }: Props) => {
               </h1>
 
               {items?.map((item) => (
-                <p
-                  key={item.itemName}
-                  className="font-bold dark:text-white  md:dark:text-[#DFE3FA] text-base text-primary-text tracking-tight text-right"
-                >
-                  £ {item.price}
-                </p>
+                <>
+                  <p
+                    key={item.itemName}
+                    className="font-bold dark:text-white  md:dark:text-[#DFE3FA] text-base text-primary-text tracking-tight text-right"
+                  >
+                    £ {item.price}.00
+                  </p>
+                  <div className="md:hidden" />
+                </>
               ))}
             </div>
             <div className=" hidden md:flex flex-col items-center gap-8">
@@ -64,7 +67,7 @@ const ItemDetails = ({ items }: Props) => {
                   key={item.itemName}
                   className="font-bold dark:text-white text-base text-neutral tracking-tight text-right"
                 >
-                  {item.total}
+                  {item.total}.00
                 </p>
               ))}
             </div>
@@ -75,7 +78,7 @@ const ItemDetails = ({ items }: Props) => {
         <p className="text-white hidden md:inline">Amount Due</p>
         <p className="text-white text-sm md:hidden">Grand total</p>
         <p className="text-white font-bold text-2xl tracking-[-0.5px] text-right">
-          {generateTotal(items)}
+          {generateTotal(items)}.00
         </p>
       </div>
     </>

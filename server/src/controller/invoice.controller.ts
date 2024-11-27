@@ -62,12 +62,13 @@ export const createInvoice = async (req: Request, res: Response) => {
 export const getInvoices = async (req: Request, res: Response) => {
   let userId = req.params.id;
 
+  
   try {
     const invoices = await Invoice.find({
       userId: userId,
     });
 
-    if (!invoices.length) {
+    if (!invoices.length) { 
       res.status(404).json({ error: "invoices not found" });
       return;
     }

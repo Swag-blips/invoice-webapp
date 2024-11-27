@@ -68,13 +68,13 @@ const Invoices = () => {
                 {data.clientName}
               </p>
               <p className="text-base lg:hidden dark:text-white font-bold text-neutral leading-[24px]">
-                £ {generateTotal(data.itemFields)}
+                £ {generateTotal(data.itemFields)}.00
               </p>
             </div>
 
             <div className="flex items-center flex-col md:flex-row md:gap-10 gap-6 md:justify-center">
               <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-neutral leading-[24px]">
-                £ {generateTotal(data.itemFields)}
+                £ {generateTotal(data.itemFields)}.00
               </p>
               <p className="text-secondary-text dark:text-white lg:hidden racking-[0.1px] text-sm">
                 {data.clientName}
