@@ -1,4 +1,6 @@
-const generateTotal = (itemDetails: any) => {
+import { ItemFields } from "../types";
+
+const generateTotal = (itemDetails: ItemFields[]) => {
   console.log(itemDetails);
 
   let finalVal = itemDetails.reduce(

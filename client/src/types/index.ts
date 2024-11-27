@@ -1,30 +1,23 @@
 export interface InvoicesType {
-  id: string;
-  createdAt: string;
-  paymentDue: string;
-  description: string;
-  paymentTerms: number;
+  _id: string;
+  userId: string;
+  invoiceId: string;
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
   clientName: string;
   clientEmail: string;
+  clientStreetAddress: string;
+  clientCity: string;
+  clientPostCode: string;
+  clientCountry: string;
+  projectDescription: string;
+  startDate: Date;
+  selectedOption: string;
+
+  itemFields: ItemFields[];
   status: string;
-  senderAddress: SenderAddress;
-  clientAddress: ClientAddress;
-  item: Items[];
-  total: number;
-}
-
-interface SenderAddress {
-  street: string;
-  city: string;
-  postCode: string;
-  country: string;
-}
-
-interface ClientAddress {
-  street: string;
-  city: string;
-  postCode: string;
-  country: string;
 }
 
 export interface Items {

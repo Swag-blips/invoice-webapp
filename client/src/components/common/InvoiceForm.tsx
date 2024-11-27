@@ -6,7 +6,7 @@ import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
 import { FormErrors, FormType, ItemFields } from "../../types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useAuth } from "@clerk/clerk-react";
 import { handleValidator } from "../../utils/validateInput";
@@ -54,6 +54,7 @@ const InvoiceForm = () => {
     return;
   };
 
+  const queryClient = useQueryClient();
   const { mutate: createInvoice } = useMutation({
     mutationFn: async () => {
       try {
@@ -85,6 +86,7 @@ const InvoiceForm = () => {
 
     onSuccess: () => {
       toast.success("Invoice created successfully");
+      queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
 
     onError: (error) => {

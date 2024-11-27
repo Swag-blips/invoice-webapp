@@ -1,6 +1,4 @@
 import arrowRight from "/assets/icon-arrow-right.svg";
-import { InvoicesType } from "../../types";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Empty from "./Empty";
 import { useQuery } from "@tanstack/react-query";
@@ -8,9 +6,9 @@ import { useAuth } from "@clerk/clerk-react";
 import { Loader } from "lucide-react";
 import moment from "moment";
 import generateTotal from "../../utils/total";
+import { InvoicesType } from "../../types";
 
 const Invoices = () => {
-  const [invoiceData, setInvoiceData] = useState<InvoicesType[] | null>(null);
   const API_URL = import.meta.env.VITE_API_URL;
 
   const { userId } = useAuth();
@@ -36,10 +34,6 @@ const Invoices = () => {
     },
   });
 
-  // const paid = invoiceData?.status === "paid";
-  // const draft = invoiceData?.status === "draft";
-  // const pending = invoiceData?.status === "pending";
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center mt-[50px]">
@@ -51,10 +45,10 @@ const Invoices = () => {
   return (
     <div className="lg:mt-16 mt-8 flex items-center gap-4 flex-col ">
       {invoices?.length ? (
-        invoices?.map((data: any) => (
+        invoices?.map((data: InvoicesType) => (
           <Link
-            to={`/invoice/${data.id}`}
-            key={data.id}
+            to={`/invoice/${data.invoiceId}`}
+            key={data._id}
             className="bg-white dark:bg-[#1E2139] cursor-pointer dark:shadow-none shadow-sm rounded-[8px]  flex items-center justify-between w-full px-6 lg:py-0 py-6 lg:px-8 h-auto lg:h-[72px]"
           >
             <div className="flex text flex-col md:flex-row md:items-center md:gap-10">
