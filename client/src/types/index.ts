@@ -9,7 +9,7 @@ export interface InvoicesType {
   status: string;
   senderAddress: SenderAddress;
   clientAddress: ClientAddress;
-  items: Items[];
+  item: Items[];
   total: number;
 }
 

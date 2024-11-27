@@ -1,26 +1,57 @@
 import arrowRight from "/assets/icon-arrow-right.svg";
-import data from "../../../data.json";
 import { InvoicesType } from "../../types";
-import { useEffect, useState } from "react";
-import formatDate from "../../utils/formatDate";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Empty from "./Empty";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "@clerk/clerk-react";
+import { Loader } from "lucide-react";
+import moment from "moment";
+import generateTotal from "../../utils/total";
 
 const Invoices = () => {
   const [invoiceData, setInvoiceData] = useState<InvoicesType[] | null>(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  useEffect(() => {
-    setInvoiceData(data);
-  }, [data]);
+  const { userId } = useAuth();
+  const {
+    data: invoices,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["invoices"],
+    queryFn: async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/invoices/${userId}`);
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Something went wrong");
+        }
+        return data;
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    },
+  });
 
   // const paid = invoiceData?.status === "paid";
   // const draft = invoiceData?.status === "draft";
   // const pending = invoiceData?.status === "pending";
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center mt-[50px]">
+        <Loader className="size-6 text-[#4b2ec0] animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="lg:mt-16 mt-8 flex items-center gap-4 flex-col ">
-      {invoiceData?.length ? (
-        invoiceData?.map((data) => (
+      {invoices?.length ? (
+        invoices?.map((data: any) => (
           <Link
             to={`/invoice/${data.id}`}
             key={data.id}
@@ -29,24 +60,24 @@ const Invoices = () => {
             <div className="flex text flex-col md:flex-row md:items-center md:gap-10">
               <p className="text-neutral dark:text-white text-base   font-bold tracking-tight">
                 <span className="text-primary-text">#</span>
-                {data.id}
+                {data.invoiceId}
               </p>
 
               <p className="text-primary-text dark:text-[#DFE3FA] md:mt-0 mt-6  tracking-[0.1px] text-sm">
                 <span className="text-[#888EB0] dark:text-[#DFE3FA]">Due </span>
-                {formatDate(data.paymentDue)}
+                {moment(data.startDate).format("Do MMMM YYYY")}
               </p>
               <p className="text-secondary-text dark:text-[#DFE3FA] hidden lg:inline-flex tracking-[0.1px] text-sm">
                 {data.clientName}
               </p>
               <p className="text-base lg:hidden dark:text-white font-bold text-neutral leading-[24px]">
-                £ {data.total}
+                £ {generateTotal(data.itemFields)}
               </p>
             </div>
 
             <div className="flex items-center flex-col md:flex-row md:gap-10 gap-6 md:justify-center">
               <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-neutral leading-[24px]">
-                £ {data.total}
+                £ {generateTotal(data.itemFields)}
               </p>
               <p className="text-secondary-text dark:text-white lg:hidden racking-[0.1px] text-sm">
                 {data.clientName}

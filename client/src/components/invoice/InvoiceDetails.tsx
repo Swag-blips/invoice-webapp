@@ -1,5 +1,5 @@
+import moment from "moment";
 import { InvoicesType } from "../../types";
-import formatDate from "../../utils/formatDate";
 
 type Props = {
   invoice?: InvoicesType;
@@ -38,7 +38,8 @@ const InvoiceDetails = ({ invoice }: Props) => {
               Invoice Date
             </p>
             <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
-              {invoice?.createdAt && formatDate(invoice?.createdAt)}
+              {invoice?.createdAt &&
+                moment(invoice?.createdAt).format("Do MMMM YYYY")}
             </p>
           </div>
           <div className=" flex flex-col gap-2">
@@ -46,7 +47,8 @@ const InvoiceDetails = ({ invoice }: Props) => {
               Payment due
             </p>
             <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
-              {invoice?.paymentDue && formatDate(invoice?.paymentDue)}
+              {invoice?.paymentDue &&
+                moment(invoice?.paymentDue).format("Do MMMM YYYY")}
             </p>
           </div>
 
