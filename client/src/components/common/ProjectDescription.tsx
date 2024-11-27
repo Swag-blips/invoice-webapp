@@ -1,10 +1,15 @@
 import { FormErrors } from "../../types";
 
 type Props = {
+  projectDescription: string;
   handleFormInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errors: FormErrors | null;
 };
-const ProjectDescription = ({ errors, handleFormInputChange }: Props) => {
+const ProjectDescription = ({
+  projectDescription,
+  errors,
+  handleFormInputChange,
+}: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
@@ -22,6 +27,7 @@ const ProjectDescription = ({ errors, handleFormInputChange }: Props) => {
       </div>
       <input
         type="text"
+        value={projectDescription}
         name="projectDescription"
         id="projectDescription"
         className={` ${

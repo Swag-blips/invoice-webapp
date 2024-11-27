@@ -52,6 +52,7 @@ const BillFrom = ({ form, errors, handleFormInputChange }: Props) => {
             type="text"
             name="senderCity"
             id="senderCity"
+            value={form.senderCity}
             className={` ${
               errors?.senderCity
                 ? "error-invoice-input-style"
@@ -73,6 +74,7 @@ const BillFrom = ({ form, errors, handleFormInputChange }: Props) => {
             type="text"
             name="senderPostCode"
             id="senderPostCode"
+            value={form.senderPostCode}
             className={` ${
               errors?.senderPostCode
                 ? "error-invoice-input-style"
@@ -92,6 +94,7 @@ const BillFrom = ({ form, errors, handleFormInputChange }: Props) => {
           </label>
           <input
             type="text"
+            value={form.senderCountry}
             className={`${
               errors?.senderCountry
                 ? "error-invoice-input-style "

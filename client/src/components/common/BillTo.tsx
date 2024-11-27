@@ -1,12 +1,13 @@
 import React from "react";
-import { FormErrors } from "../../types";
+import { FormErrors, FormType } from "../../types";
 
 type Props = {
+  form: FormType;
   handleFormInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errors: FormErrors | null;
 };
 
-const BillTo = ({ errors, handleFormInputChange }: Props) => {
+const BillTo = ({ form, errors, handleFormInputChange }: Props) => {
   return (
     <>
       <div className="flex flex-col gap-2">
@@ -27,6 +28,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           type="text"
           name="clientName"
           id="clientName"
+          value={form.clientName}
           className={` ${
             errors?.clientName
               ? "error-invoice-input-style"
@@ -53,6 +55,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           type="email"
           name="clientEmail"
           id="clientEmail"
+          value={form.clientEmail}
           className={` ${
             errors?.clientEmail
               ? "error-invoice-input-style"
@@ -79,6 +82,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           type="text"
           name="clientStreetAddress"
           id="clientStreetAddress"
+          value={form.clientStreetAddress}
           className={` ${
             errors?.clientStreetAddress
               ? "error-invoice-input-style"
@@ -102,6 +106,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
             type="text"
             name="clientCity"
             id="clientCity"
+            value={form.clientCity}
             className={` ${
               errors?.clientCity
                 ? "error-invoice-input-style"
@@ -123,6 +128,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
             type="text"
             name="clientPostCode"
             id="clientPostCode"
+            value={form.clientPostCode}
             className={` ${
               errors?.clientPostCode
                 ? "error-invoice-input-style"
@@ -142,6 +148,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           </label>
           <input
             type="text"
+            value={form.clientCountry}
             className={` ${
               errors?.clientCountry
                 ? "error-invoice-input-style"

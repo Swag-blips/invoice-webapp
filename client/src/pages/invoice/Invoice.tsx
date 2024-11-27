@@ -20,7 +20,6 @@ const Invoice = () => {
     data: invoice,
     refetch,
     isLoading,
-    isRefetching,
   } = useQuery({
     queryKey: ["invoice"],
     queryFn: async (): Promise<InvoicesType> => {
@@ -29,7 +28,7 @@ const Invoice = () => {
         credentials: "include",
       });
 
-      const data = await res.json() as InvoicesType;
+      const data = (await res.json()) as InvoicesType;
 
       return data;
     },
@@ -38,7 +37,12 @@ const Invoice = () => {
     refetch();
   }, [id, refetch]);
 
-  if (isLoading || isRefetching) {
+  const handleOpenForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setIsOpen();
+  };
+
+  if (isLoading) {
     return <Loading />;
   }
   return (
@@ -60,7 +64,7 @@ const Invoice = () => {
           </div>
           <div className="md:flex hidden items-center gap-2">
             <button
-              onClick={setIsOpen}
+              onClick={handleOpenForm}
               className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-3xl dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]"
             >
               Edit

@@ -69,24 +69,26 @@ const InvoiceForm = () => {
     if (id && invoice) {
       setForm({
         senderStreetAddress: invoice.senderStreetAddress,
-        senderCity: "",
-        senderPostCode: "",
-        senderCountry: "",
-        clientName: "",
-        clientEmail: "",
-        clientStreetAddress: "",
-        clientCity: "",
-        clientPostCode: "",
-        clientCountry: "",
-        projectDescription: "",
+        senderCity: invoice.senderCity,
+        senderPostCode: invoice.senderPostCode,
+        senderCountry: invoice.senderCountry,
+        clientName: invoice.clientName,
+        clientEmail: invoice.clientEmail,
+        clientStreetAddress: invoice.clientStreetAddress,
+        clientCity: invoice.clientCity,
+        clientPostCode: invoice.clientPostCode,
+        clientCountry: invoice.clientCountry,
+        projectDescription: invoice.projectDescription,
       });
+
+      setStartDate(invoice.startDate);
+      setSelectedOption(invoice.selectedOption);
+      setItemFields(invoice.itemFields);
     } else {
       return;
     }
   }, [id, invoice]);
 
-  console.log(form);
-  console.log(id);
   const queryClient = useQueryClient();
   const { mutate: createInvoice, isPending } = useMutation({
     mutationFn: async () => {
@@ -195,6 +197,7 @@ const InvoiceForm = () => {
             <div className="flex flex-col mt-12 gap-6">
               <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
               <BillTo
+                form={form}
                 errors={errors}
                 handleFormInputChange={handleFormInputChange}
               />
@@ -208,6 +211,7 @@ const InvoiceForm = () => {
                 setIsOpen={setIsOpen}
               />
               <ProjectDescription
+                projectDescription={form.projectDescription}
                 errors={errors}
                 handleFormInputChange={handleFormInputChange}
               />
