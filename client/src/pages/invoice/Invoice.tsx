@@ -1,30 +1,45 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import data from "../../../data.json";
 import ItemDetails from "../../components/invoice/ItemDetails";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { InvoicesType } from "../../types";
 import { Link, useParams } from "react-router-dom";
 import StatusButton from "../../components/invoice/StatusButton";
 import SubmitComponent from "../../components/invoice/SubmitComponent";
 import InvoiceDetails from "../../components/invoice/InvoiceDetails";
+import { useQuery } from "@tanstack/react-query";
+
+import Loading from "../../helpers/Loading";
 
 const Invoice = () => {
-  const [invoice, setInvoice] = useState<InvoicesType>();
-
   const { id } = useParams();
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  const findInvoice = () => {
-    const invoice = data.find((curr) => curr.id === id);
-    setInvoice(invoice);
-    return;
-  };
+  const {
+    data: invoice,
+    refetch,
+    isLoading,
+    isRefetching,
+  } = useQuery({
+    queryKey: ["invoice"],
+    queryFn: async (): Promise<InvoicesType> => {
+      const res = await fetch(`${API_URL}/api/invoices/getInvoice/${id}`, {
+        method: "GET",
+        credentials: "include",
+      });
 
-  // const isPaid = invoice?.status === "paid";
+      const data = await res.json();
 
+      return data;
+    },
+  });
   useEffect(() => {
-    findInvoice();
-  }, [data, id]);
+    refetch();
+  }, [id, refetch]);
 
+  if (isLoading || isRefetching) {
+    return <Loading />;
+  }
   return (
     <main className="flex  justify-center lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex w-full mx-6  md:w-[640px] flex-col lg:w-[730px]">
@@ -57,7 +72,10 @@ const Invoice = () => {
 
         <div className="bg-white dark:bg-[#1E2139]  rounded-lg p-6 md:p-12 mt-6">
           <InvoiceDetails invoice={invoice} />
-          <ItemDetails items={invoice?.items} total={invoice?.total} />
+          <ItemDetails
+            items={invoice?.itemFields}
+
+          />
         </div>
         <SubmitComponent />
       </div>

@@ -12,23 +12,23 @@ const InvoiceDetails = ({ invoice }: Props) => {
         <div className="flex flex-col md:gap-2 ">
           <p className="text-neutral text-base dark:text-white font-bold tracking-tight">
             <span className="text-primary-text">#</span>
-            {invoice?.id}
+            {invoice?.invoiceId}
           </p>
           <p className="font-medium text-sm text-left dark:text-[#DFE3FA] text-primary-text">
-            {invoice?.description}
+            {invoice?.projectDescription}
           </p>
           <div className="md:hidden mt-5 dark:text-[#DFE3FA]  text-primary-text tracking-[-0.1px] text-sm font-medium flex-col text-left ">
-            <p>{invoice?.senderAddress.street}</p>
-            <p>{invoice?.senderAddress.city}</p>
-            <p>{invoice?.senderAddress.postCode}</p>
-            <p>{invoice?.senderAddress.country}</p>
+            <p>{invoice?.senderStreetAddress}</p>
+            <p>{invoice?.senderCity}</p>
+            <p>{invoice?.senderPostCode}</p>
+            <p>{invoice?.senderCountry}</p>
           </div>
         </div>
         <div className="md:flex dark:text-[#DFE3FA]  hidden text-primary-text tracking-[-0.1px] text-sm font-medium flex-col  text-right ">
-          <p>{invoice?.senderAddress.street}</p>
-          <p>{invoice?.senderAddress.city}</p>
-          <p>{invoice?.senderAddress.postCode}</p>
-          <p>{invoice?.senderAddress.country}</p>
+          <p>{invoice?.senderStreetAddress}</p>
+          <p>{invoice?.senderCity}</p>
+          <p>{invoice?.senderPostCode}</p>
+          <p>{invoice?.senderCountry}</p>
         </div>
       </div>
       <div className="flex mt-7 md:mt-5 items-start gap-16 md:gap-[117px]">
@@ -38,8 +38,8 @@ const InvoiceDetails = ({ invoice }: Props) => {
               Invoice Date
             </p>
             <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
-              {invoice?.createdAt &&
-                moment(invoice?.createdAt).format("Do MMMM YYYY")}
+              {invoice?.startDate &&
+                moment(invoice?.startDate).format("Do MMMM YYYY")}
             </p>
           </div>
           <div className=" flex flex-col gap-2">
@@ -47,8 +47,8 @@ const InvoiceDetails = ({ invoice }: Props) => {
               Payment due
             </p>
             <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
-              {invoice?.paymentDue &&
-                moment(invoice?.paymentDue).format("Do MMMM YYYY")}
+              {invoice?.startDate &&
+                moment(invoice?.startDate).format("Do MMMM YYYY")}
             </p>
           </div>
 
@@ -70,10 +70,10 @@ const InvoiceDetails = ({ invoice }: Props) => {
             {invoice?.clientName}
           </p>
           <div className="flex mt-2 dark:text-[#DFE3FA] text-primary-text tracking-[-0.1px] text-sm font-medium flex-col  text-left ">
-            <p>{invoice?.clientAddress.street}</p>
-            <p>{invoice?.clientAddress.city}</p>
-            <p>{invoice?.clientAddress.postCode}</p>
-            <p>{invoice?.clientAddress.country}</p>
+            <p>{invoice?.clientStreetAddress}</p>
+            <p>{invoice?.clientCity}</p>
+            <p>{invoice?.clientPostCode}</p>
+            <p>{invoice?.clientCountry}</p>
           </div>
         </div>
 

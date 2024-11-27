@@ -20,7 +20,10 @@ const Invoices = () => {
     queryKey: ["invoices"],
     queryFn: async () => {
       try {
-        const res = await fetch(`${API_URL}/api/invoices/${userId}`);
+        const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
+          method: "GET",
+          credentials: "include",
+        });
 
         const data = await res.json();
 

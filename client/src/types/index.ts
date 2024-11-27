@@ -15,16 +15,8 @@ export interface InvoicesType {
   projectDescription: string;
   startDate: Date;
   selectedOption: string;
-
   itemFields: ItemFields[];
   status: string;
-}
-
-export interface Items {
-  name: string;
-  quantity: number;
-  price: number;
-  total: number;
 }
 
 export interface ItemFields {

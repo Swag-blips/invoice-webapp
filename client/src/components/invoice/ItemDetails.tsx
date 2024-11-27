@@ -1,10 +1,10 @@
-import { Items } from "../../types/index";
+import { ItemFields } from "../../types/index";
+import generateTotal from "../../utils/total";
 type Props = {
-  items?: Items[];
-  total?: number;
+  items?: ItemFields[];
 };
 
-const ItemDetails = ({ items, total }: Props) => {
+const ItemDetails = ({ items }: Props) => {
   return (
     <>
       <div className="w-full rounded-r-[8px] rounded-l-[8px] mt-12 p-8 dark:bg-[#252945] bg-[#F9FAFE]">
@@ -15,12 +15,12 @@ const ItemDetails = ({ items, total }: Props) => {
             </p>
 
             {items?.map((item) => (
-              <div key={item.name} className="flex flex-col gap-2">
+              <div key={item.itemName} className="flex flex-col gap-2">
                 <p className="text-neutral dark:text-white font-bold text-base">
-                  {item.name}
+                  {item.itemName}
                 </p>
                 <p className="font-bold dark:text-[#888EB0] md:hidden text-primary-text text-base">
-                  {item.quantity} x £ {item.price}
+                  {item.qty} x £ {item.price}
                 </p>
               </div>
             ))}
@@ -33,10 +33,10 @@ const ItemDetails = ({ items, total }: Props) => {
 
               {items?.map((item) => (
                 <p
-                  key={item.name}
+                  key={item.itemName}
                   className="font-bold text-base dark:text-[#DFE3FA] text-primary-text tracking-tight text-left"
                 >
-                  {item.quantity}
+                  {item.qty}
                 </p>
               ))}
             </div>
@@ -47,7 +47,7 @@ const ItemDetails = ({ items, total }: Props) => {
 
               {items?.map((item) => (
                 <p
-                  key={item.name}
+                  key={item.itemName}
                   className="font-bold dark:text-white  md:dark:text-[#DFE3FA] text-base text-primary-text tracking-tight text-right"
                 >
                   £ {item.price}
@@ -61,7 +61,7 @@ const ItemDetails = ({ items, total }: Props) => {
 
               {items?.map((item) => (
                 <p
-                  key={item.name}
+                  key={item.itemName}
                   className="font-bold dark:text-white text-base text-neutral tracking-tight text-right"
                 >
                   {item.total}
@@ -75,7 +75,7 @@ const ItemDetails = ({ items, total }: Props) => {
         <p className="text-white hidden md:inline">Amount Due</p>
         <p className="text-white text-sm md:hidden">Grand total</p>
         <p className="text-white font-bold text-2xl tracking-[-0.5px] text-right">
-          £ {total}
+          {generateTotal(items)}
         </p>
       </div>
     </>

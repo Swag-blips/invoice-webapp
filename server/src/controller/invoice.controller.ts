@@ -75,7 +75,28 @@ export const getInvoices = async (req: Request, res: Response) => {
     res.status(200).json(invoices);
     return;
   } catch (error) {
-    console.log(`error at get invoices controller ${error}`);
+    console.log(`error at getInvoices controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+export const getInvoice = async (req: Request, res: Response) => {
+  let invoiceId = req.params.invoiceId;
+
+  try {
+    let invoice = await Invoice.findOne({
+      invoiceId,
+    });
+
+    if (!invoice) {
+      res.status(404).json({ error: "Invoice not found" });
+      return;
+    }
+
+    res.status(200).json(invoice);
+    return;
+  } catch (error) {
+    console.log(`error at getInvoice controller ${error}`);
     res.status(500).json({ message: "Internal server Error" });
   }
 };
