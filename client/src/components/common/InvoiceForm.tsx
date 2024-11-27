@@ -189,6 +189,14 @@ const InvoiceForm = () => {
                 + Add new item
               </button>
             </div>
+            {errors && (
+              <>
+                <p className="text-sm text-error">
+                  -All fields must be filled <br />
+                  -an item must be added
+                </p>
+              </>
+            )}
             <ReceiptButtons handleSubmit={handleSubmit} />
           </div>
         </form>

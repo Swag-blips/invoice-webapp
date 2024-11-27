@@ -9,7 +9,13 @@ import { Toaster } from "react-hot-toast";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
 }

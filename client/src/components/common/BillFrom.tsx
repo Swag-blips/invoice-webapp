@@ -19,7 +19,7 @@ const BillFrom = ({ errors, handleFormInputChange }: Props) => {
           >
             Street Address
           </label>
-          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+          <p className="text-[10px] tracking-[-0.21px] text-error">
             {errors?.clientStreetAddress && errors.clientStreetAddress}
           </p>
         </div>

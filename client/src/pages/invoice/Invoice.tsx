@@ -1,5 +1,4 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
-import data from "../../../data.json";
 import ItemDetails from "../../components/invoice/ItemDetails";
 import { useEffect } from "react";
 import { InvoicesType } from "../../types";
@@ -61,7 +60,7 @@ const Invoice = () => {
             <button className="h-12 px-6 hover:bg-[#DFE3FA]  rounded-3xl dark:bg-[#252945] bg-[#F9FAFE] dark:text-[#DFE3FA] font-bold tracking-tight text-[#7E88C3]">
               Edit
             </button>
-            <button className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-[#EC5757] text-white">
+            <button className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-error text-white">
               Delete
             </button>
             <button className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-3xl font-bold tracking-tight  text-white ">
@@ -72,10 +71,7 @@ const Invoice = () => {
 
         <div className="bg-white dark:bg-[#1E2139]  rounded-lg p-6 md:p-12 mt-6">
           <InvoiceDetails invoice={invoice} />
-          <ItemDetails
-            items={invoice?.itemFields}
-
-          />
+          <ItemDetails items={invoice?.itemFields} />
         </div>
         <SubmitComponent />
       </div>

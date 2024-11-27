@@ -12,6 +12,10 @@ type Props = {
   removeFields: (index: number) => void;
 };
 
+interface KeyboardEvent {
+  code: string;
+  preventDefault: () => void;
+}
 const ItemList = ({
   itemFields,
 
@@ -19,6 +23,11 @@ const ItemList = ({
   removeFields,
   handleFormChange,
 }: Props) => {
+  const preventMinus = (e: KeyboardEvent) => {
+    if (e.code === "Minus") {
+      e.preventDefault();
+    }
+  };
   return (
     <div className="grid gap-4  mt-[13px] grid-cols-2">
       {itemFields.map((input, index) => (
@@ -51,6 +60,8 @@ const ItemList = ({
                 name="qty"
                 id="qty"
                 type="number"
+                onKeyDown={preventMinus}
+                min="0"
                 className={` 
                   ${
                     itemFieldsError[index]?.itemQtyCheck
@@ -71,6 +82,8 @@ const ItemList = ({
                 name="price"
                 id="price"
                 type="number"
+                min="0"
+                onKeyDown={preventMinus}
                 className={` 
                   ${
                     itemFieldsError[index]?.itemPriceCheck
@@ -98,7 +111,7 @@ const ItemList = ({
             </div>
 
             <img
-              className="mt-4"
+              className="mt-4 hover:text-error"
               src={deleteIcon}
               alt="garbage-image"
               onClick={() => removeFields(index)}

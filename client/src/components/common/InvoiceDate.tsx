@@ -66,7 +66,7 @@ const InvoiceDate = ({
                     <li
                       key={option}
                       onClick={handleSelectedOption(option)}
-                      className="text-neutral mt-4 font-bold tracking-[0.25px] dark:text-white mb-4 ml-6 hover:text-[#7C5DFA] text-base"
+                      className="text-neutral mt-4 font-bold cursor-pointer tracking-tight dark:text-white mb-4 ml-6 hover:text-[#7C5DFA] text-base"
                     >
                       {option}
                     </li>

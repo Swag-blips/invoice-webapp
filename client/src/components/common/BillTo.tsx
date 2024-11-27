@@ -19,7 +19,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           >
             Client's name
           </label>
-          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+          <p className="text-[10px] tracking-[-0.21px] text-error">
             {errors?.clientName && errors.clientName}
           </p>
         </div>
@@ -45,7 +45,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           >
             Client's email
           </label>
-          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+          <p className="text-[10px] tracking-[-0.21px] text-error">
             {errors?.clientEmail && errors.clientEmail}
           </p>
         </div>
@@ -71,7 +71,7 @@ const BillTo = ({ errors, handleFormInputChange }: Props) => {
           >
             Street Address
           </label>
-          <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+          <p className="text-[10px] tracking-[-0.21px] text-error">
             {errors?.clientStreetAddress && errors.clientStreetAddress}
           </p>
         </div>

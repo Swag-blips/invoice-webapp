@@ -16,7 +16,7 @@ const ProjectDescription = ({ errors, handleFormInputChange }: Props) => {
         >
           Project Description
         </label>
-        <p className="text-[10px] tracking-[-0.21px] text-[#EC5757]">
+        <p className="text-[10px] tracking-[-0.21px] text-error">
           {errors?.projectDescription && errors.projectDescription}
         </p>
       </div>

@@ -4,7 +4,7 @@ const SubmitComponent = () => {
       <button className="h-12 px-6 rounded-3xl dark:text-[#DFE3FA] dark:bg-[#252945] bg-[#F9FAFE] font-bold tracking-tight text-[#7E88C3]">
         Edit
       </button>
-      <button className="h-12 px-6 rounded-3xl  font-bold tracking-tight  bg-[#EC5757] text-white">
+      <button className="h-12 px-6 rounded-3xl  font-bold tracking-tight  bg-error text-white">
         Delete
       </button>
       <button className="bg-[#7C5DFA] h-12 px-6 rounded-3xl font-bold tracking-tight  text-white ">
