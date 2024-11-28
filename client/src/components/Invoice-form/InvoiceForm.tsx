@@ -164,7 +164,7 @@ const InvoiceForm = () => {
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 fixed overflow-y-scroll bg-white h-screen">
       <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
-        <h1 className="font-bold dark:text-white text-[24px] text-neutral tracking-[-0.5px]">
+        <h1 className="font-bold dark:text-white text-2xl text-neutral tracking-[-0.5px]">
           New invoice
         </h1>
         <form className="mt-[46px] dark:text-white w-[504px] text-left">

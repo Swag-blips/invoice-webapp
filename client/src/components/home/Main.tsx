@@ -16,7 +16,7 @@ export default function Main() {
         <div className="flex flex-col w-full ">
           <div className=" flex items-center justify-between w-[inherit]">
             <div className="flex flex-col ">
-              <h2 className="font-bold text-[24px] dark:text-white tracking-[-0.75px] lg:text-[36px] text-neutral lg:tracking-[-1.13px] text-left">
+              <h2 className="font-bold text-2xl dark:text-white tracking-[-0.75px] lg:text-[36px] text-neutral lg:tracking-[-1.13px] text-left">
                 Invoices
               </h2>
               <p className="text-sm hidden lg:inline-flex text-left tracking-[-0.1px] text-[#888EB0]">

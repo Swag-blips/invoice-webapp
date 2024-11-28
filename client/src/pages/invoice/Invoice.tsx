@@ -1,19 +1,27 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ItemDetails from "../../components/invoice/ItemDetails";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { InvoicesType } from "../../types";
 import { Link, useParams } from "react-router-dom";
 import StatusButton from "../../components/invoice/StatusButton";
 import SubmitComponent from "../../components/invoice/SubmitComponent";
 import InvoiceDetails from "../../components/invoice/InvoiceDetails";
 import { useQuery } from "@tanstack/react-query";
-
 import Loading from "../../helpers/Loading";
 import useReceiptStore from "../../store/receiptStore";
+import DeleteInvoice from "../../components/invoice/DeleteInvoice";
+import Overlay from "../../components/invoice/Overlay";
 
 const Invoice = () => {
   const { id } = useParams();
   const API_URL = import.meta.env.VITE_API_URL;
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenDeleteModal(true);
+  };
+
+  console.log(openDeleteModal);
 
   const { setIsOpen } = useReceiptStore();
   const {
@@ -47,7 +55,7 @@ const Invoice = () => {
     return <Loading />;
   }
   return (
-    <main className="flex  justify-center lg:items-start mt-8 lg:mt-[78px] w-full">
+    <main className="flex relative  justify-center lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex w-full mx-6  md:w-[640px] flex-col lg:w-[730px]">
         <Link to={"/"} className="flex gap-6 items-center ">
           <img src={arrowLeft} alt="arrow-left" className=" object-contain" />
@@ -70,7 +78,10 @@ const Invoice = () => {
             >
               Edit
             </button>
-            <button className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-error text-white">
+            <button
+              onClick={handleOpen}
+              className="h-12 px-6 rounded-3xl hover:bg-[#FF9797]  font-bold tracking-tight  bg-error text-white"
+            >
               Delete
             </button>
             <button className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-3xl font-bold tracking-tight  text-white ">
@@ -84,6 +95,11 @@ const Invoice = () => {
           <ItemDetails items={invoice?.itemFields} />
         </div>
         <SubmitComponent />
+        {openDeleteModal && (
+          <>
+            <DeleteInvoice /> <Overlay />
+          </>
+        )}
       </div>
     </main>
   );
