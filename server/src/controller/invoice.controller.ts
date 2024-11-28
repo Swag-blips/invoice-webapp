@@ -51,7 +51,7 @@ export const createInvoice = async (req: Request, res: Response) => {
     });
     user?.invoices.push(invoice._id as mongoose.Types.ObjectId);
     await Promise.all([user.save(), invoice.save()]);
-    res.status(201).json({ message: "Invoice successfully created" });
+    res.status(201).json(invoice);
     return;
   } catch (error) {
     console.log(`error at create invoice controller ${error}`);
@@ -101,7 +101,7 @@ export const getInvoice = async (req: Request, res: Response) => {
   }
 };
 
-const editInvoice = async (req: Request, res: Response) => {
+export const editInvoice = async (req: Request, res: Response) => {
   const {
     senderStreetAddress,
     senderCity,

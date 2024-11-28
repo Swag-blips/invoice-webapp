@@ -6,15 +6,11 @@ import InvoiceDate from "./InvoiceDate";
 import ItemList from "./ItemList";
 import ProjectDescription from "./ProjectDescription";
 import { FormErrors, FormType, InvoicesType, ItemFields } from "../../types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { useAuth } from "@clerk/clerk-react";
+import { useQuery } from "@tanstack/react-query";
 import { handleValidator } from "../../utils/validateInput";
-import useReceiptStore from "../../store/receiptStore";
 import { useParams } from "react-router-dom";
-import Loading from "../../helpers/Loading";
-import { Edit } from "lucide-react";
 import EditButtons from "./EditButtons";
+import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,11 +42,6 @@ const InvoiceForm = () => {
   ]);
   const [isSubmitted, setIsubmitted] = useState(false);
   const [itemFieldsError, setItemFieldsError] = useState([{}]);
-
-  const API_URL = import.meta.env.VITE_API_URL;
-  const { userId } = useAuth();
-
-  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
   const toggle = () => {
     setIsOpen(!isOpen);
     return;
@@ -91,46 +82,20 @@ const InvoiceForm = () => {
     }
   }, [id, invoice]);
 
-  const queryClient = useQueryClient();
-  const { mutate: createInvoice, isPending } = useMutation({
-    mutationFn: async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            ...form,
-            selectedOption,
-            startDate,
-            itemFields,
-          }),
-        });
+  const { mutate: createInvoice, isPending } = useCreateInvoice(
+    form,
+    selectedOption,
+    startDate,
+    itemFields
+  );
 
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Something went wrong");
-        }
-        return data;
-      } catch (error: any) {
-        throw new Error(error);
-      }
-    },
-
-    onSuccess: () => {
-      toast.success("Invoice created successfully");
-      setInvoiceFormOpen();
-      queryClient.invalidateQueries({ queryKey: ["invoices"] });
-    },
-
-    onError: (error) => {
-      toast.error(error?.message);
-    },
-  });
-
+  const { mutate: editInvoice, isPending: isEditing } = useEditInvoice(
+    invoice?.invoiceId,
+    form,
+    selectedOption,
+    startDate,
+    itemFields
+  );
   const handleFormChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -191,8 +156,7 @@ const InvoiceForm = () => {
         selectedOption
       )
     ) {
-      console.log(itemFields);
-      console.log(`when validated ${errors}`);
+      editInvoice();
     }
     return;
   };
@@ -248,7 +212,7 @@ const InvoiceForm = () => {
                 + Add new item
               </button>
             </div>
-            {errors && (
+            {!JSON.stringify(errors) && (
               <>
                 <p className="text-sm text-error">
                   -All fields must be filled <br />
@@ -262,7 +226,9 @@ const InvoiceForm = () => {
                 handleSubmit={handleSubmit}
               />
             )}
-            {id && <EditButtons handleEdit={handleEdit} />}
+            {id && (
+              <EditButtons isEditing={isEditing} handleEdit={handleEdit} />
+            )}
           </div>
         </form>
       </div>

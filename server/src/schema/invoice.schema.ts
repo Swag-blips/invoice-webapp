@@ -13,7 +13,7 @@ let invoiceSchema = object({
   clientCity: string().required("client city is required"),
   clientPostCode: string().required("client post code is required"),
   clientCountry: string().required("client country is required"),
-  projectDescription: string().required("Project description"),
+  projectDescription: string().required("Project description is required"),
   startDate: string().required("invoice date is required"),
   selectedOption: string().required("invoice option is required"),
   itemFields: array().required("items are required"),

@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createInvoice,
+  editInvoice,
   getInvoice,
   getInvoices,
 } from "../controller/invoice.controller";
@@ -16,7 +17,7 @@ router.post(
   validateInvoice(invoiceSchema),
   createInvoice
 );
-router.put("/:id");
+router.put("/:invoiceId", validateInvoice(invoiceSchema), editInvoice);
 router.get("/:userId", requireAuth(), getInvoices);
 router.get("/getInvoice/:invoiceId", requireAuth(), getInvoice);
 
