@@ -17,7 +17,6 @@ export const useCreateInvoice = (
 
   return useMutation({
     mutationFn: async () => {
-      console.log("called");
       try {
         const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
           method: "POST",

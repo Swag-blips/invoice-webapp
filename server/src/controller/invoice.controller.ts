@@ -158,3 +158,16 @@ export const editInvoice = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server Error" });
   }
 };
+
+export const deleteInvoice = async (req: Request, res: Response) => {
+  const invoiceId = req.params.invoiceId;
+
+  try {
+ await Invoice.findOneAndDelete({ invoiceId });
+    res.status(200).json({ message: "Invoice successfully deleted" });
+    return;
+  } catch (error) {
+    console.log(`error at delete invoice controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
