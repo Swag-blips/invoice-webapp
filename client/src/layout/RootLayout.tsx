@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../components/home/Sidebar";
 import Navbar from "../components/home/Navbar";
 import useReceiptStore from "../store/receiptStore";
-import ReceiptForm from "../components/common/InvoiceForm";
+import ReceiptForm from "../components/Invoice-form/InvoiceForm";
 import Overlay from "../components/invoice/Overlay";
 import { Loader } from "lucide-react";
 import { useAuth } from "@clerk/clerk-react";

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useReceiptStore from "../store/receiptStore";
 import { useAuth } from "@clerk/clerk-react";
-import { FormType, InvoicesType, ItemFields } from "../types";
+import { FormType, ItemFields } from "../types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 export const useCreateInvoice = (
