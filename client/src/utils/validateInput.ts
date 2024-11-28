@@ -115,13 +115,11 @@ export const validateItemFields = (
       itemFieldsError[i].itemQtyCheck = "invalid qty";
       valid = false;
     } else {
-      itemFieldsError[i].itemQtyCheck = "";  
+      itemFieldsError[i].itemQtyCheck = "";
     }
   }
-  console.log(itemFieldsError);
 
   setItemFieldsError(itemFieldsError);
-  console.log(valid);
   return valid;
 };
 

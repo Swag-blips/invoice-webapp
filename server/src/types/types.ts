@@ -16,7 +16,8 @@ export interface Invoice extends Document {
   projectDescription: string;
   startDate: string;
   selectedOption: string;
-  itemList: Items[];
+  itemFields: Items[];
+  status: "pending" | "draft" | "paid";
 }
 
 interface Items {

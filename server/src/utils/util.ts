@@ -27,6 +27,7 @@ let letters = [
   "Z",
 ];
 
+
 const generateInvoiceId = () => {
   let firstLetter = letters[Math.floor(Math.random() * letters.length)];
   let secondLetter = letters[Math.floor(Math.random() * letters.length)];

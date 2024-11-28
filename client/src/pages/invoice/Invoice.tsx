@@ -20,6 +20,7 @@ const Invoice = () => {
     data: invoice,
     refetch,
     isLoading,
+    isRefetching,
   } = useQuery({
     queryKey: ["invoice"],
     queryFn: async (): Promise<InvoicesType> => {
@@ -42,7 +43,7 @@ const Invoice = () => {
     setIsOpen();
   };
 
-  if (isLoading) {
+  if (isLoading || isRefetching) {
     return <Loading />;
   }
   return (

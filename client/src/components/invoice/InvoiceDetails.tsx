@@ -62,7 +62,7 @@ const InvoiceDetails = ({ invoice }: Props) => {
           </div>
         </div>
 
-        <div>
+        <div className="">
           <p className="text-primary-text text-sm font-medium dark:text-[#DFE3FA]">
             Bill To
           </p>

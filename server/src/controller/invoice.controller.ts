@@ -21,7 +21,7 @@ export const createInvoice = async (req: Request, res: Response) => {
     selectedOption,
     itemFields,
   } = req.body;
-  const userId = req.params.id;
+  const userId = req.params.userId;
 
   try {
     const user = await User.findOne({
@@ -60,15 +60,14 @@ export const createInvoice = async (req: Request, res: Response) => {
 };
 
 export const getInvoices = async (req: Request, res: Response) => {
-  let userId = req.params.id;
+  let userId = req.params.userId;
 
-  
   try {
     const invoices = await Invoice.find({
       userId: userId,
     });
 
-    if (!invoices.length) { 
+    if (!invoices.length) {
       res.status(404).json({ error: "invoices not found" });
       return;
     }
@@ -98,6 +97,64 @@ export const getInvoice = async (req: Request, res: Response) => {
     return;
   } catch (error) {
     console.log(`error at getInvoice controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+const editInvoice = async (req: Request, res: Response) => {
+  const {
+    senderStreetAddress,
+    senderCity,
+    senderPostCode,
+    senderCountry,
+    clientName,
+    clientEmail,
+    clientStreetAddress,
+    clientCity,
+    clientPostCode,
+    clientCountry,
+    projectDescription,
+    startDate,
+    selectedOption,
+    itemFields,
+  } = req.body;
+
+  let invoiceId = req.params.invoiceId;
+  try {
+    let invoice = await Invoice.findOne({ invoiceId });
+
+    if (!invoice) {
+      res.status(404).json({ error: "Invoice not found" });
+      return;
+    }
+
+    invoice.senderStreetAddress =
+      senderStreetAddress || invoice?.senderStreetAddress;
+    invoice.senderCity = senderCity || invoice.senderCity;
+    invoice.senderPostCode = senderPostCode || invoice.senderPostCode;
+    invoice.senderCountry = senderCountry || invoice.senderCountry;
+    invoice.clientName = clientName || invoice.clientName;
+    invoice.clientEmail = clientEmail || invoice.clientEmail;
+    invoice.clientStreetAddress =
+      clientStreetAddress || invoice.clientStreetAddress;
+    invoice.clientCity = clientCity || invoice.clientCity;
+    invoice.clientPostCode = clientPostCode || invoice.clientPostCode;
+    invoice.clientCountry = clientCountry || invoice.clientCountry;
+    invoice.projectDescription =
+      projectDescription || invoice.projectDescription;
+    invoice.startDate = startDate || invoice.startDate;
+    invoice.selectedOption = selectedOption || invoice.selectedOption;
+    invoice.itemFields = itemFields || invoice.itemFields;
+
+    if (invoice.status === "draft") {
+      invoice.status = "pending";
+    }
+
+    await invoice.save();
+    res.status(201).json({ message: "Invoice successfully edited" });
+    return;
+  } catch (error) {
+    console.log(`error at edit invoice controller ${error}`);
     res.status(500).json({ message: "Internal server Error" });
   }
 };

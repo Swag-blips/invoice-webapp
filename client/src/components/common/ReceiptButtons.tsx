@@ -3,6 +3,7 @@ import Spinner from "../../helpers/Spinner";
 type Props = {
   handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isPending: boolean;
+
 };
 const ReceiptButtons = ({ handleSubmit, isPending }: Props) => {
   return (

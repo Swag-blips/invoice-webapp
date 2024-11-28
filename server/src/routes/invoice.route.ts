@@ -11,12 +11,13 @@ import { requireAuth } from "@clerk/express";
 const router = express.Router();
 
 router.post(
-  "/:id",
+  "/:userId",
   requireAuth(),
   validateInvoice(invoiceSchema),
   createInvoice
 );
-router.get("/:id", requireAuth(), getInvoices);
-router.get("/getInvoice/:invoiceId", getInvoice);
+router.put("/:id");
+router.get("/:userId", requireAuth(), getInvoices);
+router.get("/getInvoice/:invoiceId", requireAuth(), getInvoice);
 
 export default router;

@@ -13,6 +13,8 @@ import { handleValidator } from "../../utils/validateInput";
 import useReceiptStore from "../../store/receiptStore";
 import { useParams } from "react-router-dom";
 import Loading from "../../helpers/Loading";
+import { Edit } from "lucide-react";
+import EditButtons from "./EditButtons";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +63,7 @@ const InvoiceForm = () => {
 
   const { id } = useParams();
 
-  const { data: invoice, isPending: loading } = useQuery<InvoicesType>({
+  const { data: invoice } = useQuery<InvoicesType>({
     queryKey: ["invoice"],
   });
 
@@ -161,7 +163,24 @@ const InvoiceForm = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(`when not validated ${errors}`);
+
+    if (
+      handleValidator(
+        itemFields,
+        setItemFieldsError,
+        form,
+        setErrors,
+        startDate,
+        selectedOption
+      )
+    ) {
+      createInvoice();
+    }
+    return;
+  };
+
+  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (
       handleValidator(
         itemFields,
@@ -174,81 +193,79 @@ const InvoiceForm = () => {
     ) {
       console.log(itemFields);
       console.log(`when validated ${errors}`);
-      createInvoice();
     }
     return;
   };
 
   return (
     <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 fixed overflow-y-scroll bg-white h-screen">
-      {loading ? (
-        <Loading />
-      ) : (
-        <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
-          <h1 className="font-bold dark:text-white text-[24px] text-neutral tracking-[-0.5px]">
-            New invoice
-          </h1>
-          <form className="mt-[46px] dark:text-white w-[504px] text-left">
-            <BillFrom
+      <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
+        <h1 className="font-bold dark:text-white text-[24px] text-neutral tracking-[-0.5px]">
+          New invoice
+        </h1>
+        <form className="mt-[46px] dark:text-white w-[504px] text-left">
+          <BillFrom
+            form={form}
+            errors={errors}
+            handleFormInputChange={handleFormInputChange}
+          />
+          <div className="flex flex-col mt-12 gap-6">
+            <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
+            <BillTo
               form={form}
               errors={errors}
               handleFormInputChange={handleFormInputChange}
             />
-            <div className="flex flex-col mt-12 gap-6">
-              <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
-              <BillTo
-                form={form}
-                errors={errors}
-                handleFormInputChange={handleFormInputChange}
+            <InvoiceDate
+              handleSelectedOption={handleSelectedOption}
+              selectedOption={selectedOption}
+              toggle={toggle}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+            <ProjectDescription
+              projectDescription={form.projectDescription}
+              errors={errors}
+              handleFormInputChange={handleFormInputChange}
+            />
+            <div>
+              <h2 className="text-[#777F98] font-bold text-[18px]">
+                Item List
+              </h2>
+              <ItemList
+                itemFields={itemFields}
+                isSubmitted={isSubmitted}
+                itemFieldsError={itemFieldsError || {}}
+                handleFormChange={handleFormChange}
+                removeFields={removeFields}
               />
-              <InvoiceDate
-                handleSelectedOption={handleSelectedOption}
-                selectedOption={selectedOption}
-                toggle={toggle}
-                startDate={startDate}
-                setStartDate={setStartDate}
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-              />
-              <ProjectDescription
-                projectDescription={form.projectDescription}
-                errors={errors}
-                handleFormInputChange={handleFormInputChange}
-              />
-              <div>
-                <h2 className="text-[#777F98] font-bold text-[18px]">
-                  Item List
-                </h2>
-                <ItemList
-                  itemFields={itemFields}
-                  isSubmitted={isSubmitted}
-                  itemFieldsError={itemFieldsError || {}}
-                  handleFormChange={handleFormChange}
-                  removeFields={removeFields}
-                />
-                <button
-                  onClick={addFields}
-                  className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]"
-                >
-                  + Add new item
-                </button>
-              </div>
-              {errors && (
-                <>
-                  <p className="text-sm text-error">
-                    -All fields must be filled <br />
-                    -an item must be added
-                  </p>
-                </>
-              )}
+              <button
+                onClick={addFields}
+                className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]"
+              >
+                + Add new item
+              </button>
+            </div>
+            {errors && (
+              <>
+                <p className="text-sm text-error">
+                  -All fields must be filled <br />
+                  -an item must be added
+                </p>
+              </>
+            )}
+            {!id && (
               <ReceiptButtons
                 isPending={isPending}
                 handleSubmit={handleSubmit}
               />
-            </div>
-          </form>
-        </div>
-      )}
+            )}
+            {id && <EditButtons handleEdit={handleEdit} />}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
