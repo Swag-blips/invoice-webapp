@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 
-const DeleteInvoice = () => {
+type Props = {
+  handleClose: () => void;
+};
+const DeleteInvoice = ({ handleClose }: Props) => {
   const { id } = useParams();
   return (
     <div className=" flex items-center justify-center w-screen absolute top-0 left-0  bottom-0 ">
@@ -12,7 +15,10 @@ const DeleteInvoice = () => {
         </p>
 
         <div className="flex items-end mt-[14px]  gap-2 justify-end">
-          <button className="bg-[#F9FAFE] dark:bg-[#252945] text-primary-text text-base font-bold h-12 px-6 rounded-3xl tracking-tight text-center">
+          <button
+            onClick={handleClose}
+            className="bg-[#F9FAFE] dark:bg-[#252945] text-primary-text text-base font-bold h-12 px-6 rounded-3xl tracking-tight text-center"
+          >
             cancel
           </button>
           <button className="bg-error text-white text-base font-bold rounded-3xl h-12 px-6">
@@ -23,5 +29,4 @@ const DeleteInvoice = () => {
     </div>
   );
 };
-
 export default DeleteInvoice;

@@ -21,8 +21,6 @@ const Invoice = () => {
     setOpenDeleteModal(true);
   };
 
-  console.log(openDeleteModal);
-
   const { setIsOpen } = useReceiptStore();
   const {
     data: invoice,
@@ -49,6 +47,10 @@ const Invoice = () => {
   const handleOpenForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsOpen();
+  };
+
+  const handleClose = () => {
+    setOpenDeleteModal(false);
   };
 
   if (isLoading || isRefetching) {
@@ -97,7 +99,7 @@ const Invoice = () => {
         <SubmitComponent />
         {openDeleteModal && (
           <>
-            <DeleteInvoice /> <Overlay />
+            <DeleteInvoice handleClose={handleClose} /> <Overlay />
           </>
         )}
       </div>
