@@ -9,7 +9,7 @@ type Props = {
 
 const BillTo = ({ form, errors, handleFormInputChange }: Props) => {
   return (
-    <>
+    <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <label
@@ -37,7 +37,7 @@ const BillTo = ({ form, errors, handleFormInputChange }: Props) => {
           onChange={handleFormInputChange}
         />
       </div>
-      <div>
+      <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
           <label
             className={` ${
@@ -91,53 +91,55 @@ const BillTo = ({ form, errors, handleFormInputChange }: Props) => {
           onChange={handleFormInputChange}
         />
       </div>
-      <div className="flex items-center gap-6 w-full ">
-        <div className="flex flex-col w-[152px] gap-2">
-          <label
-            htmlFor="clientCity"
-            className={` ${
-              errors?.clientCity ? "error-label-text" : "label-text"
-            }`}
-          >
-            City
-          </label>
+      <div className="flex flex-wrap md:flex-nowrap items-center gap-6 w-full ">
+        <div className="w-full md:w-auto flex items-center gap-6">
+          <div className="flex flex-col md:w-[152px] w-[50%] gap-2">
+            <label
+              htmlFor="clientCity"
+              className={` ${
+                errors?.clientCity ? "error-label-text" : "label-text"
+              }`}
+            >
+              City
+            </label>
 
-          <input
-            type="text"
-            name="clientCity"
-            id="clientCity"
-            value={form.clientCity}
-            className={` ${
-              errors?.clientCity
-                ? "error-invoice-input-style"
-                : "invoice-input-style"
-            }`}
-            onChange={handleFormInputChange}
-          />
+            <input
+              type="text"
+              name="clientCity"
+              id="clientCity"
+              value={form.clientCity}
+              className={` ${
+                errors?.clientCity
+                  ? "error-invoice-input-style"
+                  : "invoice-input-style"
+              }`}
+              onChange={handleFormInputChange}
+            />
+          </div>
+          <div className="flex w-[50%] md:w-[152px] flex-col gap-2">
+            <label
+              htmlFor="clientPostCode"
+              className={` ${
+                errors?.clientPostCode ? "error-label-text" : "label-text"
+              }`}
+            >
+              Post code
+            </label>
+            <input
+              type="text"
+              name="clientPostCode"
+              id="clientPostCode"
+              value={form.clientPostCode}
+              className={` ${
+                errors?.clientPostCode
+                  ? "error-invoice-input-style"
+                  : "invoice-input-style"
+              }`}
+              onChange={handleFormInputChange}
+            />
+          </div>
         </div>
-        <div className="flex  w-[152px] flex-col gap-2">
-          <label
-            htmlFor="clientPostCode"
-            className={` ${
-              errors?.clientPostCode ? "error-label-text" : "label-text"
-            }`}
-          >
-            Post code
-          </label>
-          <input
-            type="text"
-            name="clientPostCode"
-            id="clientPostCode"
-            value={form.clientPostCode}
-            className={` ${
-              errors?.clientPostCode
-                ? "error-invoice-input-style"
-                : "invoice-input-style"
-            }`}
-            onChange={handleFormInputChange}
-          />
-        </div>
-        <div className="flex  w-[152px] flex-col gap-2">
+        <div className="flex  basis-full md:basis-auto w-[152px] flex-col gap-2">
           <label
             htmlFor="clientCountry"
             className={` ${
@@ -160,7 +162,7 @@ const BillTo = ({ form, errors, handleFormInputChange }: Props) => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -6,6 +6,8 @@ import BillFrom from "../../components/Invoice-form/BillFrom";
 import { useState } from "react";
 import { FormType } from "../../types";
 import BillTo from "../../components/Invoice-form/BillTo";
+import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
+import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -41,43 +43,14 @@ const CreateInvoice = () => {
         <form className="mt-6">
           <BillFrom form={form} />
 
-          <h2 className="text-base font-bold mt-10 text-[#7C5DFA]">Bill To</h2>
+          <h2 className="text-base font-bold mt-10 text-[#7C5DFA] mb-6">
+            Bill To
+          </h2>
           <BillTo form={form} />
-          <div className="flex flex-col gap-6 mt-6">
-            <div className="flex  flex-col gap-2">
-              <label htmlFor="invoiceDate" className="label-text">
-                Invoice Date
-              </label>
-              <input
-                type="text"
-                className="invoice-input-style"
-                name="invoiceDate"
-                id="invoiceDate"
-              />
-            </div>
-            <div className="flex  flex-col gap-2">
-              <label htmlFor="paymentTerms" className="label-text">
-                Payment Terms
-              </label>
-              <input
-                type="text"
-                className="invoice-input-style"
-                name="paymentTerms"
-                id="paymentTerms"
-              />
-            </div>
+          <div className="flex flex-col gap-6 WW">
+            <InvoiceDate />
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="projectDescription" className="label-text">
-                Project Description
-              </label>
-              <input
-                type="text"
-                name="projectDescription"
-                id="projectDescription"
-                className="invoice-input-style"
-              />
-            </div>
+            <ProjectDescription projectDescription={form.projectDescription} />
           </div>
           <div className="mt-10">
             <h1 className="text-[#777F98] font-bold text-[18px]">Item List</h1>

@@ -22,25 +22,27 @@ const InvoiceDate = ({
   isOpen,
 }: Props) => {
   return (
-    <div className="flex gap-6 mt-12 items-center">
-      <div className="flex  w-[240px] flex-col gap-2">
+    <div className="flex-col md:flex-row flex gap-6 mt-12 md:items-center">
+      <div className="flex w-full  md:w-[240px] flex-col gap-2">
         <label htmlFor="invoiceDate" className="label-text">
           Invoice Date
         </label>
-        <div className="relative">
-          <DatePicker
-            selected={startDate}
-            className="date-input-style font-bold "
-            onChange={(date) => setStartDate(date)}
-          />
+        <div className="relative w-full">
+          <div className="customDatePickerWidth">
+            <DatePicker
+              selected={startDate}
+              className="date-input-style font-bold "
+              onChange={(date) => setStartDate(date)}
+            />
+          </div>
           <img
             src={iconCalendar}
             alt="calendar"
-            className="absolute right-16  translate-y-[-2rem]"
+            className="absolute right-4  translate-y-[-2rem]"
           />
         </div>
       </div>
-      <div className="flex  w-[240px] flex-col gap-2">
+      <div className="flex w-full  md:w-[240px] flex-col gap-2">
         <label htmlFor="paymentTerms" className="label-text">
           Payment Terms
         </label>
