@@ -8,6 +8,7 @@ import { FormType } from "../../types";
 import BillTo from "../../components/Invoice-form/BillTo";
 import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
 import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
+import ItemList from "../../components/Invoice-form/ItemList";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -23,6 +24,15 @@ const CreateInvoice = () => {
     clientCountry: "",
     projectDescription: "",
   });
+  const [itemFields, setItemFields] = useState<ItemFields[]>([
+    {
+      itemName: "",
+      qty: 0,
+      price: 0,
+      total: 0,
+    },
+  ]);
+  const [itemFieldsError, setItemFieldsError] = useState([{}]);
   return (
     <>
       <Navbar />
@@ -47,67 +57,21 @@ const CreateInvoice = () => {
             Bill To
           </h2>
           <BillTo form={form} />
-          <div className="flex flex-col gap-6 WW">
+          <div className="flex flex-col gap-6 ">
             <InvoiceDate />
 
             <ProjectDescription projectDescription={form.projectDescription} />
           </div>
           <div className="mt-10">
             <h1 className="text-[#777F98] font-bold text-[18px]">Item List</h1>
-
+            <ItemList
+              itemFields={itemFields}
+              itemFieldsError={itemFieldsError}
+            />
             <div className="mt-6 gap-4">
-              <div className="flex flex-col">
-                <div className="flex flex-col gap-4">
-                  <label htmlFor="itemName" className="label-text">
-                    Item Name
-                  </label>
-                  <input
-                    id="itemName"
-                    name="itemName"
-                    className="invoice-input-style"
-                  />
-                </div>
-
-                <div className="flex items-center mt-6 gap-4 ">
-                  <div className="flex flex-col">
-                    {" "}
-                    <label htmlFor="Qty" className="label-text">
-                      Qty
-                    </label>
-                    <input
-                      id="Qty"
-                      name="Qty"
-                      className="invoice-input-style"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    {" "}
-                    <label htmlFor="Price" className="label-text">
-                      Price
-                    </label>
-                    <input
-                      id="Price"
-                      name="Price"
-                      className="invoice-input-style"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    {" "}
-                    <label htmlFor="total" className="label-text">
-                      total
-                    </label>
-                    <input
-                      id="total"
-                      name="total"
-                      className="h-12 outline-none bg-none bg-transparent"
-                      readOnly
-                    />
-                  </div>
-                </div>
-                <button className="w-full mt-12 dark:bg-[#252945] rounded-3xl font-bold  h-12 bg-[#F9FAFE] text-[#7E88C3]">
-                  + Add new item
-                </button>
-              </div>
+              <button className="w-full mt-12 dark:bg-[#252945] rounded-3xl font-bold  h-12 bg-[#F9FAFE] text-[#7E88C3]">
+                + Add new item
+              </button>
             </div>
           </div>
         </form>

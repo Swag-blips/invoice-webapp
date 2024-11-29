@@ -35,7 +35,7 @@ body {
   @apply bg-[#1E2139] border-[#252945];
 }
 .dark .invoice-input-style {
-  @apply bg-[#1E2139] border-[#252945];
+  @apply text-white bg-[#1E2139] border-[#252945];
 }
 
 .error-invoice-input-style {

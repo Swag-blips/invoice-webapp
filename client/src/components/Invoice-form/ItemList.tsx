@@ -31,8 +31,11 @@ const ItemList = ({
   return (
     <>
       {itemFields.map((input, index) => (
-        <div key={index} className="grid gap-4 mt-[13px] grid-cols-2">
-          <div>
+        <div
+          key={index}
+          className="grid gap-4 mt-[13px] grid-cols-1 md:grid-cols-2"
+        >
+          <div className="flex flex-col gap-1">
             <label htmlFor="itemName" className="label-text">
               Item Name
             </label>
@@ -41,7 +44,7 @@ const ItemList = ({
                 ${
                   itemFieldsError[index]?.itemNameCheck
                     ? "error-invoice-input-style"
-                    : "  invoice-input-style"
+                    : "  invoice-input-style "
                 }
               `}
               type="text"
@@ -52,7 +55,7 @@ const ItemList = ({
             />
           </div>
           <div className="flex items-center gap-4">
-            <div>
+            <div className="flex flex-col gap-1">
               <label htmlFor="qty" className="label-text">
                 Qty
               </label>
@@ -66,7 +69,7 @@ const ItemList = ({
                   ${
                     itemFieldsError[index]?.itemQtyCheck
                       ? "error-qty-input-style"
-                      : "qty-input-style"
+                      : "qty-input-style dark:text-white"
                   }
                   `}
                 value={input.qty!}
@@ -74,7 +77,7 @@ const ItemList = ({
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-1">
               <label htmlFor="price" className="label-text">
                 Price
               </label>
@@ -103,7 +106,7 @@ const ItemList = ({
               <input
                 name="total"
                 id="total"
-                className="font-bold text-[#888EB0 ] bg-transparent w-full outline-none h-12 "
+                className="font-bold text-[#888EB0] dark:text-white bg-transparent w-full outline-none h-12 "
                 value={input.total!}
                 onChange={(event) => handleFormChange(index, event)}
                 readOnly
