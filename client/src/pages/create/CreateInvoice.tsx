@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ReceiptButtons from "../../components/Invoice-form/ReceiptButtons";
 import BillFrom from "../../components/Invoice-form/BillFrom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormErrors, FormType, ItemFields } from "../../types";
 import BillTo from "../../components/Invoice-form/BillTo";
 import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
@@ -11,6 +11,8 @@ import ProjectDescription from "../../components/Invoice-form/ProjectDescription
 import ItemList from "../../components/Invoice-form/ItemList";
 import { handleValidator } from "../../utils/validateInput";
 import { useCreateInvoice } from "../../hooks/useInvoice";
+import { useMediaQuery } from "react-responsive";
+import Loading from "../../helpers/Loading";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -42,7 +44,24 @@ const CreateInvoice = () => {
   );
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [isSubmitted, setIsubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+  const isLargerThanMedium = useMediaQuery({
+    query: "(min-width: 768px)",
+  });
+  const handleRedirect = () => {
+    setLoading(true);
+    try {
+      if (isLargerThanMedium) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleFormChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -88,7 +107,7 @@ const CreateInvoice = () => {
     itemFields
   );
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (
@@ -105,6 +124,14 @@ const CreateInvoice = () => {
     }
     return;
   };
+
+  useEffect(() => {
+    handleRedirect();
+  }, [isLargerThanMedium]);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <Navbar />
