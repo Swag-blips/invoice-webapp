@@ -111,7 +111,7 @@ const InvoiceForm = () => {
 
   const addFields = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let newField = { itemName: "", qty: null, price: null, total: null };
+    let newField = { itemName: "", qty: 0, price: 0, total: 0 };
     setIsubmitted(false);
     setItemFields([...itemFields, newField]);
   };

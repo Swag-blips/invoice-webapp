@@ -105,7 +105,6 @@ export const validateItemFields = (
       itemFieldsError[i].itemNameCheck = "";
     }
     if (!itemFieldsError[i].price) {
-      console.log(itemFieldsError[i].price);
       itemFieldsError[i].itemPriceCheck = "invalid price";
       valid = false;
     } else {
