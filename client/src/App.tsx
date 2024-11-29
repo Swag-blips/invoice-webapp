@@ -6,6 +6,7 @@ import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import AuthCallback from "./pages/auth/AuthCallback";
 import Invoice from "./pages/invoice/Invoice";
 import CreateInvoice from "./pages/create/CreateInvoice";
+import Empty from "./components/home/Empty";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,11 +21,19 @@ function App() {
           path: "/invoice/:id",
           element: <Invoice />,
         },
+        {
+          path: "*",
+          element: <Empty />,
+        },
       ],
     },
 
     {
       path: "/create-invoice",
+      element: <CreateInvoice />,
+    },
+    {
+      path: "/edit-invoice/:id",
       element: <CreateInvoice />,
     },
     {

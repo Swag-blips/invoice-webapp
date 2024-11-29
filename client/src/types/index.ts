@@ -17,6 +17,7 @@ export interface InvoicesType {
   selectedOption: string;
   itemFields: ItemFields[];
   status: string;
+  error: string;
 }
 
 export interface ItemFields {

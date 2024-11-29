@@ -1,18 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ReceiptButtons from "../../components/Invoice-form/ReceiptButtons";
 import BillFrom from "../../components/Invoice-form/BillFrom";
 import { useEffect, useState } from "react";
-import { FormErrors, FormType, ItemFields } from "../../types";
+import { FormErrors, FormType, InvoicesType, ItemFields } from "../../types";
 import BillTo from "../../components/Invoice-form/BillTo";
 import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
 import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
 import ItemList from "../../components/Invoice-form/ItemList";
 import { handleValidator } from "../../utils/validateInput";
-import { useCreateInvoice } from "../../hooks/useInvoice";
+import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
 import { useMediaQuery } from "react-responsive";
 import Loading from "../../helpers/Loading";
+import { useQuery } from "@tanstack/react-query";
+import EditButtons from "../../components/Invoice-form/EditButtons";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -45,6 +47,12 @@ const CreateInvoice = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [isSubmitted, setIsubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { id } = useParams();
+
+  const { data: invoice } = useQuery<InvoicesType>({
+    queryKey: ["invoice"],
+  });
 
   const navigate = useNavigate();
   const isLargerThanMedium = useMediaQuery({
@@ -107,6 +115,14 @@ const CreateInvoice = () => {
     itemFields
   );
 
+  const { mutate: editInvoice, isPending: isEditing } = useEditInvoice(
+    invoice?.invoiceId,
+    form,
+    selectedOption,
+    startDate,
+    itemFields
+  );
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -125,9 +141,50 @@ const CreateInvoice = () => {
     return;
   };
 
+  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (
+      handleValidator(
+        itemFields,
+        setItemFieldsError,
+        form,
+        setErrors,
+        startDate,
+        selectedOption
+      )
+    ) {
+      editInvoice();
+    }
+    return;
+  };
+
   useEffect(() => {
     handleRedirect();
   }, [isLargerThanMedium]);
+
+  useEffect(() => {
+    if (id && invoice) {
+      setForm({
+        senderStreetAddress: invoice.senderStreetAddress,
+        senderCity: invoice.senderCity,
+        senderPostCode: invoice.senderPostCode,
+        senderCountry: invoice.senderCountry,
+        clientName: invoice.clientName,
+        clientEmail: invoice.clientEmail,
+        clientStreetAddress: invoice.clientStreetAddress,
+        clientCity: invoice.clientCity,
+        clientPostCode: invoice.clientPostCode,
+        clientCountry: invoice.clientCountry,
+        projectDescription: invoice.projectDescription,
+      });
+
+      setStartDate(invoice.startDate);
+      setSelectedOption(invoice.selectedOption);
+      setItemFields(invoice.itemFields);
+    } else {
+      return;
+    }
+  }, [id, invoice]);
 
   if (loading) {
     return <Loading />;
@@ -201,7 +258,10 @@ const CreateInvoice = () => {
           </div>
         </form>
       </main>
-      <ReceiptButtons handleSubmit={handleSubmit} isPending={isPending} />
+      {!id && (
+        <ReceiptButtons isPending={isPending} handleSubmit={handleSubmit} />
+      )}
+      {id && <EditButtons isEditing={isEditing} handleEdit={handleEdit} />}
     </>
   );
 };

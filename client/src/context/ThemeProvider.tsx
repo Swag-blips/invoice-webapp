@@ -39,7 +39,6 @@ const ThemeProvider = ({ children }: Provider) => {
 
   useEffect(() => {
     window.localStorage.setItem("theme", JSON.stringify(theme));
-
   }, [theme]);
 
   const handleThemeSwitch = () => {

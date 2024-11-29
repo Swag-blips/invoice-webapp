@@ -11,6 +11,7 @@ import Loading from "../../helpers/Loading";
 import useReceiptStore from "../../store/receiptStore";
 import DeleteInvoice from "../../components/invoice/DeleteInvoice";
 import Overlay from "../../components/invoice/Overlay";
+import Empty from "../../components/home/Empty";
 
 const Invoice = () => {
   const { id } = useParams();
@@ -26,6 +27,8 @@ const Invoice = () => {
     data: invoice,
     refetch,
     isLoading,
+    isError,
+    error,
     isRefetching,
   } = useQuery({
     queryKey: ["invoice"],
@@ -36,6 +39,10 @@ const Invoice = () => {
       });
 
       const data = (await res.json()) as InvoicesType;
+
+      if (!res.ok) {
+        throw new Error(data.error || "something went wrong");
+      }
 
       return data;
     },
@@ -56,6 +63,11 @@ const Invoice = () => {
   if (isLoading || isRefetching) {
     return <Loading />;
   }
+
+  if (!isLoading && isError) {
+    return <Empty />;
+  }
+
   return (
     <main className="flex relative  justify-center lg:items-start mt-8 lg:mt-[78px] w-full">
       <div className="flex w-full mx-6  md:w-[640px] flex-col lg:w-[730px]">
@@ -100,7 +112,7 @@ const Invoice = () => {
         {openDeleteModal && (
           <>
             <DeleteInvoice handleClose={handleClose} /> <Overlay />
-          </>
+          </> 
         )}
       </div>
     </main>
