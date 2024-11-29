@@ -14,8 +14,8 @@ const ItemDetails = ({ items }: Props) => {
               Item Name
             </p>
 
-            {items?.map((item) => (
-              <div key={item.itemName} className="flex flex-col gap-2">
+            {items?.map((item, index) => (
+              <div key={index} className="flex flex-col gap-2">
                 <p className="text-neutral dark:text-white font-bold text-base">
                   {item.itemName}
                 </p>
@@ -31,9 +31,9 @@ const ItemDetails = ({ items }: Props) => {
                 Qty
               </h1>
 
-              {items?.map((item) => (
+              {items?.map((item, index) => (
                 <p
-                  key={item.itemName}
+                  key={index}
                   className="font-bold text-base dark:text-[#DFE3FA] text-primary-text tracking-tight text-left"
                 >
                   {item.qty}.00
@@ -45,8 +45,8 @@ const ItemDetails = ({ items }: Props) => {
                 Price
               </h1>
 
-              {items?.map((item) => (
-                <div key={item.itemName} className="flex flex-col gap-6">
+              {items?.map((item, index) => (
+                <div key={index} className="flex flex-col gap-6">
                   <p className="font-bold dark:text-white  md:dark:text-[#DFE3FA] text-base text-primary-text tracking-tight text-right">
                     £ {item.price}.00
                   </p>
@@ -59,9 +59,9 @@ const ItemDetails = ({ items }: Props) => {
                 Total
               </h1>
 
-              {items?.map((item) => (
+              {items?.map((item, index) => (
                 <p
-                  key={item.itemName}
+                  key={index}
                   className="font-bold dark:text-white text-base text-neutral tracking-tight text-right"
                 >
                   {item.total}.00

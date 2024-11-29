@@ -29,10 +29,10 @@ const ItemList = ({
     }
   };
   return (
-    <div className="grid gap-4  mt-[13px] grid-cols-2">
+    <>
       {itemFields.map((input, index) => (
-        <>
-          <div key={index}>
+        <div key={index} className="grid gap-4 mt-[13px] grid-cols-2">
+          <div>
             <label htmlFor="itemName" className="label-text">
               Item Name
             </label>
@@ -118,9 +118,9 @@ const ItemList = ({
               onClick={() => removeFields(index)}
             />
           </div>
-        </>
+        </div>
       ))}
-    </div>
+    </>
   );
 };
 
