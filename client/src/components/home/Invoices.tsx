@@ -76,7 +76,7 @@ const Invoices = () => {
               <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-neutral leading-[24px]">
                 £ {generateTotal(data.itemFields)}.00
               </p>
-              <p className="text-secondary-text dark:text-white lg:hidden racking-[0.1px] text-sm">
+              <p className="text-secondary-text ml-auto text-right dark:text-white lg:hidden racking-[0.1px] text-sm">
                 {data.clientName}
               </p>
               <div className="flex md:items-center gap-5">

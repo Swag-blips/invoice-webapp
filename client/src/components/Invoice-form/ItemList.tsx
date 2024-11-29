@@ -43,8 +43,8 @@ const ItemList = ({
               className={`
                 ${
                   itemFieldsError[index]?.itemNameCheck
-                    ? "error-invoice-input-style"
-                    : "  invoice-input-style "
+                    ? "error-invoice-input-style dark:text-white"
+                    : "  invoice-input-style dark:text-white "
                 }
               `}
               type="text"
@@ -68,7 +68,7 @@ const ItemList = ({
                 className={` 
                   ${
                     itemFieldsError[index]?.itemQtyCheck
-                      ? "error-qty-input-style"
+                      ? "error-qty-input-style dark:text-white"
                       : "qty-input-style dark:text-white"
                   }
                   `}
@@ -90,7 +90,7 @@ const ItemList = ({
                 className={` 
                   ${
                     itemFieldsError[index]?.itemPriceCheck
-                      ? "error-invoice-input-style"
+                      ? "error-invoice-input-style dark:text-white"
                       : "invoice-input-style"
                   }
                   `}
