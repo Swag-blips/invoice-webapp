@@ -31,7 +31,7 @@ const InvoiceDate = ({
           <div className="customDatePickerWidth">
             <DatePicker
               selected={startDate}
-              className="date-input-style font-bold "
+              className="date-input-style dark:text-white font-bold "
               onChange={(date) => setStartDate(date)}
             />
           </div>
@@ -63,7 +63,7 @@ const InvoiceDate = ({
           {isOpen && (
             <div className="w-[240px] bg-white dark:bg-[#252945] rounded-lg absolute top-16  dark:drop-shadow-none drop-shadow-[0_10px_20px_rgba(72,84,159,0.25)] ">
               <ul className="">
-                {options.map((option) => (
+                {options.map((option, index) => (
                   <>
                     <li
                       key={option}
