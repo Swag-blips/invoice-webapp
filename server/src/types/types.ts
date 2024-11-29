@@ -31,3 +31,4 @@ export interface User extends Document {
   email: string;
   invoices: Array<mongoose.Types.ObjectId>;
 }
+ 
