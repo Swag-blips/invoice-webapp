@@ -181,8 +181,8 @@ const CreateInvoice = () => {
       setStartDate(invoice.startDate);
       setSelectedOption(invoice.selectedOption);
       setItemFields(invoice.itemFields);
-    } else {
-      return;
+    } else if (id && !invoice) {
+      navigate("/");
     }
   }, [id, invoice]);
 

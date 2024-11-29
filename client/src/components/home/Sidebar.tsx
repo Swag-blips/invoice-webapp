@@ -4,14 +4,21 @@ import moon from "/assets/icon-moon.svg";
 import sun from "/assets/icon-sun.svg";
 import { useTheme } from "../../context/ThemeProvider";
 import { UserButton } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const { theme, handleThemeSwitch } = useTheme();
-
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate("/");
+  };
   return (
     <aside className="h-screen w-[103px] bg-draft-status fixed z-50 hidden lg:flex flex-col justify-between rounded-r-[20px]">
       <div className="bg-[#7C5DFA] z-50 h-[103px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
-        <figure className=" flex z-50 items-center justify-center ">
+        <figure
+          onClick={handleRedirect}
+          className=" flex z-50 items-center justify-center "
+        >
           <img src={logo} alt="logo" />
         </figure>
         <div className="bg-[#9277FF] w-full  h-[103px] rounded-l-[20px] absolute translate-y-12 " />

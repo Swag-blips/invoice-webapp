@@ -3,13 +3,21 @@ import moon from "/assets/icon-moon.svg";
 import { useTheme } from "../../context/ThemeProvider";
 import sun from "/assets/icon-sun.svg";
 import { UserButton } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { theme, handleThemeSwitch } = useTheme();
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate("/");
+  };
   return (
     <div className="lg:hidden w-full z-50 sticky top-0 flex items-center justify-between h-[72px] bg-draft-status">
       <div className="bg-[#7C5DFA] w-[72px] z-50 h-[72px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
-        <figure className=" flex z-50 items-center justify-center ">
+        <figure
+          onClick={handleRedirect}
+          className=" flex z-50 items-center justify-center "
+        >
           <img src={logo} alt="logo" />
         </figure>
         <div className="bg-[#9277FF] w-full  h-[72px] rounded-l-[20px] absolute translate-y-10 " />
