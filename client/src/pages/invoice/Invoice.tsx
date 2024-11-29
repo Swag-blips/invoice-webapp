@@ -12,6 +12,7 @@ import useReceiptStore from "../../store/receiptStore";
 import DeleteInvoice from "../../components/invoice/DeleteInvoice";
 import Overlay from "../../components/invoice/Overlay";
 import Empty from "../../components/home/Empty";
+import { useFetchInvoice } from "../../hooks/useQueryInvoice";
 
 const Invoice = () => {
   const { id } = useParams();
@@ -27,26 +28,10 @@ const Invoice = () => {
     data: invoice,
     refetch,
     isLoading,
-    isError,
-    error,
     isRefetching,
-  } = useQuery({
-    queryKey: ["invoice"],
-    queryFn: async (): Promise<InvoicesType> => {
-      const res = await fetch(`${API_URL}/api/invoices/getInvoice/${id}`, {
-        method: "GET",
-        credentials: "include",
-      });
+    isError,
+  } = useFetchInvoice(id);
 
-      const data = (await res.json()) as InvoicesType;
-
-      if (!res.ok) {
-        throw new Error(data.error || "something went wrong");
-      }
-
-      return data;
-    },
-  });
   useEffect(() => {
     refetch();
   }, [id, refetch]);
@@ -112,7 +97,7 @@ const Invoice = () => {
         {openDeleteModal && (
           <>
             <DeleteInvoice handleClose={handleClose} /> <Overlay />
-          </> 
+          </>
         )}
       </div>
     </main>

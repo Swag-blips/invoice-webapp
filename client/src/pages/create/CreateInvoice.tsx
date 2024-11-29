@@ -15,6 +15,7 @@ import { useMediaQuery } from "react-responsive";
 import Loading from "../../helpers/Loading";
 import { useQuery } from "@tanstack/react-query";
 import EditButtons from "../../components/Invoice-form/EditButtons";
+import { useFetchInvoice } from "../../hooks/useQueryInvoice";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -47,14 +48,20 @@ const CreateInvoice = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [isSubmitted, setIsubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const { id } = useParams();
 
-  const { data: invoice } = useQuery<InvoicesType>({
-    queryKey: ["invoice"],
-  });
-
   const navigate = useNavigate();
+
+    const {
+    data: invoice,
+    refetch,
+    isLoading,
+    isRefetching,
+    isError,
+  } = useFetchInvoice(id);
+
+
+  
   const isLargerThanMedium = useMediaQuery({
     query: "(min-width: 768px)",
   });
@@ -70,6 +77,7 @@ const CreateInvoice = () => {
       setLoading(false);
     }
   };
+
   const handleFormChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -181,14 +189,16 @@ const CreateInvoice = () => {
       setStartDate(invoice.startDate);
       setSelectedOption(invoice.selectedOption);
       setItemFields(invoice.itemFields);
-    } else if (id && !invoice) {
+    }
+    if (!invoice && id && !isLoading) {
       navigate("/");
     }
   }, [id, invoice]);
 
-  if (loading) {
+  if (loading || isLoading || isRefetching) {
     return <Loading />;
   }
+
   return (
     <>
       <Navbar />
@@ -231,7 +241,6 @@ const CreateInvoice = () => {
               setIsOpen={setIsOpen}
               setStartDate={setStartDate}
             />
-
             <ProjectDescription
               errors={errors}
               handleFormInputChange={handleFormInputChange}
