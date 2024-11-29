@@ -4,6 +4,7 @@ import arrowDown from "/assets/icon-arrow-down.svg";
 import plus from "/assets/icon-plus.svg";
 import FilterInvoice from "./FilterInvoice";
 import useReceiptStore from "../../store/receiptStore";
+import { Link } from "react-router-dom";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
@@ -54,7 +55,10 @@ export default function Main() {
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>
-                <p className="mt-[14px]"> New </p>
+                <Link to={"/create-invoice"} className="mt-[14px]">
+                  {" "}
+                  New{" "}
+                </Link>
               </button>
             </div>
           </div>

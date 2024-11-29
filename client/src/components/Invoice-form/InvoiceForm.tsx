@@ -11,6 +11,7 @@ import { handleValidator } from "../../utils/validateInput";
 import { useParams } from "react-router-dom";
 import EditButtons from "./EditButtons";
 import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
+import { useMediaQuery } from "react-responsive";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +52,10 @@ const InvoiceForm = () => {
     setIsOpen(false);
     return;
   };
+
+  const isLargerThanMedium = useMediaQuery({
+    query: "(min-width: 768px)",
+  });
 
   const { id } = useParams();
 
@@ -162,77 +167,81 @@ const InvoiceForm = () => {
   };
 
   return (
-    <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] hidden no-scrollbar md:flex z-10 fixed overflow-y-scroll bg-white h-screen">
-      <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
-        <h1 className="font-bold dark:text-white text-2xl text-neutral tracking-[-0.5px]">
-          New invoice
-        </h1>
-        <form className="mt-[46px] dark:text-white w-[504px] text-left">
-          <BillFrom
-            form={form}
-            errors={errors}
-            handleFormInputChange={handleFormInputChange}
-          />
-          <div className="flex flex-col mt-12 gap-6">
-            <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
-            <BillTo
-              form={form}
-              errors={errors}
-              handleFormInputChange={handleFormInputChange}
-            />
-            <InvoiceDate
-              handleSelectedOption={handleSelectedOption}
-              selectedOption={selectedOption}
-              toggle={toggle}
-              startDate={startDate}
-              setStartDate={setStartDate}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-            <ProjectDescription
-              projectDescription={form.projectDescription}
-              errors={errors}
-              handleFormInputChange={handleFormInputChange}
-            />
-            <div>
-              <h2 className="text-[#777F98] font-bold text-[18px]">
-                Item List
-              </h2>
-              <ItemList
-                itemFields={itemFields}
-                isSubmitted={isSubmitted}
-                itemFieldsError={itemFieldsError || {}}
-                handleFormChange={handleFormChange}
-                removeFields={removeFields}
+    <>
+      {isLargerThanMedium && (
+        <div className="lg:w-[719px] w-[616px] dark:bg-[#141625] no-scrollbar md:flex z-10 fixed overflow-y-scroll bg-white h-screen">
+          <div className="lg:ml-[159px] md:ml-[56px]  mt-[120px] lg:mt-[59px]">
+            <h1 className="font-bold dark:text-white text-2xl text-neutral tracking-[-0.5px]">
+              New invoice
+            </h1>
+            <form className="mt-[46px] dark:text-white w-[504px] text-left">
+              <BillFrom
+                form={form}
+                errors={errors}
+                handleFormInputChange={handleFormInputChange}
               />
-              <button
-                onClick={addFields}
-                className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]"
-              >
-                + Add new item
-              </button>
-            </div>
-            {!JSON.stringify(errors) && (
-              <>
-                <p className="text-sm text-error">
-                  -All fields must be filled <br />
-                  -an item must be added
-                </p>
-              </>
-            )}
-            {!id && (
-              <ReceiptButtons
-                isPending={isPending}
-                handleSubmit={handleSubmit}
-              />
-            )}
-            {id && (
-              <EditButtons isEditing={isEditing} handleEdit={handleEdit} />
-            )}
+              <div className="flex flex-col mt-12 gap-6">
+                <h2 className="text-base font-bold text-[#7C5DFA]">Bill To</h2>
+                <BillTo
+                  form={form}
+                  errors={errors}
+                  handleFormInputChange={handleFormInputChange}
+                />
+                <InvoiceDate
+                  handleSelectedOption={handleSelectedOption}
+                  selectedOption={selectedOption}
+                  toggle={toggle}
+                  startDate={startDate}
+                  setStartDate={setStartDate}
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                />
+                <ProjectDescription
+                  projectDescription={form.projectDescription}
+                  errors={errors}
+                  handleFormInputChange={handleFormInputChange}
+                />
+                <div>
+                  <h2 className="text-[#777F98] font-bold text-[18px]">
+                    Item List
+                  </h2>
+                  <ItemList
+                    itemFields={itemFields}
+                    isSubmitted={isSubmitted}
+                    itemFieldsError={itemFieldsError || {}}
+                    handleFormChange={handleFormChange}
+                    removeFields={removeFields}
+                  />
+                  <button
+                    onClick={addFields}
+                    className="w-full dark:bg-[#252945] rounded-3xl font-bold mt-4 h-12 bg-[#F9FAFE] text-[#7E88C3]"
+                  >
+                    + Add new item
+                  </button>
+                </div>
+                {!JSON.stringify(errors) && (
+                  <>
+                    <p className="text-sm text-error">
+                      -All fields must be filled <br />
+                      -an item must be added
+                    </p>
+                  </>
+                )}
+                {!id && (
+                  <ReceiptButtons
+                    isPending={isPending}
+                    handleSubmit={handleSubmit}
+                  />
+                )}
+                {id && (
+                  <EditButtons isEditing={isEditing} handleEdit={handleEdit} />
+                )}
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

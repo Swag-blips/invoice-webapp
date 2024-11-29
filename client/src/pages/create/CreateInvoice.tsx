@@ -2,13 +2,30 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ReceiptButtons from "../../components/Invoice-form/ReceiptButtons";
+import BillFrom from "../../components/Invoice-form/BillFrom";
+import { useState } from "react";
+import { FormType } from "../../types";
+import BillTo from "../../components/Invoice-form/BillTo";
 
 const CreateInvoice = () => {
+  const [form, setForm] = useState<FormType>({
+    senderStreetAddress: "",
+    senderCity: "",
+    senderPostCode: "",
+    senderCountry: "",
+    clientName: "",
+    clientEmail: "",
+    clientStreetAddress: "",
+    clientCity: "",
+    clientPostCode: "",
+    clientCountry: "",
+    projectDescription: "",
+  });
   return (
     <>
       <Navbar />
       <main className="px-6">
-        <div className="flex mitems-center gap-6 mt-[32px]">
+        <div className="flex items-center gap-6 mt-[32px]">
           <img src={arrowLeft} alt="arrow-left" className="object-contain" />
           <Link
             to={"/"}
@@ -22,125 +39,10 @@ const CreateInvoice = () => {
         </h2>
 
         <form className="mt-6">
-          <h2 className="text-base font-bold text-[#7C5DFA]">Bill From</h2>
+          <BillFrom form={form} />
 
-          <div className="flex flex-col mt-6 gap-2">
-            <label htmlFor="streetAddress" className="label-text">
-              Street Address
-            </label>
-            <input
-              type="text"
-              name="streetAddress"
-              id="streetAddress"
-              className="invoice-input-style"
-            />
-          </div>
-          <div className="flex mt-6 items-center gap-6 w-full ">
-            <div className="flex flex-col   w-full gap-2">
-              <label htmlFor="city" className="label-text">
-                City
-              </label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                className="invoice-input-style"
-              />
-            </div>
-            <div className="flex w-full  flex-col gap-2">
-              <label htmlFor="postCode" className="label-text">
-                Post code
-              </label>
-              <input
-                type="text"
-                name="postCode"
-                id="postCode0"
-                className="invoice-input-style"
-              />
-            </div>
-          </div>
-          <div className="flex mt-6  w-full flex-col gap-2">
-            <label htmlFor="country" className="label-text">
-              Country
-            </label>
-            <input
-              type="text"
-              className="invoice-input-style"
-              name="country"
-              id="country"
-            />
-          </div>
           <h2 className="text-base font-bold mt-10 text-[#7C5DFA]">Bill To</h2>
-          <div className="flex flex-col gap-6 mt-6">
-            <div className="flex flex-col gap-2">
-              <label className="label-text" htmlFor="clientName">
-                Client's name
-              </label>
-              <input
-                type="text"
-                name="clientName"
-                id="clientName"
-                className="invoice-input-style"
-              />
-            </div>
-            <div>
-              <label className="label-text" htmlFor="clientEmail">
-                Client's email
-              </label>
-              <input
-                type="text"
-                name="clientEmail"
-                id="clientEmail"
-                className="invoice-input-style"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="streetAddress" className="label-text">
-                Street Address
-              </label>
-              <input
-                type="text"
-                name="streetAddress"
-                id="streetAddress"
-                className="invoice-input-style"
-              />
-            </div>
-          </div>
-          <div className="flex items-center mt-6 gap-6 w-full ">
-            <div className="flex flex-col w-full gap-2">
-              <label htmlFor="city" className="label-text">
-                City
-              </label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                className="invoice-input-style"
-              />
-            </div>
-            <div className="flex  w-full flex-col gap-2">
-              <label htmlFor="postCode" className="label-text">
-                Post code
-              </label>
-              <input
-                type="text"
-                name="postCode"
-                id="postCode"
-                className="invoice-input-style"
-              />
-            </div>
-          </div>
-          <div className="flex  w-full mt-6 flex-col gap-2">
-            <label htmlFor="country" className="label-text">
-              Country
-            </label>
-            <input
-              type="text"
-              className="invoice-input-style"
-              name="country"
-              id="country"
-            />
-          </div>
+          <BillTo form={form} />
           <div className="flex flex-col gap-6 mt-6">
             <div className="flex  flex-col gap-2">
               <label htmlFor="invoiceDate" className="label-text">
@@ -177,7 +79,6 @@ const CreateInvoice = () => {
               />
             </div>
           </div>
-
           <div className="mt-10">
             <h1 className="text-[#777F98] font-bold text-[18px]">Item List</h1>
 
