@@ -1,8 +1,8 @@
 import { ItemFields } from "../types";
 
 const generateTotal = (itemDetails: ItemFields[] | undefined) => {
-  let finalVal = itemDetails?.reduce(
-    (acc: any, item: any) => item.total + acc,
+  const finalVal = itemDetails?.reduce(
+    (acc: number, item: ItemFields) => item.total + acc,
     0
   );
 

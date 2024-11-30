@@ -26,10 +26,12 @@ export interface ItemFields {
   itemName: string;
   qty: number | null;
   price: number | null;
-  total: number | null;
+  total: number ;
 }
 
 export interface ItemFieldsError extends ItemFields {
+  [key: string | number]: string | number | null;
+
   itemNameCheck: string;
   itemPriceCheck: string;
   itemQtyCheck: string;

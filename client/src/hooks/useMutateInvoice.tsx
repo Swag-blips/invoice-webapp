@@ -121,7 +121,7 @@ export const useMarkInvoice = (id: string | undefined) => {
           },
         });
 
-        let data = await res.json();
+        const data = await res.json();
 
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");

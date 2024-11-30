@@ -15,7 +15,7 @@ export const validate = (
   projectDescription: string,
   setErrors: (err: FormErrors) => void
 ) => {
-  let errMessage = "cant be empty";
+  const errMessage = "cant be empty";
   let isValid = true;
 
   const newErrors = {
@@ -91,7 +91,7 @@ export const validateItemFields = (
   itemFields: ItemFields[],
   setItemFieldsError: (itemfieldsError: ItemFieldsError[]) => void
 ) => {
-  let itemFieldsError = itemFields.map((item) => ({
+  const itemFieldsError = itemFields.map((item) => ({
     ...item,
   })) as ItemFieldsError[];
 

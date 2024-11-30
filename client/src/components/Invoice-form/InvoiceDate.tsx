@@ -66,7 +66,7 @@ const InvoiceDate = ({
                 {options.map((option, index) => (
                   <>
                     <li
-                      key={option}
+                      key={index}
                       onClick={handleSelectedOption(option)}
                       className="text-neutral mt-4 font-bold cursor-pointer tracking-tight dark:text-white mb-4 ml-6 hover:text-[#7C5DFA] text-base"
                     >

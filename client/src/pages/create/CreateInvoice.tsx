@@ -59,7 +59,6 @@ const CreateInvoice = () => {
 
   const {
     data: invoice,
-    refetch,
     isLoading,
     isRefetching,
     isError,
@@ -85,7 +84,7 @@ const CreateInvoice = () => {
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    let data = [...itemFields];
+    const data = [...itemFields];
     data[index][event.target.name] = event.target.value;
     if (data[index][event.target.name]) {
       data[index].total = (data[index].qty || 0) * (data[index].price || 0);
@@ -96,7 +95,7 @@ const CreateInvoice = () => {
 
   const addFields = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let newField = { itemName: "", qty: 0, price: 0, total: 0 };
+    const newField = { itemName: "", qty: 0, price: 0, total: 0 };
     setIsubmitted(false);
     setItemFields([...itemFields, newField]);
   };

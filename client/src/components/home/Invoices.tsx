@@ -1,10 +1,6 @@
-import arrowRight from "/assets/icon-arrow-right.svg";
-import { Link } from "react-router-dom";
 import Empty from "./Empty";
 import { Loader } from "lucide-react";
-import generateTotal from "../../utils/total";
 import { InvoicesType } from "../../types";
-import formatDate from "../../utils/validateDate";
 import AllInvoices from "./AllInvoices";
 
 type Props = {

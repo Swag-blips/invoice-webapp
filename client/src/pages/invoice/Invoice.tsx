@@ -1,6 +1,6 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ItemDetails from "../../components/invoice/ItemDetails";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Link, useParams } from "react-router-dom";
 import StatusButton from "../../components/invoice/StatusButton";
