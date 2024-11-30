@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { handleValidator } from "../../utils/validateInput";
 import { useParams } from "react-router-dom";
 import EditButtons from "./EditButtons";
-import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
+import { useCreateInvoice, useEditInvoice } from "../../hooks/useMutateInvoice";
 import { useMediaQuery } from "react-responsive";
 
 const InvoiceForm = () => {

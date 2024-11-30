@@ -104,3 +104,33 @@ export const useEditInvoice = (
     },
   });
 };
+
+export const useMarkInvoice = (id: string | undefined) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async () => {
+      try {
+        let res = await fetch(`${API_URL}/api/invoices/mark/${id}`, {
+          method: "PUT",
+          credentials: "include",
+        });
+
+        let data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Something went wrong");
+        }
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    },
+    onSuccess: () => {
+      toast.success("Invoice marked as paid");
+      queryClient.invalidateQueries({ queryKey: ["invoices"] });
+      queryClient.invalidateQueries({ queryKey: ["invoice"] });
+    },
+    onError: (error) => {
+      toast.error(error?.message);
+    },
+  });
+};

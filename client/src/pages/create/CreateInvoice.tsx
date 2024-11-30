@@ -10,7 +10,7 @@ import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
 import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
 import ItemList from "../../components/Invoice-form/ItemList";
 import { handleValidator } from "../../utils/validateInput";
-import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
+import { useCreateInvoice, useEditInvoice } from "../../hooks/useMutateInvoice";
 import { useMediaQuery } from "react-responsive";
 import Loading from "../../helpers/Loading";
 import EditButtons from "../../components/Invoice-form/EditButtons";

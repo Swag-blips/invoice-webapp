@@ -12,6 +12,8 @@ import DeleteInvoice from "../../components/invoice/DeleteInvoice";
 import Overlay from "../../components/invoice/Overlay";
 import Empty from "../../components/home/Empty";
 import { useFetchInvoice } from "../../hooks/useQueryInvoice";
+import { useMarkInvoice } from "../../hooks/useMutateInvoice";
+import Spinner from "../../helpers/Spinner";
 
 const Invoice = () => {
   const { id } = useParams();
@@ -24,6 +26,12 @@ const Invoice = () => {
     isRefetching,
     isError,
   } = useFetchInvoice(id);
+
+  const { mutate: markAsPaid, isPending } = useMarkInvoice(id);
+
+  const handleMarkAsPaid = () => {
+    markAsPaid();
+  };
 
   useEffect(() => {
     refetch();
@@ -83,8 +91,11 @@ const Invoice = () => {
             >
               Delete
             </button>
-            <button className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-3xl font-bold tracking-tight  text-white ">
-              Mark as paid
+            <button
+              onClick={handleMarkAsPaid}
+              className="bg-[#7C5DFA] h-12 px-6 hover:bg-[#9277FF] rounded-3xl font-bold tracking-tight  text-white "
+            >
+              {isPending ? <Spinner /> : "Mark as paid"}
             </button>
           </div>
         </div>

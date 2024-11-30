@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { InvoicesType } from "../types";
 
+const API_URL = import.meta.env.VITE_API_URL;
 export const useFetchInvoice = (id: string | undefined) => {
-  const API_URL = import.meta.env.VITE_API_URL;
   return useQuery({
     queryKey: ["invoice"],
     retry: 1,
@@ -22,3 +22,4 @@ export const useFetchInvoice = (id: string | undefined) => {
     },
   });
 };
+
