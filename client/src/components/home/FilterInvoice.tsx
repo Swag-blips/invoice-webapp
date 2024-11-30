@@ -1,4 +1,11 @@
-const FilterInvoice = () => {
+type Props = {
+  setIsChecked: (isChecked: boolean) => void;
+  isChecked: boolean;
+  handleCheck: () => void;
+};
+
+const FilterInvoice = ({ setIsChecked, isChecked, handleCheck }: Props) => {
+  console.log(isChecked);
   return (
     <div
       className="absolute flex flex-col gap-[15px] pl-6 py-6 top-14 left-[-40px]
@@ -7,8 +14,10 @@ const FilterInvoice = () => {
       <div className="flex items-center gap-[13px]">
         <input
           name="draft"
+          checked={isChecked}
           type="checkbox"
-          className="w-4 h-4 dark:bg-[#1E2139] rounded-[2px] appearance-none bg-[#DFE3FA]"
+          onChange={handleCheck}
+          className=" custom-checked  w-4 h-4 dark:bg-[#1E2139] rounded-[2px] appearance-none bg-[#DFE3FA]"
         />
         <label
           htmlFor="draft"

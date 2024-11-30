@@ -9,8 +9,13 @@ import { useMediaQuery } from "react-responsive";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const { setIsOpen } = useReceiptStore();
+
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
+  };
 
   return (
     <main className="flex relative  lg:items-start mt-8 lg:mt-[78px] w-full">
@@ -41,7 +46,13 @@ export default function Main() {
                 </p>
                 <img src={arrowDown} alt="arrow-down icon" />
               </div>
-              {openFilter && <FilterInvoice />}
+              {openFilter && (
+                <FilterInvoice
+                  isChecked={isChecked}
+                  setIsChecked={setIsChecked}
+                  handleCheck={handleCheck}
+                />
+              )}
 
               <button
                 onClick={setIsOpen}

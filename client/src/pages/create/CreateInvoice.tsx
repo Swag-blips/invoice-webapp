@@ -232,16 +232,12 @@ const CreateInvoice = () => {
   }
 
   const handleSaveAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(`HERE UP TOP!!!!!!`);
     e.preventDefault();
     saveAsDraft();
     if (isFormOpen) {
-      console.log(`HERE!!!!!!`);
       setIsFormOpen();
     }
   };
-
-  console.log(isFormOpen);
 
   return (
     <>
