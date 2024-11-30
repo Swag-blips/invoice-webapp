@@ -10,7 +10,11 @@ import { useQuery } from "@tanstack/react-query";
 import { handleValidator } from "../../utils/validateInput";
 import { useParams } from "react-router-dom";
 import EditButtons from "./EditButtons";
-import { useCreateInvoice, useEditInvoice } from "../../hooks/useMutateInvoice";
+import {
+  useCreateInvoice,
+  useEditInvoice,
+  useSaveAsDraft,
+} from "../../hooks/useMutateInvoice";
 import { useMediaQuery } from "react-responsive";
 
 const InvoiceForm = () => {
@@ -101,6 +105,14 @@ const InvoiceForm = () => {
     startDate,
     itemFields
   );
+
+  const { mutate: saveAsDraft, isPending: isSaving } = useSaveAsDraft(
+    form,
+    selectedOption,
+    startDate,
+    itemFields
+  );
+
   const handleFormChange = (
     index: number,
     event: React.ChangeEvent<HTMLInputElement>
@@ -166,6 +178,11 @@ const InvoiceForm = () => {
     return;
   };
 
+  const handleMarkAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    saveAsDraft();
+  };
+
   return (
     <>
       {isLargerThanMedium && (
@@ -229,6 +246,8 @@ const InvoiceForm = () => {
                 )}
                 {!id && (
                   <ReceiptButtons
+                    handleMarkAsDraft={handleMarkAsDraft}
+                    isSaving={isSaving}
                     isPending={isPending}
                     handleSubmit={handleSubmit}
                   />

@@ -110,9 +110,12 @@ export const useMarkInvoice = (id: string | undefined) => {
   return useMutation({
     mutationFn: async () => {
       try {
-        let res = await fetch(`${API_URL}/api/invoices/mark/${id}`, {
+        const res = await fetch(`${API_URL}/api/invoices/mark/${id}`, {
           method: "PUT",
           credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
         let data = await res.json();
@@ -128,6 +131,52 @@ export const useMarkInvoice = (id: string | undefined) => {
       toast.success("Invoice marked as paid");
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
       queryClient.invalidateQueries({ queryKey: ["invoice"] });
+    },
+    onError: (error) => {
+      toast.error(error?.message);
+    },
+  });
+};
+
+export const useSaveAsDraft = (
+  form: FormType,
+  selectedOption: string | null,
+  startDate: Date | null,
+  itemFields: ItemFields[]
+) => {
+  const queryClient = useQueryClient();
+  const { userId } = useAuth();
+  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
+
+  return useMutation({
+    mutationFn: async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/invoices/draft/${userId}`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...form,
+            selectedOption,
+            startDate,
+            itemFields,
+          }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "An error occured");
+        }
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    },
+    onSuccess: () => {
+      toast.success("Invoice created as draft");
+      setInvoiceFormOpen();
+      queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
     onError: (error) => {
       toast.error(error?.message);

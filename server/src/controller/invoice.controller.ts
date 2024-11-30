@@ -217,7 +217,7 @@ export const saveAsDraft = async (req: Request, res: Response) => {
     const invoice = new Invoice({
       userId,
       invoiceId: generateInvoiceId(),
-      senderStreetAddress: senderStreetAddress || "a",
+      senderStreetAddress: senderStreetAddress || "",
       senderCity: senderCity || "",
       senderPostCode: senderPostCode || "",
       senderCountry: senderCountry || "",

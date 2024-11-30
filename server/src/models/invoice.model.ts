@@ -19,10 +19,10 @@ const invoiceSchema = new mongoose.Schema({
   selectedOption: { type: String },
   itemFields: [
     {
-      itemName: { type: String, required: true },
-      qty: { type: Number, min: 1, required: true },
-      price: { type: Number, min: 1, required: true },
-      total: { type: Number, required: true },
+      itemName: { type: String },
+      qty: { type: Number },
+      price: { type: Number },
+      total: { type: Number },
     },
   ],
   status: {
