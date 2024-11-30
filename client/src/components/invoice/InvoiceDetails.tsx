@@ -1,5 +1,6 @@
 import moment from "moment";
 import { InvoicesType } from "../../types";
+import formatDate from "../../utils/validateDate";
 
 type Props = {
   invoice?: InvoicesType;
@@ -48,7 +49,7 @@ const InvoiceDetails = ({ invoice }: Props) => {
             </p>
             <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
               {invoice?.startDate &&
-                moment(invoice?.startDate).format("Do MMMM YYYY")}
+                formatDate(invoice.startDate, invoice.selectedOption)}
             </p>
           </div>
 

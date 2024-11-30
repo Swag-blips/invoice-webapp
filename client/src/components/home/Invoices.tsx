@@ -7,6 +7,7 @@ import { Loader } from "lucide-react";
 import moment from "moment";
 import generateTotal from "../../utils/total";
 import { InvoicesType } from "../../types";
+import formatDate from "../../utils/validateDate";
 
 const Invoices = () => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -62,7 +63,7 @@ const Invoices = () => {
 
               <p className="text-primary-text dark:text-[#DFE3FA] md:mt-0 mt-6  tracking-[0.1px] text-sm">
                 <span className="text-[#888EB0] dark:text-[#DFE3FA]">Due </span>
-                {moment(data.startDate).format("Do MMMM YYYY")}
+                {formatDate(data.startDate, data.selectedOption)}
               </p>
               <p className="text-secondary-text dark:text-[#DFE3FA] hidden lg:inline-flex tracking-[0.1px] text-sm">
                 {data.clientName || "unknown"}
@@ -71,7 +72,6 @@ const Invoices = () => {
                 £ {generateTotal(data.itemFields)}.00
               </p>
             </div>
-
             <div className="flex items-center flex-col md:flex-row md:gap-10 gap-6 md:justify-center">
               <p className="text-base dark:text-white  hidden lg:inline-flex font-bold text-neutral leading-[24px]">
                 £ {generateTotal(data.itemFields)}.00
