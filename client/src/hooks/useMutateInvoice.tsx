@@ -149,7 +149,7 @@ export const useSaveAsDraft = (
 ) => {
   const queryClient = useQueryClient();
   const { userId } = useAuth();
-  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
+  const { isOpen, setIsOpen: setInvoiceFormOpen } = useReceiptStore();
 
   return useMutation({
     mutationFn: async () => {
@@ -178,7 +178,10 @@ export const useSaveAsDraft = (
     },
     onSuccess: () => {
       toast.success("Invoice created as draft");
-      setInvoiceFormOpen();
+      if (isOpen) {
+        setInvoiceFormOpen();
+      }
+
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
     onError: (error) => {

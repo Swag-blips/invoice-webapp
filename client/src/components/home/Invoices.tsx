@@ -4,7 +4,6 @@ import Empty from "./Empty";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/clerk-react";
 import { Loader } from "lucide-react";
-import moment from "moment";
 import generateTotal from "../../utils/total";
 import { InvoicesType } from "../../types";
 import formatDate from "../../utils/validateDate";
@@ -13,11 +12,7 @@ const Invoices = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const { userId } = useAuth();
-  const {
-    data: invoices,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: invoices, isLoading } = useQuery({
     queryKey: ["invoices"],
     queryFn: async () => {
       try {

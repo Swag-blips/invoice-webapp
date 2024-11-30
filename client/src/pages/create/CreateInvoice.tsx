@@ -20,6 +20,7 @@ import Loading from "../../helpers/Loading";
 import EditButtons from "../../components/Invoice-form/EditButtons";
 import { useFetchInvoice } from "../../hooks/useQueryInvoice";
 import Empty from "../../components/home/Empty";
+import useReceiptStore from "../../store/receiptStore";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -117,6 +118,8 @@ const CreateInvoice = () => {
     setIsOpen(!isOpen);
     return;
   };
+
+  const { isOpen: isFormOpen, setIsOpen: setIsFormOpen } = useReceiptStore();
 
   const { mutate: createInvoice, isPending } = useCreateInvoice(
     form,
@@ -229,9 +232,16 @@ const CreateInvoice = () => {
   }
 
   const handleSaveAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(`HERE UP TOP!!!!!!`);
     e.preventDefault();
     saveAsDraft();
+    if (isFormOpen) {
+      console.log(`HERE!!!!!!`);
+      setIsFormOpen();
+    }
   };
+
+  console.log(isFormOpen);
 
   return (
     <>

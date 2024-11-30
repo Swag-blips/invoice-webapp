@@ -5,6 +5,7 @@ import plus from "/assets/icon-plus.svg";
 import FilterInvoice from "./FilterInvoice";
 import useReceiptStore from "../../store/receiptStore";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);

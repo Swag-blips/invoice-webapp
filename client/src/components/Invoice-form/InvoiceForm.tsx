@@ -16,6 +16,7 @@ import {
   useSaveAsDraft,
 } from "../../hooks/useMutateInvoice";
 import { useMediaQuery } from "react-responsive";
+import useReceiptStore from "../../store/receiptStore";
 
 const InvoiceForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -180,6 +181,7 @@ const InvoiceForm = () => {
 
   const handleSaveAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     saveAsDraft();
   };
 
