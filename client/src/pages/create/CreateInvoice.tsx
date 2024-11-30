@@ -13,9 +13,9 @@ import { handleValidator } from "../../utils/validateInput";
 import { useCreateInvoice, useEditInvoice } from "../../hooks/useInvoice";
 import { useMediaQuery } from "react-responsive";
 import Loading from "../../helpers/Loading";
-import { useQuery } from "@tanstack/react-query";
 import EditButtons from "../../components/Invoice-form/EditButtons";
 import { useFetchInvoice } from "../../hooks/useQueryInvoice";
+import Empty from "../../components/home/Empty";
 
 const CreateInvoice = () => {
   const [form, setForm] = useState<FormType>({
@@ -52,7 +52,7 @@ const CreateInvoice = () => {
 
   const navigate = useNavigate();
 
-    const {
+  const {
     data: invoice,
     refetch,
     isLoading,
@@ -60,8 +60,6 @@ const CreateInvoice = () => {
     isError,
   } = useFetchInvoice(id);
 
-
-  
   const isLargerThanMedium = useMediaQuery({
     query: "(min-width: 768px)",
   });
@@ -190,13 +188,21 @@ const CreateInvoice = () => {
       setSelectedOption(invoice.selectedOption);
       setItemFields(invoice.itemFields);
     }
-    if (!invoice && id && !isLoading) {
+  }, [id, invoice]);
+
+  useEffect(() => {
+    if (id && isError) {
+      console.log(true);
       navigate("/");
     }
-  }, [id, invoice]);
+  }, [id]);
 
   if (loading || isLoading || isRefetching) {
     return <Loading />;
+  }
+
+  if (id && isError) {
+    return <Empty />;
   }
 
   return (
