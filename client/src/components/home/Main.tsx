@@ -11,8 +11,6 @@ import { InvoicesType } from "../../types";
 
 export default function Main() {
   const [openFilter, setOpenFilter] = useState(false);
-
-  // State to track the status of each checkbox
   const [filters, setFilters] = useState({
     draft: false,
     pending: false,
