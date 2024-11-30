@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import User from "../models/user.model";
 import Invoice from "../models/invoice.model";
-import mongoose from "mongoose";
 import generateInvoiceId from "../utils/util";
 
 export const createInvoice = async (req: Request, res: Response) => {
@@ -24,13 +22,6 @@ export const createInvoice = async (req: Request, res: Response) => {
   const userId = req.params.userId;
 
   try {
-    const user = await User.findOne({
-      clerkId: userId,
-    });
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
-    }
     const invoice = new Invoice({
       userId,
       invoiceId: generateInvoiceId(),
@@ -50,8 +41,8 @@ export const createInvoice = async (req: Request, res: Response) => {
       itemFields,
       status: "pending",
     });
-    user?.invoices.push(invoice._id as mongoose.Types.ObjectId);
-    await Promise.all([user.save(), invoice.save()]);
+
+    await invoice.save();
     res.status(201).json(invoice);
     return;
   } catch (error) {
