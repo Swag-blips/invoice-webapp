@@ -104,7 +104,11 @@ const Invoice = () => {
           <InvoiceDetails invoice={invoice} />
           <ItemDetails items={invoice?.itemFields} />
         </div>
-        <SubmitComponent handleOpen={handleOpen} />
+        <SubmitComponent
+          handleMarkAsPaid={handleMarkAsPaid}
+          isPending={isPending}
+          handleOpen={handleOpen}
+        />
         {openDeleteModal && (
           <>
             <DeleteInvoice handleClose={handleClose} /> <Overlay />

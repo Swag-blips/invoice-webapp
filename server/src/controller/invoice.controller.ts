@@ -48,6 +48,7 @@ export const createInvoice = async (req: Request, res: Response) => {
       startDate,
       selectedOption,
       itemFields,
+      status: "pending",
     });
     user?.invoices.push(invoice._id as mongoose.Types.ObjectId);
     await Promise.all([user.save(), invoice.save()]);
@@ -197,7 +198,56 @@ export const markAsPaid = async (req: Request, res: Response) => {
     res.status(200).json({ message: "status successfully updated" });
     return;
   } catch (error) {
-    console.log(`error at delete invoice controller ${error}`);
+    console.log(`error at markAsPaid controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+export const saveAsDraft = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const {
+      senderStreetAddress,
+      senderCity,
+      senderPostCode,
+      senderCountry,
+      clientName,
+      clientEmail,
+      clientStreetAddress,
+      clientCity,
+      clientPostCode,
+      clientCountry,
+      projectDescription,
+      startDate,
+      selectedOption,
+      itemFields,
+    } = req.body;
+
+    const invoice = new Invoice({
+      userId,
+      invoiceId: generateInvoiceId(),
+      senderStreetAddress: senderStreetAddress || "a",
+      senderCity: senderCity || "",
+      senderPostCode: senderPostCode || "",
+      senderCountry: senderCountry || "",
+      clientName: clientName || "",
+      clientEmail: clientEmail || "",
+      clientStreetAddress: clientStreetAddress || "",
+      clientCity: clientCity || "",
+      clientPostCode: clientPostCode || "",
+      clientCountry: clientCountry || "",
+      projectDescription: projectDescription || "",
+      startDate: startDate || "",
+      selectedOption: selectedOption || "",
+      itemFields: itemFields || [],
+      status: "draft",
+    });
+
+    await invoice.save();
+
+    res.status(200).json({ message: "Draft created" });
+  } catch (error) {
+    console.log(`error at save draft controller ${error}`);
     res.status(500).json({ message: "Internal server Error" });
   }
 };

@@ -6,6 +6,7 @@ import {
   getInvoice,
   getInvoices,
   markAsPaid,
+  saveAsDraft,
 } from "../controller/invoice.controller";
 import validateInvoice from "../middleware/validateInvoice";
 import invoiceSchema from "../schema/invoice.schema";
@@ -24,5 +25,6 @@ router.get("/:userId", requireAuth(), getInvoices);
 router.get("/getInvoice/:invoiceId", requireAuth(), getInvoice);
 router.delete("/:invoiceId", requireAuth(), deleteInvoice);
 router.put("/mark/:invoiceId", markAsPaid);
+router.post("/draft/:userId", saveAsDraft);
 
 export default router;

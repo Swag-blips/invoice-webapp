@@ -1,10 +1,17 @@
 import { useNavigate, useParams } from "react-router-dom";
+import Spinner from "../../helpers/Spinner";
 
 type Props = {
   handleOpen: () => void;
+  handleMarkAsPaid: () => void;
+  isPending: boolean;
 };
 
-const SubmitComponent = ({ handleOpen }: Props) => {
+const SubmitComponent = ({
+  handleOpen,
+  handleMarkAsPaid,
+  isPending,
+}: Props) => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -28,8 +35,11 @@ const SubmitComponent = ({ handleOpen }: Props) => {
       >
         Delete
       </button>
-      <button className="bg-[#7C5DFA] h-12 px-6 rounded-3xl font-bold tracking-tight  text-white ">
-        Mark as paid
+      <button
+        onClick={handleMarkAsPaid}
+        className="bg-[#7C5DFA] h-12 px-6 rounded-3xl font-bold tracking-tight  text-white "
+      >
+        {isPending ? <Spinner /> : "Mark as paid"}
       </button>
     </div>
   );
