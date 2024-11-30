@@ -15,20 +15,20 @@ const InvoiceDetails = ({ invoice }: Props) => {
             {invoice?.invoiceId}
           </p>
           <p className="font-medium text-sm text-left dark:text-[#DFE3FA] text-primary-text">
-            {invoice?.projectDescription}
+            {invoice?.projectDescription || "not filled"}
           </p>
           <div className="md:hidden mt-5 dark:text-[#DFE3FA]  text-primary-text tracking-[-0.1px] text-sm font-medium flex-col text-left ">
-            <p>{invoice?.senderStreetAddress}</p>
-            <p>{invoice?.senderCity}</p>
-            <p>{invoice?.senderPostCode}</p>
-            <p>{invoice?.senderCountry}</p>
+            <p>{invoice?.senderStreetAddress || "not filled"}</p>
+            <p>{invoice?.senderCity || "not filled"}</p>
+            <p>{invoice?.senderPostCode || "not filled"}</p>
+            <p>{invoice?.senderCountry || "not filled"}</p>
           </div>
         </div>
         <div className="md:flex dark:text-[#DFE3FA]  hidden text-primary-text tracking-[-0.1px] text-sm font-medium flex-col  text-right ">
-          <p>{invoice?.senderStreetAddress}</p>
-          <p>{invoice?.senderCity}</p>
-          <p>{invoice?.senderPostCode}</p>
-          <p>{invoice?.senderCountry}</p>
+          <p>{invoice?.senderStreetAddress || "not filled"}</p>
+          <p>{invoice?.senderCity || "not filled"}</p>
+          <p>{invoice?.senderPostCode || "not filled"}</p>
+          <p>{invoice?.senderCountry || "not filled"}</p>
         </div>
       </div>
       <div className="flex mt-7 md:mt-5 items-start gap-16 md:gap-[117px]">
@@ -57,7 +57,7 @@ const InvoiceDetails = ({ invoice }: Props) => {
               Sent to
             </p>
             <p className="font-bold  dark:text-white text-neutral text-base tracking-tight">
-              {invoice?.clientEmail}
+              {invoice?.clientEmail || "not filled"}
             </p>
           </div>
         </div>
@@ -70,10 +70,10 @@ const InvoiceDetails = ({ invoice }: Props) => {
             {invoice?.clientName}
           </p>
           <div className="flex mt-2 dark:text-[#DFE3FA] text-primary-text tracking-[-0.1px] text-sm font-medium flex-col  text-left ">
-            <p>{invoice?.clientStreetAddress}</p>
-            <p>{invoice?.clientCity}</p>
-            <p>{invoice?.clientPostCode}</p>
-            <p>{invoice?.clientCountry}</p>
+            <p>{invoice?.clientStreetAddress || "not filled"}</p>
+            <p>{invoice?.clientCity || "not filled"}</p>
+            <p>{invoice?.clientPostCode || "not filled"}</p>
+            <p>{invoice?.clientCountry || "not filled"}</p>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const InvoiceDetails = ({ invoice }: Props) => {
             Sent to
           </p>
           <p className="font-bold dark:text-white text-neutral text-base tracking-tight">
-            {invoice?.clientEmail}
+            {invoice?.clientEmail || "not filled"}
           </p>
         </div>
       </div>

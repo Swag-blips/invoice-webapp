@@ -65,7 +65,7 @@ const Invoices = () => {
                 {moment(data.startDate).format("Do MMMM YYYY")}
               </p>
               <p className="text-secondary-text dark:text-[#DFE3FA] hidden lg:inline-flex tracking-[0.1px] text-sm">
-                {data.clientName}
+                {data.clientName || "unknown"}
               </p>
               <p className="text-base lg:hidden dark:text-white font-bold text-neutral leading-[24px]">
                 £ {generateTotal(data.itemFields)}.00
@@ -77,7 +77,7 @@ const Invoices = () => {
                 £ {generateTotal(data.itemFields)}.00
               </p>
               <p className="text-secondary-text ml-auto text-right dark:text-white lg:hidden racking-[0.1px] text-sm">
-                {data.clientName}
+                {data.clientName || "unknown"}
               </p>
               <div className="flex md:items-center gap-5">
                 <div

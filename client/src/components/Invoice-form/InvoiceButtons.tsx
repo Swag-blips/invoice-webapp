@@ -2,14 +2,14 @@ import Spinner from "../../helpers/Spinner";
 
 type Props = {
   handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  handleMarkAsDraft: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleSaveAsDraft: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isPending: boolean;
   isSaving: boolean;
 };
-const ReceiptButtons = ({
+const InvoiceButtons = ({
   isSaving,
   handleSubmit,
-  handleMarkAsDraft,
+  handleSaveAsDraft,
   isPending,
 }: Props) => {
   return (
@@ -20,7 +20,7 @@ const ReceiptButtons = ({
 
       <div className="flex items-center gap-2">
         <button
-          onClick={handleMarkAsDraft}
+          onClick={handleSaveAsDraft}
           className="bg-[#373B53] h-12 px-6 rounded-3xl text-[#888EB0] font-bold"
         >
           {isSaving ? <Spinner /> : "Save as Draft"}
@@ -37,4 +37,4 @@ const ReceiptButtons = ({
   );
 };
 
-export default ReceiptButtons;
+export default InvoiceButtons;

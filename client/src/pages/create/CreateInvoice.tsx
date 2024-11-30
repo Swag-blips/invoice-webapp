@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/home/Navbar";
 import arrowLeft from "/assets/icon-arrow-left.svg";
-import ReceiptButtons from "../../components/Invoice-form/ReceiptButtons";
+import InvoiceButtons from "../../components/Invoice-form/InvoiceButtons";
 import BillFrom from "../../components/Invoice-form/BillFrom";
 import { useEffect, useState } from "react";
 import { FormErrors, FormType, ItemFields } from "../../types";
@@ -10,7 +10,11 @@ import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
 import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
 import ItemList from "../../components/Invoice-form/ItemList";
 import { handleValidator } from "../../utils/validateInput";
-import { useCreateInvoice, useEditInvoice } from "../../hooks/useMutateInvoice";
+import {
+  useCreateInvoice,
+  useEditInvoice,
+  useSaveAsDraft,
+} from "../../hooks/useMutateInvoice";
 import { useMediaQuery } from "react-responsive";
 import Loading from "../../helpers/Loading";
 import EditButtons from "../../components/Invoice-form/EditButtons";
@@ -129,6 +133,13 @@ const CreateInvoice = () => {
     itemFields
   );
 
+  const { mutate: saveAsDraft, isPending: isSaving } = useSaveAsDraft(
+    form,
+    selectedOption,
+    startDate,
+    itemFields
+  );
+
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -217,6 +228,11 @@ const CreateInvoice = () => {
     return <Empty />;
   }
 
+  const handleSaveAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    saveAsDraft();
+  };
+
   return (
     <>
       <Navbar />
@@ -286,7 +302,12 @@ const CreateInvoice = () => {
         </form>
       </main>
       {!id && (
-        <ReceiptButtons isPending={isPending} handleSubmit={handleSubmit} />
+        <InvoiceButtons
+          handleSaveAsDraft={handleSaveAsDraft}
+          isSaving={isSaving}
+          isPending={isPending}
+          handleSubmit={handleSubmit}
+        />
       )}
       {id && <EditButtons isEditing={isEditing} handleEdit={handleEdit} />}
     </>

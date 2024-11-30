@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ReceiptButtons from "./ReceiptButtons";
+import InvoiceButtons from "./InvoiceButtons";
 import BillFrom from "./BillFrom";
 import BillTo from "./BillTo";
 import InvoiceDate from "./InvoiceDate";
@@ -178,7 +178,7 @@ const InvoiceForm = () => {
     return;
   };
 
-  const handleMarkAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSaveAsDraft = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     saveAsDraft();
   };
@@ -245,8 +245,8 @@ const InvoiceForm = () => {
                   </>
                 )}
                 {!id && (
-                  <ReceiptButtons
-                    handleMarkAsDraft={handleMarkAsDraft}
+                  <InvoiceButtons
+                    handleSaveAsDraft={handleSaveAsDraft}
                     isSaving={isSaving}
                     isPending={isPending}
                     handleSubmit={handleSubmit}

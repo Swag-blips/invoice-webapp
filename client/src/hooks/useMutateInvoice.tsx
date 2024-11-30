@@ -62,7 +62,7 @@ export const useEditInvoice = (
   startDate: Date | null,
   itemFields: ItemFields[]
 ) => {
-  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
+  const { setIsOpen: setInvoiceFormOpen, isOpen } = useReceiptStore();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async () => {
@@ -94,7 +94,10 @@ export const useEditInvoice = (
 
     onSuccess: () => {
       toast.success("Invoice edited successfully");
-      setInvoiceFormOpen();
+      if (isOpen) {
+        setInvoiceFormOpen();
+      }
+
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
       queryClient.invalidateQueries({ queryKey: ["invoice"] });
     },

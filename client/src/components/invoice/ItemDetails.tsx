@@ -17,7 +17,7 @@ const ItemDetails = ({ items }: Props) => {
             {items?.map((item, index) => (
               <div key={index} className="flex flex-col gap-2">
                 <p className="text-neutral dark:text-white font-bold text-base">
-                  {item.itemName}
+                  {item.itemName || "not filled"}
                 </p>
                 <p className="font-bold dark:text-[#888EB0] md:hidden text-primary-text text-base">
                   {item.qty} x £ {item.price}
