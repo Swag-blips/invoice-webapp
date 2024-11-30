@@ -163,8 +163,38 @@ export const deleteInvoice = async (req: Request, res: Response) => {
   const invoiceId = req.params.invoiceId;
 
   try {
- await Invoice.findOneAndDelete({ invoiceId });
+    await Invoice.findOneAndDelete({ invoiceId });
     res.status(200).json({ message: "Invoice successfully deleted" });
+    return;
+  } catch (error) {
+    console.log(`error at delete invoice controller ${error}`);
+    res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+export const markAsPaid = async (req: Request, res: Response) => {
+  const invoiceId = req.params.invoiceId;
+
+  try {
+    const invoice = await Invoice.findOne({
+      invoiceId,
+    });
+
+    if (!invoice) {
+      res.status(404).json({ error: "Invoice not found" });
+      return;
+    }
+
+    if (invoice.status === "paid") {
+      res.status(400).json({ error: "Invoice status is already paid" });
+      return;
+    }
+
+    invoice.status = "paid";
+
+    await invoice.save();
+
+    res.status(200).json({ message: "status successfully updated" });
     return;
   } catch (error) {
     console.log(`error at delete invoice controller ${error}`);
