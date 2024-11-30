@@ -1,12 +1,11 @@
 import arrowLeft from "/assets/icon-arrow-left.svg";
 import ItemDetails from "../../components/invoice/ItemDetails";
 import { useEffect, useState } from "react";
-import { InvoicesType } from "../../types";
+
 import { Link, useParams } from "react-router-dom";
 import StatusButton from "../../components/invoice/StatusButton";
 import SubmitComponent from "../../components/invoice/SubmitComponent";
 import InvoiceDetails from "../../components/invoice/InvoiceDetails";
-import { useQuery } from "@tanstack/react-query";
 import Loading from "../../helpers/Loading";
 import useReceiptStore from "../../store/receiptStore";
 import DeleteInvoice from "../../components/invoice/DeleteInvoice";
@@ -16,14 +15,8 @@ import { useFetchInvoice } from "../../hooks/useQueryInvoice";
 
 const Invoice = () => {
   const { id } = useParams();
-  const API_URL = import.meta.env.VITE_API_URL;
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  const handleOpen = () => {
-    setOpenDeleteModal(true);
-  };
-
-  const { setIsOpen } = useReceiptStore();
+  const { setIsOpen, openDeleteModal, setOpenDeleteModal } = useReceiptStore();
   const {
     data: invoice,
     refetch,
@@ -41,8 +34,15 @@ const Invoice = () => {
     setIsOpen();
   };
 
+  const handleOpen = () => {
+    setOpenDeleteModal();
+  };
   const handleClose = () => {
-    setOpenDeleteModal(false);
+    if (openDeleteModal) {
+      setOpenDeleteModal();
+    } else {
+      return;
+    }
   };
 
   if (isLoading || isRefetching) {
@@ -93,7 +93,7 @@ const Invoice = () => {
           <InvoiceDetails invoice={invoice} />
           <ItemDetails items={invoice?.itemFields} />
         </div>
-        <SubmitComponent />
+        <SubmitComponent handleOpen={handleOpen} />
         {openDeleteModal && (
           <>
             <DeleteInvoice handleClose={handleClose} /> <Overlay />

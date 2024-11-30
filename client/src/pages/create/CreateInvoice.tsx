@@ -4,7 +4,7 @@ import arrowLeft from "/assets/icon-arrow-left.svg";
 import ReceiptButtons from "../../components/Invoice-form/ReceiptButtons";
 import BillFrom from "../../components/Invoice-form/BillFrom";
 import { useEffect, useState } from "react";
-import { FormErrors, FormType, InvoicesType, ItemFields } from "../../types";
+import { FormErrors, FormType, ItemFields } from "../../types";
 import BillTo from "../../components/Invoice-form/BillTo";
 import InvoiceDate from "../../components/Invoice-form/InvoiceDate";
 import ProjectDescription from "../../components/Invoice-form/ProjectDescription";
@@ -121,7 +121,7 @@ const CreateInvoice = () => {
     itemFields
   );
 
-  const { mutate: editInvoice, isPending: isEditing } = useEditInvoice(
+  const { mutateAsync: editInvoice, isPending: isEditing } = useEditInvoice(
     invoice?.invoiceId,
     form,
     selectedOption,
@@ -147,20 +147,32 @@ const CreateInvoice = () => {
     return;
   };
 
-  const handleEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (
-      handleValidator(
-        itemFields,
-        setItemFieldsError,
-        form,
-        setErrors,
-        startDate,
-        selectedOption
-      )
-    ) {
-      editInvoice();
+
+    try {
+      if (
+        handleValidator(
+          itemFields,
+          setItemFieldsError,
+          form,
+          setErrors,
+          startDate,
+          selectedOption
+        )
+      ) {
+        const invoice = await editInvoice();
+
+        if (invoice) {
+          navigate("/");
+        }
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.error(error);
     }
+
     return;
   };
 

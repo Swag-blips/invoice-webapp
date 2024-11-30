@@ -1,12 +1,18 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-const SubmitComponent = () => {
+type Props = {
+  handleOpen: () => void;
+};
+
+const SubmitComponent = ({ handleOpen }: Props) => {
   const { id } = useParams();
+
   const navigate = useNavigate();
 
   const handleNavigate = () => {
     navigate(`/edit-invoice/${id}`);
   };
+
   return (
     <div className="flex md:hidden dark:bg-[#1E2139] bg-white px-6 ml-[-24px]  justify-center h-[90px] mt-14 items-center gap-2">
       <button
@@ -16,7 +22,10 @@ const SubmitComponent = () => {
         Edit
       </button>
 
-      <button className="h-12 px-6 rounded-3xl  font-bold tracking-tight  bg-error text-white">
+      <button
+        onClick={handleOpen}
+        className="h-12 px-6 rounded-3xl  font-bold tracking-tight  bg-error text-white"
+      >
         Delete
       </button>
       <button className="bg-[#7C5DFA] h-12 px-6 rounded-3xl font-bold tracking-tight  text-white ">
