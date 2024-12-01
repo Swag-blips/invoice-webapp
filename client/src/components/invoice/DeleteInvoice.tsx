@@ -19,7 +19,7 @@ const DeleteInvoice = ({ handleClose }: Props) => {
   };
 
   return (
-    <div className=" flex items-center justify-center w-screen top-0 left-0  bottom-0 ">
+    <div className=" flex items-center justify-center w-screen fixed top-0 left-0  bottom-0 ">
       <div className="bg-white dark:bg-[#1E2139] pt-[50px] z-50 w-[327px] md:w-[480px] h-[249px] px-8 rounded-[8px]">
         <h1 className="text-2xl dark:text-white text-neutral font-bold">
           Confirm Deletion
