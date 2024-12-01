@@ -11,7 +11,9 @@ const cors_1 = __importDefault(require("cors"));
 const express_2 = require("@clerk/express");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, express_2.clerkMiddleware)());
+app.use((0, express_2.clerkMiddleware)({
+    secretKey: process.env.CLERK_SECRET_KEY,
+}));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
     origin: ["http://localhost:5173", "https://invoice-bay-eight.vercel.app"],

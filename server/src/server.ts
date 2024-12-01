@@ -7,7 +7,11 @@ import { clerkMiddleware } from "@clerk/express";
 
 dotenv.config();
 const app = express();
-app.use(clerkMiddleware());
+app.use(
+  clerkMiddleware({
+    secretKey: process.env.CLERK_SECRET_KEY,
+  })
+);
 app.use(express.json());
 
 app.use(
@@ -24,4 +28,3 @@ app.listen(port, () => {
 
   connectMongodb();
 });
-
