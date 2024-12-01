@@ -120,7 +120,7 @@ const CreateInvoice = () => {
 
   const { isOpen: isFormOpen, setIsOpen: setIsFormOpen } = useReceiptStore();
 
-  const { mutate: createInvoice, isPending } = useCreateInvoice(
+  const { mutateAsync: createInvoice, isPending } = useCreateInvoice(
     form,
     selectedOption,
     startDate,
@@ -155,7 +155,11 @@ const CreateInvoice = () => {
         selectedOption
       )
     ) {
-      createInvoice();
+     const invoice = await createInvoice();
+
+     if(invoice){
+      navigate("/")
+     }
     }
     return;
   };

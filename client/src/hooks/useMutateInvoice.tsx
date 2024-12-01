@@ -13,7 +13,7 @@ export const useCreateInvoice = (
 ) => {
   const queryClient = useQueryClient();
   const { userId } = useAuth();
-  const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
+  const { isOpen, setIsOpen: setInvoiceFormOpen } = useReceiptStore();
   const { getToken } = useAuth();
   return useMutation({
     mutationFn: async () => {
@@ -47,6 +47,10 @@ export const useCreateInvoice = (
 
     onSuccess: () => {
       toast.success("Invoice created successfully");
+
+      if (isOpen) {
+        setInvoiceFormOpen();
+      }
       setInvoiceFormOpen();
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
