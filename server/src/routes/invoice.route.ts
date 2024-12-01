@@ -24,7 +24,7 @@ router.put("/:invoiceId", validateInvoice(invoiceSchema), editInvoice);
 router.get("/:userId", requireAuth(), getInvoices);
 router.get("/getInvoice/:invoiceId", requireAuth(), getInvoice);
 router.delete("/:invoiceId", requireAuth(), deleteInvoice);
-router.put("/mark/:invoiceId", markAsPaid);
-router.post("/draft/:userId", saveAsDraft);
+router.put("/mark/:invoiceId", requireAuth(), markAsPaid);
+router.post("/draft/:userId", requireAuth(), saveAsDraft);
 
 export default router;

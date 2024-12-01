@@ -14,6 +14,6 @@ router.put("/:invoiceId", (0, validateInvoice_1.default)(invoice_schema_1.defaul
 router.get("/:userId", (0, express_2.requireAuth)(), invoice_controller_1.getInvoices);
 router.get("/getInvoice/:invoiceId", (0, express_2.requireAuth)(), invoice_controller_1.getInvoice);
 router.delete("/:invoiceId", (0, express_2.requireAuth)(), invoice_controller_1.deleteInvoice);
-router.put("/mark/:invoiceId", invoice_controller_1.markAsPaid);
-router.post("/draft/:userId", invoice_controller_1.saveAsDraft);
+router.put("/mark/:invoiceId", (0, express_2.requireAuth)(), invoice_controller_1.markAsPaid);
+router.post("/draft/:userId", (0, express_2.requireAuth)(), invoice_controller_1.saveAsDraft);
 exports.default = router;
