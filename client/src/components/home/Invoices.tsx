@@ -6,10 +6,11 @@ import AllInvoices from "./AllInvoices";
 type Props = {
   invoices: InvoicesType[] | undefined;
   isLoading: boolean;
+  isRefetching: boolean;
 };
 
-const Invoices = ({ invoices, isLoading }: Props) => {
-  if (isLoading) {
+const Invoices = ({ invoices, isRefetching, isLoading }: Props) => {
+  if (isLoading || isRefetching) {
     return (
       <div className="flex items-center justify-center mt-[50px]">
         <Loader className="size-6 text-[#4b2ec0] animate-spin" />

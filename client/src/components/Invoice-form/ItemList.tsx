@@ -63,6 +63,7 @@ const ItemList = ({
                 name="qty"
                 id="qty"
                 type="number"
+                pattern="\d*"
                 onKeyDown={preventMinus}
                 min="0"
                 className={` 
@@ -85,6 +86,7 @@ const ItemList = ({
                 name="price"
                 id="price"
                 type="number"
+                pattern="\d*"
                 min="0"
                 onKeyDown={preventMinus}
                 className={` 
@@ -106,6 +108,7 @@ const ItemList = ({
               <input
                 name="total"
                 id="total"
+                pattern="\d*"
                 className="font-bold text-[#888EB0] dark:text-white bg-transparent w-full outline-none h-12 "
                 value={input.total!}
                 onChange={(event) => handleFormChange(index, event)}

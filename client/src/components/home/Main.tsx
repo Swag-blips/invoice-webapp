@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Invoices from "./Invoices";
 import arrowDown from "/assets/icon-arrow-down.svg";
 import plus from "/assets/icon-plus.svg";
@@ -23,7 +23,12 @@ export default function Main() {
 
   const { userId } = useAuth();
 
-  const { data: invoices, isLoading } = useQuery({
+  const {
+    data: invoices,
+    refetch,
+    isRefetching,
+    isLoading,
+  } = useQuery({
     queryKey: ["invoices", filters],
     queryFn: async () => {
       const token = await getToken();
@@ -65,6 +70,10 @@ export default function Main() {
       [status]: !prevFilters[status as keyof typeof prevFilters],
     }));
   };
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <main className="flex relative lg:items-start mt-8 lg:mt-[78px] w-full">
@@ -123,7 +132,7 @@ export default function Main() {
               </Link>
             </div>
           </div>
-          <Invoices invoices={invoices} isLoading={isLoading} />
+          <Invoices invoices={invoices} isRefetching={isRefetching} isLoading={isLoading} />
         </div>
       </div>
     </main>

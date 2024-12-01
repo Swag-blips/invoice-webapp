@@ -48,7 +48,7 @@ html * {
 }
 
 .dark .error-invoice-input-style {
-  @apply bg-[#1E2139];
+  @apply text-white bg-[#1E2139];
 }
 .error-label-text {
   @apply text-[13px] text-error font-medium tracking-[-0.1px];
@@ -62,7 +62,7 @@ html * {
 }
 
 .dark .error-qty-input-style {
-  @apply border-[#EC5757];
+  @apply  border-[#EC5757];
 }
 /* add the code bellow */
 @layer utilities {
