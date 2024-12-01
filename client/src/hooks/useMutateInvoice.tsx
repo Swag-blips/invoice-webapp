@@ -51,7 +51,6 @@ export const useCreateInvoice = (
       if (isOpen) {
         setInvoiceFormOpen();
       }
-      setInvoiceFormOpen();
       queryClient.invalidateQueries({ queryKey: ["invoices"] });
     },
 
