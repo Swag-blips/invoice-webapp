@@ -12,7 +12,7 @@ const Navbar = () => {
     navigate("/");
   };
   return (
-    <div className="lg:hidden w-full z-50 sticky top-0 flex items-center justify-between h-[72px] bg-draft-status">
+    <div className="lg:hidden w-full z-[120] overflow-x-hidden sticky top-0 flex items-center justify-between h-[72px] bg-draft-status">
       <div className="bg-[#7C5DFA] w-[72px] z-50 h-[72px] relative overflow-clip flex flex-col items-center justify-center rounded-r-[20px] ">
         <figure
           onClick={handleRedirect}
