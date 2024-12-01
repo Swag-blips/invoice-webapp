@@ -217,7 +217,7 @@ const CreateInvoice = () => {
 
   useEffect(() => {
     if (id && isError) {
-      console.log(true);
+
       navigate("/");
     }
   }, [id]);

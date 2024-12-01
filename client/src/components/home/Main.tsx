@@ -24,7 +24,8 @@ export default function Main() {
   const { data: invoices, isLoading } = useQuery({
     queryKey: ["invoices", filters],
     queryFn: async () => {
-      console.log(`${API_URL}/api/invoices/${userId}`);
+      
+  console.log(`${API_URL}/api/invoices/${userId}`);
       try {
         const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
           method: "GET",

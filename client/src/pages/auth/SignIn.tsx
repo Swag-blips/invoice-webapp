@@ -10,7 +10,7 @@ const SignIn = () => {
   const redirect_url = import.meta.env.VITE_REDIRECT_URL;
 
   useEffect(() => {
-    console.log(userId);
+
     if (isLoaded && userId) {
       navigate("/");
     }
