@@ -3,15 +3,11 @@ import dotenv from "dotenv";
 import connectMongodb from "./db/connectMongo";
 import receiptRoutes from "./routes/invoice.route";
 import cors from "cors";
-import { clerkMiddleware } from "@clerk/express";
+
 
 dotenv.config();
 const app = express();
-app.use(
-  clerkMiddleware({
-    secretKey: process.env.CLERK_SECRET_KEY,
-  })
-);
+
 app.use(express.json());
 
 app.use(
