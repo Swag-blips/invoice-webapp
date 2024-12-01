@@ -111,14 +111,16 @@ export default function Main() {
                 </div>
                 <p className="mt-[14px]">New invoice</p>
               </button>
-              <button className="w-auto px-[15px] md:hidden text-white flex gap-4 pl-2 h-12 rounded-3xl bg-[#7C5DFA] font-bold">
+
+              <Link
+                to={"/create-invoice"}
+                className="w-auto px-[15px] md:hidden text-white flex gap-4 pl-2 h-12 rounded-3xl bg-[#7C5DFA] font-bold"
+              >
                 <div className="bg-white mt-2 h-8 w-8 flex items-center justify-center rounded-full">
                   <img src={plus} alt="plus" />
                 </div>
-                <Link to={"/create-invoice"} className="mt-[14px]">
-                  New
-                </Link>
-              </button>
+                <p className="mt-[14px]">New</p>
+              </Link>
             </div>
           </div>
           <Invoices invoices={invoices} isLoading={isLoading} />
