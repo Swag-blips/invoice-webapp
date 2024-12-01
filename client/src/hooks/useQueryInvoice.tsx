@@ -22,4 +22,3 @@ export const useFetchInvoice = (id: string | undefined) => {
     },
   });
 };
-
