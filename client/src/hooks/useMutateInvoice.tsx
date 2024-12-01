@@ -14,13 +14,15 @@ export const useCreateInvoice = (
   const queryClient = useQueryClient();
   const { userId } = useAuth();
   const { setIsOpen: setInvoiceFormOpen } = useReceiptStore();
-
+  const { getToken } = useAuth();
   return useMutation({
     mutationFn: async () => {
+      const token = await getToken();
       try {
         const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           credentials: "include",
@@ -64,12 +66,15 @@ export const useEditInvoice = (
 ) => {
   const { setIsOpen: setInvoiceFormOpen, isOpen } = useReceiptStore();
   const queryClient = useQueryClient();
+  const { getToken } = useAuth();
   return useMutation({
     mutationFn: async () => {
+      const token = await getToken();
       try {
         const res = await fetch(`${API_URL}/api/invoices/${invoiceId}`, {
           method: "PUT",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           credentials: "include",
@@ -110,13 +115,16 @@ export const useEditInvoice = (
 
 export const useMarkInvoice = (id: string | undefined) => {
   const queryClient = useQueryClient();
+  const { getToken } = useAuth();
   return useMutation({
     mutationFn: async () => {
+      const token = await getToken();
       try {
         const res = await fetch(`${API_URL}/api/invoices/mark/${id}`, {
           method: "PUT",
           credentials: "include",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -149,15 +157,19 @@ export const useSaveAsDraft = (
 ) => {
   const queryClient = useQueryClient();
   const { userId } = useAuth();
+
   const { isOpen, setIsOpen: setInvoiceFormOpen } = useReceiptStore();
+  const { getToken } = useAuth();
 
   return useMutation({
     mutationFn: async () => {
       try {
+        const token = await getToken();
         const res = await fetch(`${API_URL}/api/invoices/draft/${userId}`, {
           method: "POST",
           credentials: "include",
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -186,6 +198,43 @@ export const useSaveAsDraft = (
     },
     onError: (error) => {
       toast.error(error?.message);
+    },
+  });
+};
+
+export const useDeleteInvoice = (id: string | undefined) => {
+  const { setOpenDeleteModal } = useReceiptStore();
+  const queryClient = useQueryClient();
+  const { getToken } = useAuth();
+  return useMutation({
+    mutationFn: async () => {
+      const token = await getToken();
+      try {
+        const res = await fetch(`${API_URL}/api/invoices/${id}`, {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "Something went wrong");
+        }
+        return data;
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    },
+    onSuccess: () => {
+      toast.success("Invoice successfully deleted");
+      setOpenDeleteModal();
+      queryClient.invalidateQueries({ queryKey: ["invoices"] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 };

@@ -18,7 +18,7 @@ const Invoices = ({ invoices, isLoading }: Props) => {
   }
 
   return (
-    <div className="lg:mt-16 mt-8 flex items-center gap-4 flex-col ">
+    <div className="lg:mt-16 mb-10 mt-8 flex items-center gap-4 flex-col ">
       {invoices?.length ? (
         invoices?.map((data: InvoicesType) => (
           <AllInvoices key={data._id} data={data} />

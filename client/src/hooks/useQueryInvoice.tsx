@@ -1,15 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { InvoicesType } from "../types";
+import { useAuth } from "@clerk/clerk-react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 export const useFetchInvoice = (id: string | undefined) => {
+  const { getToken } = useAuth();
+
   return useQuery({
     queryKey: ["invoice"],
-    retry: 1,
+    retry: false,
     queryFn: async (): Promise<InvoicesType> => {
+      const token = await getToken();
       const res = await fetch(`${API_URL}/api/invoices/getInvoice/${id}`, {
         method: "GET",
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
 
       const data = (await res.json()) as InvoicesType;

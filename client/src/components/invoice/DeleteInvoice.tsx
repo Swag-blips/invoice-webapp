@@ -1,54 +1,21 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../helpers/Spinner";
-import useReceiptStore from "../../store/receiptStore";
+import { useDeleteInvoice } from "../../hooks/useMutateInvoice";
 
 type Props = {
   handleClose: () => void;
 };
 const DeleteInvoice = ({ handleClose }: Props) => {
-  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const queryClient = useQueryClient();
+  const { mutateAsync: deleteInvoice, isPending } = useDeleteInvoice(id);
+  const handleDelete = async () => {
+    const toDelete = await deleteInvoice();
 
-  const { setOpenDeleteModal } = useReceiptStore();
-
-  const { mutate: deleteInvoice, isPending } = useMutation({
-    mutationFn: async () => {
-      try {
-        const res = await fetch(`${API_URL}/api/invoices/${id}`, {
-          method: "DELETE",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Something went wrong");
-        }
-      } catch (error: any) {
-        throw new Error(error);
-      }
-    },
-    onSuccess: () => {
-      toast.success("Invoice successfully deleted");
-      setOpenDeleteModal();
-      queryClient.invalidateQueries({ queryKey: ["invoices"] });
+    if (toDelete) {
       navigate("/");
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
-
-  const handleDelete = () => {
-    deleteInvoice();
+    }
   };
 
   return (

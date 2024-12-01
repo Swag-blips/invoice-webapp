@@ -16,7 +16,8 @@ export default function Main() {
     pending: false,
     paid: false,
   });
-  
+
+  const { getToken } = useAuth();
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -25,10 +26,14 @@ export default function Main() {
   const { data: invoices, isLoading } = useQuery({
     queryKey: ["invoices", filters],
     queryFn: async () => {
+      const token = await getToken();
       try {
         const res = await fetch(`${API_URL}/api/invoices/${userId}`, {
           method: "GET",
-          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         });
 
         const data = await res.json();
