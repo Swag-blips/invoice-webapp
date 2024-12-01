@@ -14,10 +14,7 @@ const app = (0, express_1.default)();
 app.use((0, express_2.clerkMiddleware)());
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
-    origin: [
-        "http://localhost:5173",
-        "https://invoice-bay-eight.vercel.app",
-    ],
+    origin: ["http://localhost:5173", "https://invoice-bay-eight.vercel.app"],
     credentials: true,
 }));
 app.use("/api/invoices", invoice_route_1.default);

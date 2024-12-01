@@ -16,6 +16,7 @@ export default function Main() {
     pending: false,
     paid: false,
   });
+  
 
   const API_URL = import.meta.env.VITE_API_URL;
 

@@ -7,10 +7,9 @@ const SignIn = () => {
   const { userId, isLoaded } = useAuth();
   const navigate = useNavigate();
 
-  const redirect_url = import.meta.env.VITE_REDIRECT_URL;
+  const redirect_url = import.meta.env.VITE_REDIRECT_URi;
 
   useEffect(() => {
-
     if (isLoaded && userId) {
       navigate("/");
     }
