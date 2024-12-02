@@ -16,6 +16,10 @@ app.use((0, cors_1.default)({
     credentials: true,
 }));
 app.use("/api/invoices", invoice_route_1.default);
+app.get("/cronJob", (req, res) => {
+    res.send("Hello cron job");
+    return;
+});
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
